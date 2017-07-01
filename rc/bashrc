@@ -41,7 +41,7 @@ if [[ $(uname -r | awk -F - '{print $2}') == "gentoo" ]]; then
     source "${STARTUP_SEQUENCE}/gentoo"
 fi
 
-export PS1="\u at \H in \w\n$ "
+export PS1="${PS1_BASIC}"
 
 if [[ -n "$(\ls -A ${PRIVATEFILES_PATH} 2>/dev/null)" ]]; then
     for file in ${PRIVATEFILES_PATH}/*; do
