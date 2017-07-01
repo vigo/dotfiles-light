@@ -8,14 +8,14 @@ if [[ $(command -v brew) ]]; then
     # brew install coreutils, gnu-ls is installed?
     if [[ $(command -v gls) ]]; then
         alias ls="gls -h --color --group-directories-first"
-        alias ll="ls -alp"
+        alias ll="ls -al"
         alias la="ls -A"
         alias l="ls -Cp"
         export DFL_LS_COLORABLE=1
     fi
 else
     alias ls="ls -hG@"
-    alias ll="ls -alF"
+    alias ll="ls -al"
     alias la="ls -A"
     alias l="ls -CF"
 fi
