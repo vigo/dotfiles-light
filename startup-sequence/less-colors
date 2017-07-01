@@ -1,0 +1,20 @@
+# http://unix.stackexchange.com/a/108840/11423
+# termcap information
+# ks      smkx      make the keypad send commands
+# ke      rmkx      make the keypad send digits
+# vb      flash     emit visual bell
+# mb      blink     start blink
+# md      bold      start bold
+# me      sgr0      turn off bold, blink and underline
+# so      smso      start standout (reverse video)
+# se      rmso      stop standout
+# us      smul      start underline
+# ue      rmul      stop underline
+
+export LESS_TERMCAP_md="${yellow}${bold}"         # bold text
+export LESS_TERMCAP_us="${green}${underline}"     # start underline
+export LESS_TERMCAP_so="${white_on_blue}"         # start standout (reverse video)
+
+export LESS_TERMCAP_me="${COLOR_OFF}"             # turn off bold, blink and underline
+export LESS_TERMCAP_se="${COLOR_OFF}"             # stop standout
+export LESS_TERMCAP_ue="${COLOR_OFF}"             # stop underline

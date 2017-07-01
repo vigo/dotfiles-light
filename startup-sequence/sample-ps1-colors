@@ -1,0 +1,42 @@
+export DFL_HORIZONTAL_LINE_PROMPT_COLOR="${gray}"                      # [------]
+export DFL_BASH_VERSION_INFO_PROMPT_COLOR="${gray}"                    # [4.4.5(1)-release]
+export DFL_MEMORY_PROMPT_COLOR="${green}${bold}"                       # [2.43G]
+
+# vigo at noto.local in ~
+export DFL_USER_HOSTNAME_USER_PROMPT_COLOR="${blue}"
+export DFL_USER_HOSTNAME_HOSTNAME_PROMPT_COLOR="${red}"
+export DFL_USER_HOSTNAME_CWD_PROMPT_COLOR="${white}"
+
+# git/hg
+export DFL_REVCONTROL_BRANCH_COLOR="${green}"                          # master
+export DFL_REVCONTROL_AT_SIGN_COLOR="${white}"                         # @
+export DFL_REVCONTROL_COMMIT_ID_COLOR="${underline}"                   # 4a449eb1d5e5
+export DFL_REVCONTROL_UNTRACKED_COLOR="${red}"                         # □
+export DFL_REVCONTROL_ADDED_COLOR="${yellow}${bold}"                   # ■
+export DFL_REVCONTROL_MODIFIED_COLOR="${green}"                        # ◆
+export DFL_REVCONTROL_RENAMED_COLOR="${yellow}"                        # ◇
+export DFL_REVCONTROL_DELETED_COLOR="${blink}${magenta}"               # ◌
+export DFL_REVCONTROL_TYPECHANGED_COLOR="${cyan}"                      # ❖
+export DFL_REVCONTROL_OVERALL_COLOR="${white}"                         #
+export DFL_REVCONTROL_VERTICAL_PIPE_COLOR="${gray}"                    # |
+export DFL_REVCONTROL_GIT_BRANCH_AHEAD_COLOR="${reverse}${white}"      # →
+export DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR="${reverse}${white}"     # ←
+
+# battery
+# export DFL_BATTERY_ICON="\xE2\x8C\xA7" # for custom icon :)          # [⌧ 7:48]
+export DFL_BATTERY_PROMPT_COLOR="${yellow}"                            # [3:47]
+
+# ip list
+export DFL_IPLIST_PROMPT_IFACE_COLOR="${gray}${bold}"                  # [en0:192.168.2.205,vboxnet0:192.168.33.1]
+export DFL_IPLIST_PROMPT_IPADDR_COLOR="${gray}"
+
+# database status
+export DFL_DB_MYSQL_PROMPT_COLOR="${red}${blink}"                      # [MySQL]
+export DFL_DB_POSTGRESQL_PROMPT_COLOR="${red}${blink}"                 # [PG]
+export DFL_DB_REDIS_PROMPT_COLOR="${red}${blink}"                      # [REDIS]
+
+# libs
+export DFL_VIRTUALENV_PROMPT_COLOR="${red}${bold}"                     # [⚑ resume.bilgi.edu.tr]
+export DFL_RBENV_PROMPT_COLOR="${yellow}"                              # [◆ 2.3.3]
+export DFL_PYTHON_PROMPT_COLOR="${blue}"                               # [¶ 2.7.12]
+export DFL_DJANGO_PROMPT_COLOR="${cyan}${underline}"                   # [❡ 1.10.1]

@@ -1,0 +1,12 @@
+alias rm="rm -iv"
+alias mv="mv -iv"
+alias cp="cp -aiv"
+alias rmdir="rmdir -p"
+alias mkdir="mkdir -p"
+
+if [[ $(command -v dig) ]]; then
+    alias what_is_my_ip_opendns="dig +short myip.opendns.com @resolver1.opendns.com"
+fi
+if [[ $(command -v curl) ]]; then
+    alias what_is_my_ip="curl ifconfig.co"
+fi

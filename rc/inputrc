@@ -1,0 +1,57 @@
+# kntrl+x + kntrl+r : reloads inputrc
+
+# see /usr/share/doc/bash/inputrc.arrows for other codes of arrow keys
+# search in history while writing with up/down
+"\e[B": history-search-forward
+"\e[A": history-search-backward
+# "\e[3;3~": kill-word + use esc+d instead
+
+# meta key esc...
+# type bind -l on terminal
+
+# TAB: menu-complete
+"\e[Z": menu-complete # shift+TAB
+# "\e[Z": "\e-1\C-i"      # menu-complete-backward, shift+TAB
+
+$if Bash
+  # F10 toggles mc on and off
+  # Note Ctrl-o toggles panes on and off in mc
+  # "\e[21~": "mc\C-M"
+ 
+  #do history expansion when space entered
+  Space: magic-space
+$endif
+
+# Be 8 bit clean.
+set input-meta on
+set output-meta on
+set convert-meta off
+
+# https://github.com/mathiasbynens/dotfiles/blob/master/.inputrc
+# Immediately add a trailing slash when autocompleting symlinks to directories
+set mark-symlinked-directories on
+
+# Show all autocomplete results at once
+set page-completions off
+
+# If there are more than 200 possible completions for a word, ask to show them all
+set completion-query-items 200
+
+# Show extra file information when completing, like `ls -F` does
+set visible-stats on
+
+set skip-completed-text on
+set completion-ignore-case on
+set show-all-if-ambiguous on
+set expand-tilde off
+
+# do not bell on tab-completion
+set bell-style audible
+
+set match-hidden-files off
+set colored-completion-prefix on
+set colored-stats on
+set mark-directories on
+set menu-complete-display-prefix on
+
+# set print-completions-horizontally on

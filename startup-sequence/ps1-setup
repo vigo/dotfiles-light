@@ -1,0 +1,32 @@
+# -----------------------------------------------------------------------------
+print_horizontal_line(){
+    cols=${COLUMNS:-$(tty -s && tput cols)}
+    hline=$(printf "%*s\n" "${cols}" "" | tr " " -)
+    if [[ $DFL_HORIZONTAL_LINE_PROMPT_COLOR ]]; then
+        hline="${DFL_HORIZONTAL_LINE_PROMPT_COLOR}${hline}${COLOR_OFF}"
+    fi
+    echo -e $hline
+}
+# -----------------------------------------------------------------------------
+
+
+# -----------------------------------------------------------------------------
+PROMPT_HORIZONTAL_LINE="\$(print_horizontal_line)"
+PROMPT_BASH_VERSION_INFO="\$(${PS1_PROMPTS_PATH}/bash-version-info)"
+PROMPT_USER_AND_HOSTNAME="${DFL_USER_HOSTNAME_USER_PROMPT_COLOR}\u${COLOR_OFF} at ${DFL_USER_HOSTNAME_HOSTNAME_PROMPT_COLOR}\H${COLOR_OFF} in ${DFL_USER_HOSTNAME_CWD_PROMPT_COLOR}\w${COLOR_OFF}"
+
+PROMPT_GIT="\$(${PS1_PROMPTS_PATH}/git)"
+PROMPT_HG="\$(${PS1_PROMPTS_PATH}/hg)"
+PROMPT_MEMORY="\$(${PS1_PROMPTS_PATH}/memory)"
+PROMPT_BATTERY="\$(${PS1_PROMPTS_PATH}/battery)"
+PROMPT_IPS_LIST="\$(${PS1_PROMPTS_PATH}/ip-list)"
+PROMPT_DATABASE_STATUS="\$(${PS1_PROMPTS_PATH}/database-status)"
+PROMPT_VIRTUALENV="\$(${PS1_PROMPTS_PATH}/virtualenv)"
+PROMPT_RBENV="\$(${PS1_PROMPTS_PATH}/rbenv)"
+PROMPT_PYTHON_PYENV="\$(${PS1_PROMPTS_PATH}/python-pyenv)"
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+PS1_BASIC="${PROMPT_USER_AND_HOSTNAME}
+$ "
+# -----------------------------------------------------------------------------

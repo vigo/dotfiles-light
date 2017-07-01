@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+
+# Created by Uğur "vigo" Özyılmazel,
+# feel free to add/change or implement more kool features
+# @vigobronx
+
+if [[ $(command -v ifconfig) ]]; then
+    output=()
+    case $(uname) in
+        "Darwin" )
+            interface_list=$(ifconfig -lu)
+            match_pattern="inet [0-9.]\+"
+            delimeter=" "
+        ;;
+        "Linux" )
+            lines=$(ifconfig -s | wc -l)
+            interface_list=$(ifconfig -s | tail -n $(( $lines-1 )) | cut -f1 -d' ' | xargs)
+            match_pattern="inet addr:[0-9.]\+"
+            delimeter=":"
+            if [[ $DFL_OS == "GENTOO" ]]; then
+                match_pattern="inet [0-9.]\+"
+                delimeter=" "
+            fi
+        ;;
+    esac
+
+    for iface in $interface_list; do
+        ip_address=$(ifconfig $iface | grep --colour=never -oe "$match_pattern" | cut -f2 -d"$delimeter")
+        if [[ $ip_address && $ip_address != "127.0.0.1" ]]; then
+            if [[ $DFL_IPLIST_PROMPT_IFACE_COLOR ]]; then
+                iface="${DFL_IPLIST_PROMPT_IFACE_COLOR}${iface}${COLOR_OFF}"
+            fi
+            if [[ $DFL_IPLIST_PROMPT_IPADDR_COLOR ]]; then
+                ip_address="${DFL_IPLIST_PROMPT_IPADDR_COLOR}${ip_address}${COLOR_OFF}"
+            fi
+            iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
+            output+="${iface_and_ip}"
+        fi
+    done
+    
+    if [[ $output ]]; then
+        result="${output:1}"
+    else
+        result="\xE2\x8C\x81" # [⌁]
+    fi
+    printf "[${result}]"
+fi
+

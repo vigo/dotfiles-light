@@ -1,0 +1,45 @@
+DOTFILES_PATH="${HOME}/Dotfiles"
+PRIVATEFILES_PATH="${DOTFILES_PATH}/private"
+PS1_PROMPTS_PATH="${DOTFILES_PATH}/ps1"
+STARTUP_SEQUENCE="${DOTFILES_PATH}/startup-sequence"
+
+source "${STARTUP_SEQUENCE}/env"
+source "${STARTUP_SEQUENCE}/alias"
+source "${STARTUP_SEQUENCE}/colors"
+
+export DFL_LS_COLOR=1
+export DFL_LESS_COLOR=1
+export DFL_PS1_COLORS=1
+
+# custom options for un-setting colors
+if [[ -e ${DOTFILES_PATH}/options ]]; then
+    source ${DOTFILES_PATH}/options
+fi
+
+if [[ ! -z ${DFL_PS1_COLORS+x} ]]; then
+    source "${STARTUP_SEQUENCE}/sample-ps1-colors"
+fi
+
+source "${STARTUP_SEQUENCE}/ps1-setup"
+
+if [[ $(uname) == "Darwin" ]]; then
+    source "${STARTUP_SEQUENCE}/osx"
+fi
+
+export PS1="\u at \H in \w\n$ "
+
+if [[ -n "$(\ls -A ${PRIVATEFILES_PATH} 2>/dev/null)" ]]; then
+    for file in ${PRIVATEFILES_PATH}/*; do
+        source ${file}
+    done
+fi
+
+if [[ ! -z ${DFL_LS_COLOR+x} ]]; then
+    if [[ ! -z ${DFL_LS_COLORABLE+x} ]]; then
+        source "${STARTUP_SEQUENCE}/ls-colors"
+    fi
+fi
+
+if [[ ! -z ${DFL_LESS_COLOR+x} ]]; then
+    source "${STARTUP_SEQUENCE}/less-colors"
+fi

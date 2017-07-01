@@ -1,0 +1,87 @@
+#!/usr/bin/env bash
+
+# Created by Uğur "vigo" Özyılmazel,
+# feel free to add/change or implement more kool features
+# @vigobronx
+
+symbol_unctracked="\xE2\x96\xA1"   # □ WHITE SQUARE
+symbol_added="\xE2\x96\xA0"        # ■ BLACK SQUARE
+symbol_modified="\xE2\x97\x86"     # ◆ BLACK DIAMOND
+symbol_renamed="\xE2\x97\x87"      # ◇ WHITE DIAMOND
+symbol_deleted="\xE2\x97\x8C"      # ◌ DOTTED CIRCLE
+symbol_typechanged="\xE2\x9A\x91"  # ❖ BLACK DIAMOND MINUS WHITE X
+symbol_overall="\xE2\x9D\x96"      # ◔ CIRCLE WITH UPPER RIGHT QUADRANT BLACK
+
+current_branch=""
+in_hg_repo() {
+    current_branch=$(hg branch 2> /dev/null)
+    if [[ $current_branch ]]; then
+        return 0
+    fi
+    return 1
+}
+
+
+cwd_added_files() {
+    added_files_count=$(hg status | grep "^A" | wc -l | tr -d " ")
+    if [[ $added_files_count > 0 ]]; then
+        if [[ $DFF_REVCONTROL_ADDED_COLOR ]]; then
+            symbol_added="${DFF_REVCONTROL_ADDED_COLOR}${symbol_added}${COLOR_OFF}"
+        fi
+        printf " ${symbol_added}:${added_files_count}"
+    fi
+}
+
+
+cwd_modified_files() {
+    modified_files_count=$(hg status | grep "^M" | wc -l | tr -d " ")
+    if [[ $modified_files_count > 0 ]]; then
+        if [[ $DFF_REVCONTROL_MODIFIED_COLOR ]]; then
+            symbol_modified="${DFF_REVCONTROL_MODIFIED_COLOR}${symbol_modified}${COLOR_OFF}"
+        fi
+        printf " ${symbol_modified}:${modified_files_count}"
+    fi
+}
+
+cwd_untracked() {
+    files_not_under_revision_control_count=$(hg status | grep "^?" | wc -l | tr -d " ")
+    if [[ $files_not_under_revision_control_count > 0 ]]; then
+        if [[ $DFF_REVCONTROL_UNTRACKED_COLOR ]]; then
+            symbol_unctracked="${DFF_REVCONTROL_UNTRACKED_COLOR}${symbol_unctracked}${COLOR_OFF}"
+        fi
+        printf " ${symbol_unctracked}:${files_not_under_revision_control_count}"
+    fi
+}
+
+cwd_deleted_files() {
+    deleted_files_count=$(hg status | grep "^R" | wc -l | tr -d " ")
+    if [[ $deleted_files_count > 0 ]]; then
+        if [[ $DFF_REVCONTROL_DELETED_COLOR ]]; then
+            symbol_deleted="${DFF_REVCONTROL_DELETED_COLOR}${symbol_deleted}${COLOR_OFF}"
+        fi
+        printf " ${symbol_deleted}:${deleted_files_count}"
+    fi
+}
+
+if [[ $(command -v hg) ]]; then
+    if in_hg_repo; then
+        commit_id=$(hg identify -ni 2> /dev/null | tr " " ":")
+        at_sign="@"
+        any_added=$(cwd_added_files)
+        any_modified=$(cwd_modified_files)
+        any_untracked=$(cwd_untracked)
+        any_deleted=$(cwd_deleted_files)
+        
+        if [[ $DFF_REVCONTROL_BRANCH_COLOR ]]; then
+            current_branch="${DFF_REVCONTROL_BRANCH_COLOR}${current_branch}${COLOR_OFF}"
+        fi
+        if [[ $DFF_REVCONTROL_AT_SIGN_COLOR ]]; then
+            at_sign="${DFF_REVCONTROL_AT_SIGN_COLOR}${at_sign}${COLOR_OFF}"
+        fi
+        if [[ $DFF_REVCONTROL_COMMIT_ID_COLOR ]]; then
+            commit_id="${DFF_REVCONTROL_COMMIT_ID_COLOR}${commit_id}${COLOR_OFF}"
+        fi
+
+        echo "[${current_branch} ${at_sign} ${commit_id}${any_untracked}${any_added}${any_modified}${any_deleted}]"
+    fi
+fi

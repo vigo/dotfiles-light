@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+set -e
+
+get_mysql_status() {
+    if [[ $(command -v mysql.server) ]]; then
+        mysql_status=$(mysql.server status)
+        regex="running \(([0-9]+)\)"
+        if [[ $mysql_status =~ $regex ]]; then
+            mysql_pid=${BASH_REMATCH[1]}
+            out="MySQL"
+            if [[ $DFL_DB_MYSQL_PROMPT_COLOR ]]; then
+                out="${DFL_DB_MYSQL_PROMPT_COLOR}${out}${COLOR_OFF}"
+            fi
+            printf "[${out}]"
+        fi
+    fi
+    
+}
+
+get_postgresql_status() {
+    if [[ $(command -v pg_ctl) ]]; then
+        if [[ -z "$PGDATA" ]]; then
+            postgresql_status=$(pg_ctl status -D /usr/local/var/postgres)
+        else
+            postgresql_status=$(pg_ctl status)
+        fi
+        regex="running \(PID: ([0-9]+)\)"
+        if [[ $postgresql_status =~ $regex ]]; then
+            postgresql_pid=${BASH_REMATCH[1]}
+            out="PG"
+            if [[ $DFL_DB_POSTGRESQL_PROMPT_COLOR ]]; then
+                out="${DFL_DB_POSTGRESQL_PROMPT_COLOR}${out}${COLOR_OFF}"
+            fi
+            echo "[${out}]"
+        fi
+    fi
+}
+
+get_redis_status() {
+    if [[ $(command -v redis-cli) ]]; then
+        redis_ping=$(redis-cli ping > /dev/null 2>&1)
+        if [[ $? == 0 ]]; then
+            out="REDIS"
+            if [[ $DFL_DB_REDIS_PROMPT_COLOR ]]; then
+                out="${DFL_DB_REDIS_PROMPT_COLOR}${out}${COLOR_OFF}"
+            fi
+            echo "[${out}]"
+        fi
+    fi
+}
+
+if [[ $(uname) == "Darwin" ]]; then
+    mysql_status=$(get_mysql_status)
+    postgresql_status=$(get_postgresql_status)
+    redis_status=$(get_redis_status)
+    echo "${mysql_status}${postgresql_status}${redis_status}"
+fi
