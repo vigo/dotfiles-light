@@ -1,4 +1,17 @@
-export PATH="${HOME}/bin:${PATH}"
+export PATH="${HOME}/bin:/usr/local/sbin:${PATH}"
 export LANG="en_US.UTF-8"
+export LESS="-irW --tabs=4 --prompt=?f%f %lb %L - %db/%D [%bb / %B bytes]"
+export MANPAGER="less -X"
+
+# History settings
+# -----------------------------------------------------------------------------
+shopt -s histappend
+PROMPT_COMMAND="history -a;${PROMPT_COMMAND}"
+export HISTIGNORE="ls:ll:cd:pwd"
+export HISTFILESIZE=30000
+export HISTSIZE=30000
+export HISTCONTROL=ignoredups:erasedups
+export HISTTIMEFORMAT="[${green}%A at ${white}${underline}%T${COLOR_OFF}]: "
+# -----------------------------------------------------------------------------
 
 complete -e printenv
