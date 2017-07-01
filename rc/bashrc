@@ -24,6 +24,21 @@ source "${STARTUP_SEQUENCE}/ps1-setup"
 
 if [[ $(uname) == "Darwin" ]]; then
     source "${STARTUP_SEQUENCE}/osx"
+    export DFL_OS="OSX"
+fi
+
+# ubuntu only
+if [[ $(command -v lsb_release) ]]; then
+    if [[ $(lsb_release -i | grep -i 'ubuntu') ]]; then
+        export DFL_OS="UBUNTU"
+        source "${STARTUP_SEQUENCE}/ubuntu"
+    fi
+fi
+
+# gentoo only
+if [[ $(uname -r | awk -F - '{print $2}') == "gentoo" ]]; then
+    export DFL_OS="GENTOO"
+    source "${STARTUP_SEQUENCE}/gentoo"
 fi
 
 export PS1="\u at \H in \w\n$ "

@@ -22,6 +22,11 @@ fi
 
 # osx prompt shell
 # -----------------------------------------------------------------------------
+PS1_OSX_BASIC="${PROMPT_MEMORY}${PROMPT_BATTERY}
+${PROMPT_USER_AND_HOSTNAME}
+${PROMPT_GIT}${PROMPT_HG}
+$ "
+
 PS1_OSX_ADVANCED="${PROMPT_HORIZONTAL_LINE}
 ${PROMPT_BASH_VERSION_INFO}${PROMPT_MEMORY}${PROMPT_BATTERY}${PROMPT_IPS_LIST}
 ${PROMPT_USER_AND_HOSTNAME}

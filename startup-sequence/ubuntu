@@ -1,0 +1,45 @@
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+shopt -s checkwinsize
+
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
+if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
+    debian_chroot=$(cat /etc/debian_chroot)
+fi
+
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
+
+if ! shopt -oq posix; then
+  if [ -f /usr/share/bash-completion/bash_completion ]; then
+    . /usr/share/bash-completion/bash_completion
+  elif [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+  fi
+fi
+
+export LC_COLLATE="C" # folders start with . will be on top
+
+alias ls='ls -h --color --group-directories-first'
+
+# -----------------------------------------------------------------------------
+PS1_UBUNTU_BASIC="${PROMPT_USER_AND_HOSTNAME}
+${PROMPT_GIT}${PROMPT_HG}
+> "
+# -----------------------------------------------------------------------------
+
+# -----------------------------------------------------------------------------
+PS1_UBUNTU_ADVANCED="${PROMPT_HORIZONTAL_LINE}
+${PROMPT_BASH_VERSION_INFO}${PROMPT_IPS_LIST}
+${PROMPT_USER_AND_HOSTNAME}
+${PROMPT_VIRTUALENV}${PROMPT_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_GIT}${PROMPT_HG}
+> "
+# -----------------------------------------------------------------------------
+
