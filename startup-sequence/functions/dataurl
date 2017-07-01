@@ -1,0 +1,7 @@
+dataurl() {
+    if [[ $1 ]]; then
+        echo "data:image/${1##*.};base64,$(openssl base64 -in "$1")" | tr -d '\n'
+    else
+        echo 'usage: dataurl image_file'
+    fi
+}

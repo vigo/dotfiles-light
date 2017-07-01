@@ -1,0 +1,37 @@
+# Python Http Server
+# via @paul_irish | fixed by @vigobronx
+function webserver() {
+    if [[ $1 == "-h" || $1 == "--help" ]]; then
+        echo "Simple, http static html server via Python."
+        echo "Usage:"
+        echo -e "\twebserver PORT"
+        echo -e "\twebserver # default port is 8000"
+        echo
+        echo "-h, --help: help"
+        echo
+        return 0
+    fi
+    local port="${1:-8000}"
+    # open "http://localhost:${port}/"
+    python -m SimpleHTTPServer "$port"
+    python -c $'import SimpleHTTPServer;\n
+                map = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\n
+                map[""] = "text/plain";\n
+                for key, value in map.items():\n\t
+                map[key] = value + ";charset=UTF-8";\n
+                SimpleHTTPServer.test();' "$port"
+}
+_server()
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts="8000 -h --help"
+
+    if [[ ${cur} == * ]] ; then
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+        return 0
+    fi
+}
+complete -F _server webserver -o nospace

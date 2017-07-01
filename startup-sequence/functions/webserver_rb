@@ -1,0 +1,30 @@
+# ruby webserver
+function webserver_rb(){
+    if [[ $1 == "-h" || $1 == "--help" ]]; then
+        echo "Simple, http static html server via Ruby."
+        echo "Usage:"
+        echo -e "\twebserver_rb PORT"
+        echo -e "\twebserver_rb # default port is 5000"
+        echo
+        echo "-h, --help: help"
+        echo
+        return 0
+    fi
+    local port="${1:-5000}"
+    echo "Listening 127.0.0.1:${port}"
+    ruby -run -e httpd . -p $port
+}
+_server_rb()
+{
+    local cur prev opts
+    COMPREPLY=()
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    opts="5000 -h --help"
+
+    if [[ ${cur} == * ]] ; then
+        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+        return 0
+    fi
+}
+complete -F _server_rb webserver_rb -o nospace

@@ -1,0 +1,13 @@
+mkdir_cd(){
+    if [[ $1 ]]; then
+        filename="${1}"
+        if [[ $DFF_OS == 'OSX' ]]; then
+            filename=${1//:/-}
+        fi
+        mkdir -p "${filename}" && cd "${filename}"
+    else
+        echo 'usage: mkdir_cd path/to/directory'
+        echo '       mkdir_cd "you folder name"'
+        echo '       mkdir_cd path/to/new/non-existing/dir'
+    fi
+}

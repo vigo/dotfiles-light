@@ -1,0 +1,10 @@
+function gz_analyse() {
+    if [[ $1 ]]; then
+        echo "orig size (bytes): "
+        cat "$1" | wc -c
+        echo "gzipped size (bytes): "
+        gzip -c "$1" | wc -c
+    else
+        echo "usage: gz_analyse file"
+    fi
+}

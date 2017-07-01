@@ -1,3 +1,9 @@
+if [[ ${BASH_VERSINFO[0]} -gt 3 ]]; then
+    shopt -s extglob
+    shopt -s globstar
+    shopt -s dotglob
+fi
+
 DOTFILES_PATH="${HOME}/Dotfiles"
 PRIVATEFILES_PATH="${DOTFILES_PATH}/private"
 PS1_PROMPTS_PATH="${DOTFILES_PATH}/ps1"
@@ -11,7 +17,7 @@ export DFL_LS_COLOR=1
 export DFL_LESS_COLOR=1
 export DFL_PS1_COLORS=1
 
-# custom options for un-setting colors
+# custom options for un-setting colors ----------------------------------------
 if [[ -e ${DOTFILES_PATH}/options ]]; then
     source ${DOTFILES_PATH}/options
 fi
@@ -19,15 +25,23 @@ fi
 if [[ ! -z ${DFL_PS1_COLORS+x} ]]; then
     source "${STARTUP_SEQUENCE}/sample-ps1-colors"
 fi
+# -----------------------------------------------------------------------------
+
 
 source "${STARTUP_SEQUENCE}/ps1-setup"
 
+
+# osx only
+# -----------------------------------------------------------------------------
 if [[ $(uname) == "Darwin" ]]; then
     source "${STARTUP_SEQUENCE}/osx"
     export DFL_OS="OSX"
 fi
+# -----------------------------------------------------------------------------
+
 
 # ubuntu only
+# -----------------------------------------------------------------------------
 if [[ $(command -v lsb_release) ]]; then
     if [[ $(lsb_release -i | grep -i 'ubuntu') ]]; then
         export DFL_OS="UBUNTU"
@@ -35,20 +49,65 @@ if [[ $(command -v lsb_release) ]]; then
     fi
 fi
 
+
 # gentoo only
+# -----------------------------------------------------------------------------
 if [[ $(uname -r | awk -F - '{print $2}') == "gentoo" ]]; then
     export DFL_OS="GENTOO"
     source "${STARTUP_SEQUENCE}/gentoo"
 fi
+# -----------------------------------------------------------------------------
+
 
 export PS1="${PS1_BASIC}"
 
+
+# fix $PATH for libraries/3rd party tools
+# -----------------------------------------------------------------------------
+if [[ -d $HOME/.rbenv ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
+fi
+
+if [[ -d $HOME/.pyenv ]]; then
+    export PYENV_ROOT="${HOME}/.pyenv"
+    export PATH="${PYENV_ROOT}/bin:$PATH"
+    eval "$(pyenv init -)"
+    if [[ -d $HOME/.pyenv/plugins/pyenv-virtualenv ]]; then
+        eval "$(pyenv virtualenv-init -)"
+    fi
+    if [[ -d $HOME/.pyenv/plugins/pyenv-virtualenvwrapper ]]; then
+        export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+        pyenv virtualenvwrapper
+    fi
+elif [[ $(command -v virtualenvwrapper.sh) ]]; then
+    source $(command -v virtualenvwrapper.sh)
+fi
+
+if [[ $(command -v pip) ]]; then
+    eval "$(pip --disable-pip-version-check completion --bash)"
+fi
+# -----------------------------------------------------------------------------
+
+
+# load functions
+# -----------------------------------------------------------------------------
+for file in ${STARTUP_SEQUENCE}/functions/*; do
+    source $file
+done
+# -----------------------------------------------------------------------------
+
+
+# load private files ----------------------------------------------------------
 if [[ -n "$(\ls -A ${PRIVATEFILES_PATH} 2>/dev/null)" ]]; then
     for file in ${PRIVATEFILES_PATH}/*; do
         source ${file}
     done
 fi
+# -----------------------------------------------------------------------------
 
+
+# check colors if enabled -----------------------------------------------------
 if [[ ! -z ${DFL_LS_COLOR+x} ]]; then
     if [[ ! -z ${DFL_LS_COLORABLE+x} ]]; then
         source "${STARTUP_SEQUENCE}/ls-colors"
@@ -58,3 +117,4 @@ fi
 if [[ ! -z ${DFL_LESS_COLOR+x} ]]; then
     source "${STARTUP_SEQUENCE}/less-colors"
 fi
+# -----------------------------------------------------------------------------
