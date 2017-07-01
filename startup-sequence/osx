@@ -20,6 +20,8 @@ else
     alias l="ls -CF"
 fi
 
+export MACOSX_VERSION=$(sw_vers -productVersion)
+
 # osx prompt shell
 # -----------------------------------------------------------------------------
 PS1_OSX_BASIC="${PROMPT_MEMORY}${PROMPT_BATTERY}
@@ -32,4 +34,15 @@ ${PROMPT_BASH_VERSION_INFO}${PROMPT_MEMORY}${PROMPT_BATTERY}${PROMPT_IPS_LIST}
 ${PROMPT_USER_AND_HOSTNAME}
 ${PROMPT_DATABASE_STATUS}${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_GIT}${PROMPT_HG}
 $ "
+# -----------------------------------------------------------------------------
+
+
+# osx specific aliases
+# -----------------------------------------------------------------------------
+alias desktop_hide="defaults write com.apple.finder CreateDesktop -bool false;killall Finder;"
+alias desktop_show="defaults write com.apple.finder CreateDesktop -bool true;killall Finder;"
+alias shadow_screenshot_disable='defaults write com.apple.screencapture disable-shadow -bool true && killall SystemUIServer'
+alias shadow_screenshot_enable='defaults write com.apple.screencapture disable-shadow -bool false && killall SystemUIServer'
+alias ds_store_clear="find . -name '\.DS_Store' -print -delete"
+alias lock_screen="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 # -----------------------------------------------------------------------------
