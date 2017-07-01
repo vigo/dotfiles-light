@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+if [[ $(command -v ruby) ]]; then
+    if [[ $(command -v rbenv) ]]; then
+        rbenv_version=$(rbenv version-name)
+        if [[ $rbenv_version != "system" && ! -z $rbenv_version ]]; then
+            rbenv_version="${rbenv_version}"
+        fi
+    else
+        rbenv_version=$(ruby -e 'puts RUBY_VERSION' 2>&1)
+    fi
+    
+    rbenv_version="◆ ${rbenv_version}"
+
+    if [[ $DFL_RBENV_PROMPT_COLOR ]]; then
+        rbenv_version="${DFL_RBENV_PROMPT_COLOR}${rbenv_version}${COLOR_OFF}"
+    fi
+    printf "[${rbenv_version}]"
+fi
+

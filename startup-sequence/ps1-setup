@@ -22,10 +22,12 @@ PROMPT_BATTERY="\$(${PS1_PROMPTS_PATH}/battery)"
 PROMPT_IPS_LIST="\$(${PS1_PROMPTS_PATH}/ip-list)"
 PROMPT_DATABASE_STATUS="\$(${PS1_PROMPTS_PATH}/database-status)"
 PROMPT_VIRTUALENV="\$(${PS1_PROMPTS_PATH}/virtualenv)"
-PROMPT_RBENV="\$(${PS1_PROMPTS_PATH}/rbenv)"
+PROMPT_RUBY_RBENV="\$(${PS1_PROMPTS_PATH}/ruby-rbenv)"
 PROMPT_PYTHON_PYENV="\$(${PS1_PROMPTS_PATH}/python-pyenv)"
 # -----------------------------------------------------------------------------
 
+
+# default PS1
 # -----------------------------------------------------------------------------
 PS1_BASIC="${PROMPT_USER_AND_HOSTNAME}
 $ "
