@@ -1,0 +1,37 @@
+_bundler_complete()
+{
+    if [[ ! $(command -v bundle) ]]; then
+        return
+    fi
+
+    local cur prev commands
+    commands="help install update package exec config check list show outdated console open viz init gem platform"
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    
+    if [[ "${cur}" == -* ]]; then
+        local bundle_options="--no-color --verbose"
+        COMPREPLY=( $(compgen -W "${bundle_options}" -- ${cur}) )
+        return 0
+    fi
+
+    case "${prev}" in
+        "rake")
+            if [[ ! -e Rakefile ]]; then
+                return
+            fi
+            local rake_options=$(bundle exec rake -T | awk '{print $2}' | xargs)
+            COMPREPLY=( $(compgen -W "${rake_options}" -- ${cur}) )
+            return 0
+            ;;
+        "exec")
+            bin_folder=( $(find . -name 'bin' | xargs) )
+            executables=`command ls ${bin_folder} | xargs`
+            commands="${commands} rake ${executables}"
+            ;;
+    esac
+    
+    COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+    return 0
+}
+complete -F _bundler_complete bundle
