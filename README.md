@@ -74,7 +74,7 @@ sudo emerge dev-vcs/git      # Gentoo
 ### Install:
 
 ```bash
-git clone https://github.com/vigo/dotfiles-lilght.git $HOME/Dotfiles
+git clone https://github.com/vigo/dotfiles-light.git $HOME/Dotfiles
 bash $HOME/Dotfiles/scripts/install.bash
 # Restart your Terminal
 ````
