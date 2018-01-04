@@ -15,7 +15,7 @@ if [[ $(command -v python) ]]; then
     fi
 
     
-    django_version=$(python -c $'try:\n    import django;\n    print("{0}".format(django.get_version()));\nexcept ImportError:\n    pass;\n')
+    django_version=$(python -c $'try:\n    import django;\n    if hasattr(django, "get_version"):\n        print("{0}".format(django.get_version()));\nexcept ImportError:\n    pass;\n')
     if [[ ${django_version} ]]; then
         django_version="❡ ${django_version}"
         if [[ ${DFL_DJANGO_PROMPT_COLOR} ]]; then
