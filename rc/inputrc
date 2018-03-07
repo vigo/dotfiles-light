@@ -2,6 +2,8 @@
 
 # see /usr/share/doc/bash/inputrc.arrows for other codes of arrow keys
 # search in history while writing with up/down
+"\C-n": history-search-forward
+"\C-p": history-search-backward
 "\e[B": history-search-forward
 "\e[A": history-search-backward
 # "\e[3;3~": kill-word + use esc+d instead
