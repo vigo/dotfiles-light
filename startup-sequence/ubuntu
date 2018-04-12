@@ -28,6 +28,12 @@ fi
 export LC_COLLATE="C" # folders start with . will be on top
 
 alias ls='ls -h --color --group-directories-first'
+alias l='ls -CF'
+alias la='ls -A'
+alias ll='ls -alF'
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias grep='grep --color=auto'
 
 # -----------------------------------------------------------------------------
 PS1_UBUNTU_BASIC="${PROMPT_USER_AND_HOSTNAME}
@@ -41,4 +47,3 @@ ${PROMPT_USER_AND_HOSTNAME}
 ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_GIT}${PROMPT_HG}
 > "
 # -----------------------------------------------------------------------------
-
