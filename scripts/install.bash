@@ -10,7 +10,7 @@ backup_files=(
 
 for file in ${backup_files[@]}; do
     if [[ -f ${HOME}/${file} ]]; then
-        mv ${HOME}/${file} ${HOME}/.${file}_old && echo "${HOME}/${file} found and moved as: ${HOME}/${file}_old"
+        mv ${HOME}/${file} ${HOME}/${file}_old && echo "${HOME}/${file} found and moved as: ${HOME}/${file}_old"
     fi
 done
 
