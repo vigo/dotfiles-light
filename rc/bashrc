@@ -109,7 +109,10 @@ done
 # load private files ----------------------------------------------------------
 if [[ -n "$(\ls -A ${PRIVATEFILES_PATH} 2>/dev/null)" ]]; then
     for file in ${PRIVATEFILES_PATH}/*; do
-        source ${file}
+        file_base_name=$(basename $file)
+        if [[ ${file_base_name:0:1} != "." ]]; then
+            source ${file}
+        fi
     done
 fi
 # -----------------------------------------------------------------------------
