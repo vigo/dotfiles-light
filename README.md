@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.0.0-orange.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-orange.svg)
 ![Version](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
 
 # Dotfiles LIGHT
@@ -221,6 +221,7 @@ export DFL_IPLIST_PROMPT_IPADDR_COLOR="${gray}"
 export DFL_DB_MYSQL_PROMPT_COLOR="${red}${blink}"                      # [MySQL]
 export DFL_DB_POSTGRESQL_PROMPT_COLOR="${red}${blink}"                 # [PG]
 export DFL_DB_REDIS_PROMPT_COLOR="${red}${blink}"                      # [REDIS]
+export DFL_DB_MONGODB_PROMPT_COLOR="${red}${blink}"                    # [MONGODB]
 
 # libs
 export DFL_VIRTUALENV_PROMPT_COLOR="${red}${bold}"                     # [⚑ resume.bilgi.edu.tr]
