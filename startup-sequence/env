@@ -8,8 +8,8 @@ export MANPAGER="less -X"
 shopt -s histappend
 PROMPT_COMMAND="history -a;${PROMPT_COMMAND}"
 export HISTIGNORE="ls:ll:cd:pwd"
-export HISTFILESIZE=30000
-export HISTSIZE=30000
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
 export HISTCONTROL=ignoredups:erasedups
 export HISTTIMEFORMAT="[${green}%A at ${white}${underline}%T${COLOR_OFF}]: "
 # -----------------------------------------------------------------------------
