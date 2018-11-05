@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.0.1-orange.svg)
+![Version](https://img.shields.io/badge/version-1.1.0-orange.svg)
 ![Version](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
 
 # Dotfiles LIGHT
@@ -372,14 +372,21 @@ bash ~/Dotfiles/ps1/ip-list && echo
 
 #### `${PROMPT_DATABASE_STATUS}`
 
-OSX only, shows if **MySQL** or **PostgreSQL** or **Redis** server is running.
-Color variables are:
+OSX only, supported databases are:
+
+- MySQL
+- PostgreSQL
+- Redis
+- MongoDB
+
+shows an indicator if any of them is/are running. Color variables are:
 
 - `DFL_DB_MYSQL_PROMPT_COLOR`
 - `DFL_DB_POSTGRESQL_PROMPT_COLOR`
 - `DFL_DB_REDIS_PROMPT_COLOR`
+- `DFL_DB_MONGODB_PROMPT_COLOR`
 
-    [MySQL][PG][REDIS] # Helps you to remember is server is on/off
+    [MySQL][PG][REDIS][MONGODB]  # Helps you to remember is server is on/off
 
 #### `${PROMPT_HORIZONTAL_LINE}`
 

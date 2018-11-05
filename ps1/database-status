@@ -39,6 +39,19 @@ get_postgresql_status() {
 
 get_redis_status() {
     if [[ $(command -v redis-cli) ]]; then
+        redis_ping=$(redis-cli ping > /dev/null 2>&1)
+        if [[ $? == 0 ]]; then
+            out="REDIS"
+            if [[ $DFL_DB_REDIS_PROMPT_COLOR ]]; then
+                out="${DFL_DB_REDIS_PROMPT_COLOR}${out}${COLOR_OFF}"
+            fi
+            echo "[${out}]"
+        fi
+    fi
+}
+
+get_mongodb_status() {
+    if [[ $(command -v mongod) ]]; then
         mongodb_pid=$(pgrep mongod > /dev/null 2>&1)
         if [[ $? == 0 ]]; then
             out="MONGODB"
@@ -50,24 +63,10 @@ get_redis_status() {
     fi
 }
 
-get_mongodb_status() {
-    if [[ $(command -v mongod) ]]; then
-        
-        redis_ping=$(redis-cli ping > /dev/null 2>&1)
-        if [[ $? == 0 ]]; then
-            out="REDIS"
-            if [[ $DFL_DB_REDIS_PROMPT_COLOR ]]; then
-                out="${DFL_DB_REDIS_PROMPT_COLOR}${out}${COLOR_OFF}"
-            fi
-            echo "[${out}]"
-        fi
-    fi
-
-}
-
 if [[ $(uname) == "Darwin" ]]; then
     mysql_status=$(get_mysql_status)
     postgresql_status=$(get_postgresql_status)
     redis_status=$(get_redis_status)
-    echo "${mysql_status}${postgresql_status}${redis_status}"
+    mongodb_status=$(get_mongodb_status)
+    echo "${mysql_status}${postgresql_status}${redis_status}${mongodb_status}"
 fi

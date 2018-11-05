@@ -1,5 +1,3 @@
-# Python Http Server
-# via @paul_irish | fixed by @vigobronx
 function webserver() {
     if [[ $1 == "-h" || $1 == "--help" ]]; then
         echo "Simple, http static html server via Python."
@@ -12,15 +10,15 @@ function webserver() {
         return 0
     fi
     local port="${1:-8000}"
-    # open "http://localhost:${port}/"
-    python -m SimpleHTTPServer "$port"
-    python -c $'import SimpleHTTPServer;\n
-                map = SimpleHTTPServer.SimpleHTTPRequestHandler.extensions_map;\n
-                map[""] = "text/plain";\n
-                for key, value in map.items():\n\t
-                map[key] = value + ";charset=UTF-8";\n
-                SimpleHTTPServer.test();' "$port"
+    
+    python_major_version=$(python -c 'import sys;print(sys.version_info.major)')
+    if [[ "${python_major_version}" == "2" ]]; then
+        python -m SimpleHTTPServer "${port}"
+    else
+        python -m http.server "${port}"
+    fi
 }
+
 _server()
 {
     local cur prev opts
