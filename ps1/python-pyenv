@@ -15,14 +15,12 @@ if [[ $(command -v python) ]]; then
     fi
 
     
-    django_version=$(python -c $'try:\n    import django;\n    if hasattr(django, "get_version"):\n        print("{0}".format(django.get_version()));\nexcept ImportError:\n    pass;\n')
-    if [[ ${django_version} ]]; then
-        django_version="❡ ${django_version}"
+    if [[ $(command -v django-admin) ]]; then
+        django_version="❡ $(django-admin --version)"
         if [[ ${DFL_DJANGO_PROMPT_COLOR} ]]; then
             django_version="${DFL_DJANGO_PROMPT_COLOR}${django_version}${COLOR_OFF}"
         fi
     fi
-
     printf "[${python_version}]"
 
     if [[ ${django_version} ]]; then
