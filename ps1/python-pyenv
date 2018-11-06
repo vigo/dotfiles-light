@@ -16,14 +16,18 @@ if [[ $(command -v python) ]]; then
 
     
     if [[ $(command -v django-admin) ]]; then
-        django_version="❡ $(django-admin --version)"
-        if [[ ${DFL_DJANGO_PROMPT_COLOR} ]]; then
-            django_version="${DFL_DJANGO_PROMPT_COLOR}${django_version}${COLOR_OFF}"
+        django_version=$(django-admin --version 2>&1)
+        if [[ -z $django_version ]]; then
+            django_version="❡ ${django_version}"
+            if [[ ${DFL_DJANGO_PROMPT_COLOR} ]]; then
+                django_version="${DFL_DJANGO_PROMPT_COLOR}${django_version}${COLOR_OFF}"
+            fi
         fi
     fi
+
     printf "[${python_version}]"
 
-    if [[ ${django_version} ]]; then
+    if [[ -z ${django_version} ]]; then
         printf "[${django_version}]"
     fi
 fi
