@@ -46,3 +46,28 @@ alias shadow_screenshot_enable='defaults write com.apple.screencapture disable-s
 alias ds_store_clear="find . -name '\.DS_Store' -print -delete"
 alias lock_screen="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 # -----------------------------------------------------------------------------
+
+
+# osx mojave
+# -----------------------------------------------------------------------------
+app_lightmode() {
+    if [[ ${#} -ge 1 ]]; then
+        app_bundle=$(osascript -e "id of app \"${1}\"")
+        switch="on"
+        if [[ "${2}" == "on" || "${2}" == "off" ]]; then
+            switch="${2}"
+        fi
+        echo "turning switch ${switch} to ${1}"
+        if [[ "${switch}" == "on" ]]; then
+            defaults write ${app_bundle} NSRequiresAquaSystemAppearance -bool yes
+        else
+            defaults delete ${app_bundle} NSRequiresAquaSystemAppearance
+        fi
+        echo "Please restart ${1} to see change..."
+    else
+        echo "usage:"
+        echo "app_lightmode name_of_the_app [on/off]"
+        echo "default is: on"
+    fi
+}
+# -----------------------------------------------------------------------------

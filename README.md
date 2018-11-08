@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.1.2-orange.svg)
+![Version](https://img.shields.io/badge/version-1.1.3-orange.svg)
 ![Version](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
 
 # Dotfiles LIGHT
@@ -26,6 +26,7 @@ super-light edition.
 * Autoload for `brew`: bash-completion
 * Linux style file listing if `coreutils` installed from `brew` (*folders on top!*)
 * Bunch of useful `alias` examples.
+* Now you can turn on/off light mode per Application (*macOS Mojave*)
 
 ### Common aliases
 
@@ -42,6 +43,7 @@ Try these commands:
 * `shadow_screenshot_disable`, `shadow_screenshot_enable`: Enable/disable shadows while taking screenshots!
 * `ds_store_clear`: Delete `.DS_Store` files :)
 * `lock_screen`: Going for lunch? lock it asap!
+* `app_lightmode`: Turn light mode on/off per Application. Example: `app_lightmode Mail` or `app_lightmode Mail off`
 
 ### Common functions/commands
 
