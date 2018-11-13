@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.1.3-orange.svg)
+![Version](https://img.shields.io/badge/version-1.1.4-orange.svg)
 ![Version](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
 
 # Dotfiles LIGHT
@@ -52,6 +52,23 @@ Try these commands:
 * `mkdir_cd`: Create folder and cd in to it: `mkdir_cd foo`
 * `webserver`: That folder becomes a website! (*via python*): `cd /folder/;webserver`
 * `webserver_rb`: That folder becomes a website! (*via ruby*): `cd /folder/;webserver`
+
+---
+
+## What’s New ?
+
+**November 13, 2018**
+
+`HISTFILESIZE` and `HISTSIZE` are unset for unlimited history storage. You can
+override this via your `private/env` and re-assign desired values. Defaults
+were:
+
+```bash
+export HISTFILESIZE=1000000
+export HISTSIZE=1000000
+```
+
+---
 
 ## Install & Uninstall
 
