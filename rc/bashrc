@@ -94,6 +94,11 @@ fi
 if [[ $(command -v pip) ]]; then
     eval "$(pip --disable-pip-version-check completion --bash)"
 fi
+
+# pipx support
+if [[ $(command -v pipx) ]]; then
+    eval "$(register-python-argcomplete pipx)"
+fi
 # -----------------------------------------------------------------------------
 
 
