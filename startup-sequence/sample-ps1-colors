@@ -30,11 +30,12 @@ export DFL_BATTERY_PROMPT_COLOR="${yellow}"                            # [3:47]
 export DFL_IPLIST_PROMPT_IFACE_COLOR="${gray}${bold}"                  # [en0:192.168.2.205,vboxnet0:192.168.33.1]
 export DFL_IPLIST_PROMPT_IPADDR_COLOR="${gray}"
 
-# database status
+# database status and icons
 export DFL_DB_MYSQL_PROMPT_COLOR="${red}${blink}"                      # [MySQL]
 export DFL_DB_POSTGRESQL_PROMPT_COLOR="${red}${blink}"                 # [PG]
 export DFL_DB_REDIS_PROMPT_COLOR="${red}${blink}"                      # [REDIS]
 export DFL_DB_MONGODB_PROMPT_COLOR="${red}${blink}"                    # [MONGODB]
+export DFL_DB_POSTGRESQL_DOCKER_ICON="\xF0\x9F\x9A\xA2"                # 🚢
 
 # libs
 export DFL_VIRTUALENV_PROMPT_COLOR="${red}${bold}"                     # [⚑ resume.bilgi.edu.tr]

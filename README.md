@@ -1,5 +1,5 @@
 ![Version](https://img.shields.io/badge/version-1.1.4-orange.svg)
-![Version](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
+![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
 
 # Dotfiles LIGHT
 
@@ -56,6 +56,20 @@ Try these commands:
 ---
 
 ## What’s New ?
+
+**October 16, 2019**
+
+PostgreSQL database indicator now supports Docker based PostgreSQL usage. Name
+of the container is stored under `DFL_DOCKER_PG_CONTAINER_NAME` environment variable.
+Default container name is set to: `docker-pg` (`startup-sequence/env`)
+Example docker setup:
+
+```bash
+$ docker pull postgres:latest
+$ docker run --rm --name $DFL_DOCKER_PG_CONTAINER_NAME -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v /path/to/volumes/postgres:/var/lib/postgresql/data postgres
+$ PGPASSWORD=docker psql -h localhost -U postgres -d postgres # connect
+$ docker stop ${DFL_DOCKER_PG_CONTAINER_NAME} # stop
+```
 
 **November 13, 2018**
 

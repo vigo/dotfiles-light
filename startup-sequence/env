@@ -15,3 +15,5 @@ export HISTTIMEFORMAT="[${green}%A at ${white}${underline}%T${COLOR_OFF}]: "
 # -----------------------------------------------------------------------------
 
 complete -e printenv
+
+export DFL_DOCKER_PG_CONTAINER_NAME="docker-pg"
