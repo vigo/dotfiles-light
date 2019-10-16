@@ -389,7 +389,7 @@ Shows current bash version. Color variable is `DFL_BASH_INFO_PROMPT_COLOR`.
 
     [4.4.5(1)-release] # I need to see this sometimes!
 
-#### `${PROMPT_LIST_IPS}`
+#### `${PROMPT_IPS_LIST}`
 
 Shows current available local ip list. Color variables are `DFL_IPLIST_PROMPT_IFACE_COLOR`
 and `DFL_IPLIST_PROMPT_IPADDR_COLOR`.
@@ -477,7 +477,7 @@ Just drop a file under `~/Dotfiles/private/my-ps1` thats it! Your options:
     ${PROMPT_PYTHON_PYENV}
     ${PROMPT_GIT}
     ${PROMPT_HG}
-    ${PROMPT_LIST_IPS}
+    ${PROMPT_IPS_LIST}
     ${PROMPT_BASH_INFO}
 
 Make yours:
