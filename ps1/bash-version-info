@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-if [[ $(basename "${SHELL}") == 'bash' ]]; then
+if [[ $(basename $SHELL) == 'bash' ]]; then
     bash_version_info="${BASH_VERSION}"
-    if [[ ${DFL_BASH_VERSION_INFO_PROMPT_COLOR} ]]; then
+    if [[ $DFL_BASH_VERSION_INFO_PROMPT_COLOR ]]; then
         bash_version_info="${DFL_BASH_VERSION_INFO_PROMPT_COLOR}${bash_version_info}${COLOR_OFF}"
     fi
     printf "[${bash_version_info}]"

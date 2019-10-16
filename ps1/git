@@ -17,7 +17,7 @@ symbol_overall="\xE2\x9D\x96"      # ◔ CIRCLE WITH UPPER RIGHT QUADRANT BLACK
 git_repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
 in_git_repo() {
-    if [[ ! -z "${git_repo_path}" && "${git_repo_path}" != "~" && "${git_repo_path}" != "." && "${git_repo_path}" != "${HOME}/.git" ]]; then
+    if [[ ! -z $git_repo_path && $git_repo_path != "~" && $git_repo_path != "." && $git_repo_path != $HOME/.git ]]; then
         return 0
     fi
     return 1
@@ -26,9 +26,9 @@ in_git_repo() {
 
 git_parse_branch() {
     branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
-    if [[ "${branch}" == "HEAD" ]]; then
+    if [[ $branch == "HEAD" ]]; then
         tag=$(git describe --tag 2>/dev/null)
-        if [[ -z "${tag}" ]]; then
+        if [[ -z $tag ]]; then
             printf "no branch"
         else
             printf "${tag}"
@@ -40,11 +40,11 @@ git_parse_branch() {
 
 
 any_rebasing() {
-    if [[ -f "${git_repo_path}/BISECT_LOG" ]]; then
+    if [[ -f $git_repo_path/BISECT_LOG ]]; then
         printf "+bisect"
-    elif [[ -f "${git_repo_path}/MERGE_HEAD" ]]; then
+    elif [[ -f $git_repo_path/MERGE_HEAD ]]; then
         printf "+merge"
-    elif [[ -f "${git_repo_path}/rebase" || -f "${git_repo_path}/rebase-apply" || -f "${git_repo_path}/rebase-merge" ]]; then
+    elif [[ -f $git_repo_path/rebase || -f $git_repo_path/rebase-apply || -f $git_repo_path/rebase-merge ]]; then
         printf "+rebase"
     fi
 }
@@ -52,23 +52,23 @@ any_rebasing() {
 
 commit_position() {
     branch=$(git_parse_branch)
-    current_status=$(eval "git branch -v | grep '* ${branch}' 2>/dev/null")
+    current_status=$(eval "git branch -v | grep '* $branch' 2>/dev/null")
     output=""
     any_ahead=""
     any_behind=""
-    if [[ "${current_status}" =~ (behind|ahead) ]]; then
+    if [[ $current_status =~ (behind|ahead) ]]; then
         ahead_ptrn="ahead ([0-9]+)"
         behind_ptrn="behind ([0-9]+)"
-        if [[ "${current_status}" =~ "${ahead_ptrn}" ]]; then
+        if [[ "${current_status}" =~ $ahead_ptrn ]]; then
             any_ahead="${sign_right_arrow}${BASH_REMATCH[1]}"
-            if [[ ${DFL_REVCONTROL_GIT_BRANCH_AHEAD_COLOR} ]]; then
+            if [[ $DFL_REVCONTROL_GIT_BRANCH_AHEAD_COLOR ]]; then
                 any_ahead="${DFL_REVCONTROL_GIT_BRANCH_AHEAD_COLOR}${any_ahead}${COLOR_OFF}"
             fi
             any_ahead=" ${any_ahead}"
         fi
-        if [[ "${current_status}" =~ "${behind_ptrn}" ]]; then
+        if [[ "${current_status}" =~ $behind_ptrn ]]; then
             any_behind="${BASH_REMATCH[1]}${sign_left_arrow}"
-            if [[ ${DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR} ]]; then
+            if [[ $DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR ]]; then
                 any_behind="${DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR}${any_behind}${COLOR_OFF}"
             fi
             any_behind=" ${any_behind}"
@@ -77,7 +77,7 @@ commit_position() {
         output="${any_ahead}${any_behind}"
         if [[ ! -z "${output}" ]]; then
             str_pipe="|"
-            if [[ ${DFL_REVCONTROL_VERTICAL_PIPE_COLOR} ]]; then
+            if [[ $DFL_REVCONTROL_VERTICAL_PIPE_COLOR ]]; then
                 str_pipe="${DFL_REVCONTROL_VERTICAL_PIPE_COLOR}${str_pipe}${COLOR_OFF}"
             fi
             printf " ${str_pipe}${output}"
@@ -95,26 +95,26 @@ cwd_anything_changed() {
 
     while read -r line; do
         status_indicators=$(echo "${line}" | cut -d' ' -f1)
-        if [[ "${status_indicators}" == '??' ]]; then
-            count_untracked=$((${count_untracked}+1))
+        if [[ $status_indicators == '??' ]]; then
+            count_untracked=$(($count_untracked+1))
         else
             for ((j=0; j<${#status_indicators}; j++)); do
-                indicator="${status_indicators:${j}:1}"
-                case ${indicator} in
+                indicator="${status_indicators:$j:1}"
+                case $indicator in
                     A)
-                        count_added=$((${count_added}+1))
+                        count_added=$(($count_added+1))
                     ;;
                     M)
-                        count_modified=$((${count_modified}+1))
+                        count_modified=$(($count_modified+1))
                     ;;
                     R)
-                        count_renamed=$((${count_renamed}+1))
+                        count_renamed=$(($count_renamed+1))
                     ;;
                     D)
-                        count_deleted=$((${count_deleted}+1))
+                        count_deleted=$(($count_deleted+1))
                     ;;
                     T)
-                        count_typechanged=$((${count_typechanged}+1))
+                        count_typechanged=$(($count_typechanged+1))
                     ;;
                 esac
             done
@@ -122,55 +122,55 @@ cwd_anything_changed() {
     done <<< $(git status -s)
 
     count_overall=$((
-        ${count_untracked} +
-        ${count_added} + 
-        ${count_modified} + 
-        ${count_renamed} + 
-        ${count_deleted} + 
-        ${count_typechanged}))
+        $count_untracked +
+        $count_added + 
+        $count_modified + 
+        $count_renamed + 
+        $count_deleted + 
+        $count_typechanged))
     
-    if [[ ${count_untracked} -gt 0 ]]; then
-        if [[ ${DFL_REVCONTROL_UNTRACKED_COLOR} ]]; then
+    if [[ $count_untracked -gt 0 ]]; then
+        if [[ $DFL_REVCONTROL_UNTRACKED_COLOR ]]; then
             symbol_unctracked="${DFL_REVCONTROL_UNTRACKED_COLOR}${symbol_unctracked}${COLOR_OFF}"
         fi
         printf " ${symbol_unctracked}:${count_untracked}"
     fi
-    if [[ ${count_added} -gt 0 ]]; then
-        if [[ ${DFL_REVCONTROL_ADDED_COLOR} ]]; then
+    if [[ $count_added -gt 0 ]]; then
+        if [[ $DFL_REVCONTROL_ADDED_COLOR ]]; then
             symbol_added="${DFL_REVCONTROL_ADDED_COLOR}${symbol_added}${COLOR_OFF}"
         fi
         printf " ${symbol_added}:${count_added}"
     fi
-    if [[ ${count_modified} -gt 0 ]]; then
-        if [[ ${DFL_REVCONTROL_MODIFIED_COLOR} ]]; then
+    if [[ $count_modified -gt 0 ]]; then
+        if [[ $DFL_REVCONTROL_MODIFIED_COLOR ]]; then
             symbol_modified="${DFL_REVCONTROL_MODIFIED_COLOR}${symbol_modified}${COLOR_OFF}"
         fi
         printf " ${symbol_modified}:${count_modified}"
     fi
-    if [[ ${count_renamed} -gt 0 ]]; then
-        if [[ ${DFL_REVCONTROL_RENAMED_COLOR} ]]; then
+    if [[ $count_renamed -gt 0 ]]; then
+        if [[ $DFL_REVCONTROL_RENAMED_COLOR ]]; then
             symbol_renamed="${DFL_REVCONTROL_RENAMED_COLOR}${symbol_renamed}${COLOR_OFF}"
         fi
         printf " ${symbol_renamed}:${count_renamed}"
     fi
-    if [[ ${count_deleted} -gt 0 ]]; then
-        if [[ ${DFL_REVCONTROL_DELETED_COLOR} ]]; then
+    if [[ $count_deleted -gt 0 ]]; then
+        if [[ $DFL_REVCONTROL_DELETED_COLOR ]]; then
             symbol_deleted="${DFL_REVCONTROL_DELETED_COLOR}${symbol_deleted}${COLOR_OFF}"
         fi
         printf " ${symbol_deleted}:${count_deleted}"
     fi
-    if [[ ${count_typechanged} -gt 0 ]]; then
-        if [[ ${DFL_REVCONTROL_TYPECHANGED_COLOR} ]]; then
+    if [[ $count_typechanged -gt 0 ]]; then
+        if [[ $DFL_REVCONTROL_TYPECHANGED_COLOR ]]; then
             symbol_typechanged="${DFL_REVCONTROL_TYPECHANGED_COLOR}${symbol_typechanged}${COLOR_OFF}"
         fi
         printf " ${symbol_typechanged}:${count_typechanged}"
     fi
-    if [[ ${count_overall} -gt 0 ]]; then
+    if [[ $count_overall -gt 0 ]]; then
         str_pipe="|"
-        if [[ ${DFL_REVCONTROL_OVERALL_COLOR} ]]; then
+        if [[ $DFL_REVCONTROL_OVERALL_COLOR ]]; then
             count_overall="${DFL_REVCONTROL_OVERALL_COLOR}${count_overall}${COLOR_OFF}"
         fi
-        if [[ ${DFL_REVCONTROL_VERTICAL_PIPE_COLOR} ]]; then
+        if [[ $DFL_REVCONTROL_VERTICAL_PIPE_COLOR ]]; then
             str_pipe="${DFL_REVCONTROL_VERTICAL_PIPE_COLOR}${str_pipe}${COLOR_OFF}"
         fi
         printf " ${str_pipe} ${count_overall}"
@@ -186,13 +186,13 @@ if [[ $(command -v git) ]]; then
         anything_changed=$(cwd_anything_changed)
         ahead_behind=$(commit_position)
         
-        if [[ "${DFL_REVCONTROL_BRANCH_COLOR}" ]]; then #2
+        if [[ $DFL_REVCONTROL_BRANCH_COLOR ]]; then #2
             branch="${DFL_REVCONTROL_BRANCH_COLOR}${branch}${COLOR_OFF}"
         fi
-        if [[ "${DFL_REVCONTROL_AT_SIGN_COLOR}" ]]; then #7
+        if [[ $DFL_REVCONTROL_AT_SIGN_COLOR ]]; then #7
             at_sign="${DFL_REVCONTROL_AT_SIGN_COLOR}${at_sign}${COLOR_OFF}"
         fi
-        if [[ "${DFL_REVCONTROL_COMMIT_ID_COLOR}" ]]; then
+        if [[ $DFL_REVCONTROL_COMMIT_ID_COLOR ]]; then
             commit_id="${DFL_REVCONTROL_COMMIT_ID_COLOR}${commit_id}${COLOR_OFF}"
         fi
         at_sign=" ${at_sign} "

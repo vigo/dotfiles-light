@@ -5,11 +5,11 @@ if [[ $(command -v python) ]]; then
 
     if [[ $(command -v pyenv) ]]; then
         pyenv_version=$($(command -v pyenv) version-name)
-        if [[ "${pyenv_version}" != "system" ]]; then
+        if [[ ${pyenv_version} != "system" ]]; then
             python_version="¶ ${pyenv_version}"
         fi
     fi
-    if [[ "${DFL_PYTHON_PROMPT_COLOR}" ]]; then
+    if [[ ${DFL_PYTHON_PROMPT_COLOR} ]]; then
         python_version="${DFL_PYTHON_PROMPT_COLOR}${python_version}${COLOR_OFF}"
     fi
     printf "[${python_version}]"
@@ -20,13 +20,13 @@ if [[ $(command -v python) ]]; then
         django_check_version="$(django-admin --version 2>&1)"
         err_code="${?}"
         
-        if [[ "${err_code}" == "0" ]]; then
+        if [[ $err_code == "0" ]]; then
             django_version="${django_check_version}"
         fi
     fi
-    if [[ ! -z "${django_version}" ]]; then
+    if [[ ! -z ${django_version} ]]; then
         django_version="❡ ${django_version}"
-        if [[ "${DFL_DJANGO_PROMPT_COLOR}" ]]; then
+        if [[ ${DFL_DJANGO_PROMPT_COLOR} ]]; then
             django_version="${DFL_DJANGO_PROMPT_COLOR}${django_version}${COLOR_OFF}"
         fi
         printf "[${django_version}]"

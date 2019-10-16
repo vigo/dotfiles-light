@@ -4,12 +4,12 @@ if [[ $(command -v ruby) ]]; then
     ruby_version=$(ruby -e 'puts RUBY_VERSION' 2>&1)
     if [[ $(command -v rbenv) ]]; then
         rbenv_version=$(rbenv version-name)
-        if [[ "${rbenv_version}" != "system" ]]; then
+        if [[ ${rbenv_version} != "system" ]]; then
             ruby_version="◆ ${rbenv_version}"
         fi
     fi
 
-    if [[ "${DFL_RBENV_PROMPT_COLOR}" ]]; then
+    if [[ ${DFL_RBENV_PROMPT_COLOR} ]]; then
         ruby_version="${DFL_RBENV_PROMPT_COLOR}${ruby_version}${COLOR_OFF}"
     fi
 
