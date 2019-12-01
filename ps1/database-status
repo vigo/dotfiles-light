@@ -48,6 +48,11 @@ get_postgresql_status() {
             if [[ "${DFL_DB_POSTGRESQL_PROMPT_COLOR}" ]]; then
                 out="${DFL_DB_POSTGRESQL_PROMPT_COLOR}${out}${COLOR_OFF}"
             fi
+            
+            if [[ ! -z "${DATABASE_URL}" ]]; then
+                out="${out} $(basename ${DATABASE_URL})"
+            fi
+            
             printf "[${out}]"
         fi
     fi
