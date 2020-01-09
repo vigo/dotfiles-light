@@ -57,6 +57,12 @@ Try these commands:
 
 ## What’s New ?
 
+**January 9, 2020**
+
+`git` prompt now checks number of changed files. If the number of files are
+more than **100**, nothing will be calculated. You can change this value
+via setting `DFL_MAX_FILECHANGES` environment variable.
+
 **December 1, 2019**
 
 PostgreSQL database indicator now shows current database name if
