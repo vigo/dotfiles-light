@@ -1,0 +1,18 @@
+function mmv() {
+    # originally:
+    # https://gist.github.com/premek/6e70446cfc913d3c929d7cdbfe896fef
+    #
+    if [[ "${#}" -eq 0 || "${1}" == "-h" || "${1}" == "--help" ]]; then
+        echo
+        echo "magic mv (mmv)"
+        echo
+        echo -e "\tmv FILE             # magic move"
+        echo -e "\tmv FILE1 FILE2 ...  # standard move"
+        echo
+    elif [[ "${#}" -gt 1 ]]; then
+        command mv "${@}"
+    else
+        read -ei "${1}" file_newname
+        command mv -v -- "${1}" "${file_newname}"
+    fi
+}
