@@ -1,0 +1,20 @@
+function mcp() {
+    if [[ "${#}" -eq 0 || "${1}" == "-h" || "${1}" == "--help" ]]; then
+        echo
+        echo "magic cp (mcp)"
+        echo
+        echo "magic cp \`mmv\` is a small wrapper for \`cp\`."
+        echo "you can copy file while seeing original name and"
+        echo "can use original name as a target template."
+        echo
+        echo "usage:"
+        echo -e "\tmcp FILE             # magic copy"
+        echo -e "\tmcp FILE1 FILE2 ...  # standard copy"
+        echo
+    elif [[ "${#}" -gt 1 ]]; then
+        command cp "${@}"
+    else
+        read -ei "${1}" target_filename
+        command cp -aiv -- "${1}" "${target_filename}"
+    fi
+}

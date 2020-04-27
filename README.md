@@ -58,6 +58,15 @@ Try these commands:
 
 ## What’s New ?
 
+**April 27, 2020 Corona Days**
+
+Try `cp` files with `mcp`
+
+```bash
+$ mcp /path/to/file # hit enter end give a new name!
+```
+
+
 **April 22, 2020 Corona Days**
 
 Just grabbed and fixed the little function from;
@@ -68,7 +77,7 @@ Just grabbed and fixed the little function from;
 Try to `mv` files with `mmv`:
 
 ```bash
-$ mmv /sourece/file # hit enter end give a new name!
+$ mmv /source/file # hit enter end give a new name!
 ```
 
 Also, `app_lightmode` doesn’t work as expected on freshly installed macOS

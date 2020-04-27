@@ -6,6 +6,11 @@ function mmv() {
         echo
         echo "magic mv (mmv)"
         echo
+        echo "magic mv \`mmv\` is a small wrapper for \`mv\`."
+        echo "you can rename/move file while seeing original name and"
+        echo "can use original name as a target template."
+        echo
+        echo "usage:"
         echo -e "\tmmv FILE             # magic move"
         echo -e "\tmmv FILE1 FILE2 ...  # standard move"
         echo
