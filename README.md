@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.1.10-orange.svg)
+![Version](https://img.shields.io/badge/version-1.1.11-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
 
 # Dotfiles LIGHT
