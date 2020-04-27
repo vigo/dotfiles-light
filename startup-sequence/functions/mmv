@@ -6,8 +6,8 @@ function mmv() {
         echo
         echo "magic mv (mmv)"
         echo
-        echo -e "\tmv FILE             # magic move"
-        echo -e "\tmv FILE1 FILE2 ...  # standard move"
+        echo -e "\tmmv FILE             # magic move"
+        echo -e "\tmmv FILE1 FILE2 ...  # standard move"
         echo
     elif [[ "${#}" -gt 1 ]]; then
         command mv "${@}"
