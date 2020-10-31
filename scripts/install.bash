@@ -8,21 +8,24 @@ backup_files=(
     .bashrc
 )
 
-for file in ${backup_files[@]}; do
-    if [[ -f ${HOME}/${file} ]]; then
-        mv ${HOME}/${file} ${HOME}/${file}_old && echo "${HOME}/${file} found and moved as: ${HOME}/${file}_old"
+for file in "${backup_files[@]}"; do
+    if [[ -f "${HOME}/${file}" ]]; then
+        mv "${HOME}/${file}" "${HOME}/${file}_old"
+        echo "${HOME}/${file} found and moved as: ${HOME}/${file}_old"
     fi
 done
 
 dotfiles_path="${HOME}/Dotfiles"
 
-for rc_file in ${dotfiles_path}/rc/*; do
-    if [[ ! -f ${HOME}/.${rc_file} ]]; then
-        ln -s ${rc_file} ${HOME}/.$(basename ${rc_file}) &&
-        echo "${HOME}/.$(basename ${rc_file}) linked..."
+for rc_file in "${dotfiles_path}"/rc/*; do
+    if [[ ! -f "${HOME}/.${rc_file}" ]]; then
+        basename_rc_file=$(basename "${rc_file}")
+        ln -s "${rc_file}" "${HOME}/.${basename_rc_file}"
+        echo "${HOME}/.${basename_rc_file} linked..."
     fi
 done
 
-ln -s ${dotfiles_path}/profile ${HOME}/.profile && echo "${HOME}/.profile linked..."
+ln -s "${dotfiles_path}/profile" "${HOME}/.profile"
+echo "${HOME}/.profile linked..."
 echo
 echo "Install completed... Restart your terminal"
