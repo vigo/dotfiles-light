@@ -9,22 +9,30 @@
 if [[ $(uname) == "Darwin" ]]; then
     power_data=$(pmset -g batt)
     result=""
-    if [[ ! $power_data == *"AC Power"* ]]; then
-        battery_percent=$(pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f1 -d';')
-        battery_time_remaining=$(pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';')
-        if [[ $battery_time_remaining == *"no estimate"* ]]; then
+    if [[ ! "${power_data}" == *"AC Power"* ]]; then
+        
+        battery_time_remaining=$(pmset -g batt | grep -E "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';')
+        if [[ "${battery_time_remaining}" == *"no estimate"* ]]; then
             result="??"
         else
-            result=$(pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';' | cut -f2 -d' ')
+            result=$(pmset -g batt | grep -E "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';' | cut -f2 -d' ')
         fi
         
         out="${result}"
-        if [[ $DFL_BATTERY_ICON ]]; then
+
+        if [[ "${DFL_BATTERY_ICON}" ]]; then
             out="${DFL_BATTERY_ICON} ${out}"
         fi
-        if [[ $DFL_BATTERY_PROMPT_COLOR ]]; then
+
+        if [[ "${DFL_BATTERY_SHOW_PERCENT_REMAINING}" ]]; then
+            battery_percent=$(pmset -g batt | grep -E "([0-9]+\%).*" -o --colour=auto | cut -f1 -d';')
+            out="${out} ${battery_percent}"
+        fi
+
+        if [[ "${DFL_BATTERY_PROMPT_COLOR}" ]]; then
             out="${DFL_BATTERY_PROMPT_COLOR}${out}${COLOR_OFF}"
         fi
-        printf "[${out}]"
+
+        printf "[%b]" "${out}"
     fi
 fi

@@ -52,11 +52,15 @@ Try these commands:
 * `mkdir_cd`: Create folder and cd in to it: `mkdir_cd foo`
 * `webserver`: That folder becomes a website! (*via python*): `cd /folder/;webserver`
 * `webserver_rb`: That folder becomes a website! (*via ruby*): `cd /folder/;webserver`
-* `mmv`: Magic Move aka `mmv`. Edit your file target name on-the-fly
+* `mmv`, `mcp`: Magic Move/Copy aka `mmv` or `mcp`. Edit your file target name on-the-fly!
 
 ---
 
 ## What’s New ?
+
+**November 26, 2020 Corona Days**
+
+- `DFL_BATTERY_SHOW_PERCENT_REMAINING` show remaning battery percent
 
 **April 27, 2020 Corona Days**
 
@@ -284,6 +288,7 @@ export DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR="${reverse}${white}"     # ←
 # battery
 # export DFL_BATTERY_ICON="\xE2\x8C\xA7" # for custom icon :)          # [⌧ 7:48]
 export DFL_BATTERY_PROMPT_COLOR="${yellow}"                            # [3:47]
+export DFL_BATTERY_SHOW_PERCENT_REMAINING=1                            # [⌧ 7:48 100%]
 
 # ip list
 export DFL_IPLIST_PROMPT_IFACE_COLOR="${gray}${bold}"                  # [en0:192.168.2.205,vboxnet0:192.168.33.1]

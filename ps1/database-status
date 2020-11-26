@@ -7,12 +7,12 @@ get_mysql_status() {
         mysql_status=$(mysql.server status)
         regex="running \(([0-9]+)\)"
         if [[ "${mysql_status}" =~ $regex ]]; then
-            mysql_pid=${BASH_REMATCH[1]}
+            # mysql_pid=${BASH_REMATCH[1]}
             out="MySQL"
-            if [[ ${DFL_DB_MYSQL_PROMPT_COLOR} ]]; then
+            if [[ "${DFL_DB_MYSQL_PROMPT_COLOR}" ]]; then
                 out="${DFL_DB_MYSQL_PROMPT_COLOR}${out}${COLOR_OFF}"
             fi
-            printf "[${out}]"
+            printf "[%b]" "${out}"
         fi
     fi
     
@@ -21,17 +21,17 @@ get_mysql_status() {
 get_postgresql_status() {
     postgresql_status=""
 
-    if [[ $(command -v pg_ctl) ]] && [[ ! -z "${PGDATA}" ]]; then
+    if [[ $(command -v pg_ctl) ]] && [[ -n "${PGDATA}" ]]; then
         postgresql_local_status=$(pg_ctl status -D "${PGDATA}")
-        if [[ ! -z "${postgresql_local_status}" ]]; then
+        if [[ -n "${postgresql_local_status}" ]]; then
             postgresql_status="${postgresql_local_status}"
             out="PG"
         fi
     fi
     
     if [[ $(command -v docker) ]]; then
-        postgresql_docker_status=$(docker exec -it --user postgres ${DFL_DOCKER_PG_CONTAINER_NAME} pg_ctl status 2> /dev/null)
-        if [[ ! -z "${postgresql_docker_status}" ]]; then
+        postgresql_docker_status=$(docker exec -it --user postgres "${DFL_DOCKER_PG_CONTAINER_NAME}" pg_ctl status 2> /dev/null)
+        if [[ -n "${postgresql_docker_status}" ]]; then
             postgresql_status="${postgresql_docker_status}"
             out="PG"
             if [[ "${DFL_DB_POSTGRESQL_DOCKER_ICON}" ]]; then
@@ -40,28 +40,27 @@ get_postgresql_status() {
         fi
     fi
     
-    if [[ ! -z "${postgresql_status}" ]]; then
+    if [[ -n "${postgresql_status}" ]]; then
         regex="running \(PID: ([0-9]+)\)"
         if [[ ${postgresql_status} =~ $regex ]]; then
-            postgresql_pid=${BASH_REMATCH[1]}
+            # postgresql_pid=${BASH_REMATCH[1]}
             
             if [[ "${DFL_DB_POSTGRESQL_PROMPT_COLOR}" ]]; then
                 out="${DFL_DB_POSTGRESQL_PROMPT_COLOR}${out}${COLOR_OFF}"
             fi
             
-            if [[ ! -z "${DATABASE_URL}" ]]; then
-                out="${out} $(basename ${DATABASE_URL})"
+            if [[ -n "${DATABASE_URL}" ]]; then
+                out="${out} $(basename "${DATABASE_URL}")"
             fi
             
-            printf "[${out}]"
+            printf "[%b]" "${out}"
         fi
     fi
 }
 
 get_redis_status() {
     if [[ $(command -v redis-cli) ]]; then
-        redis_ping=$(redis-cli ping > /dev/null 2>&1)
-        if [[ $? == 0 ]]; then
+        if [[ $(redis-cli ping 2>/dev/null) == "PONG" ]]; then
             out="REDIS"
             if [[ "${DFL_DB_REDIS_PROMPT_COLOR}" ]]; then
                 out="${DFL_DB_REDIS_PROMPT_COLOR}${out}${COLOR_OFF}"
@@ -73,8 +72,7 @@ get_redis_status() {
 
 get_mongodb_status() {
     if [[ $(command -v mongod) ]]; then
-        mongodb_pid=$(pgrep mongod > /dev/null 2>&1)
-        if [[ $? == 0 ]]; then
+        if [[ -n "$(pgrep mongod)" ]]; then
             out="MONGODB"
             if [[ "${DFL_DB_MONGODB_PROMPT_COLOR}" ]]; then
                 out="${DFL_DB_MONGODB_PROMPT_COLOR}${out}${COLOR_OFF}"
