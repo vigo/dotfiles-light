@@ -26,7 +26,6 @@ super-light edition.
 * Autoload for `brew`: bash-completion
 * Linux style file listing if `coreutils` installed from `brew` (*folders on top!*)
 * Bunch of useful `alias` examples.
-* Now you can turn on/off light mode per Application (*macOS Mojave*)
 
 ### Common aliases
 
@@ -43,7 +42,6 @@ Try these commands:
 * `shadow_screenshot_disable`, `shadow_screenshot_enable`: Enable/disable shadows while taking screenshots!
 * `ds_store_clear`: Delete `.DS_Store` files :)
 * `lock_screen`: Going for lunch? lock it asap!
-* `app_lightmode`: Turn light mode on/off per Application. Example: `app_lightmode Mail` or `app_lightmode Mail off`
 
 ### Common functions/commands
 
@@ -51,7 +49,7 @@ Try these commands:
 * `gz_analyse`: Analyses gzipped/non-gzipped versions of a file: `gz_analyse my_file.txt`
 * `mkdir_cd`: Create folder and cd in to it: `mkdir_cd foo`
 * `webserver`: That folder becomes a website! (*via python*): `cd /folder/;webserver`
-* `webserver_rb`: That folder becomes a website! (*via ruby*): `cd /folder/;webserver`
+* `webserver_rb`: That folder becomes a website! (*via ruby*): `cd /folder/;webserver_rb`
 * `mmv`, `mcp`: Magic Move/Copy aka `mmv` or `mcp`. Edit your file target name on-the-fly!
 
 ---
@@ -62,6 +60,7 @@ Try these commands:
 
 - `DFL_BATTERY_SHOW_PERCENT_REMAINING` show remaning battery percent
 - `shellcheck -x path/to/file` validated through shellcheck, improved bash scripts
+- DROP **app_lightmode**... Doesn’t work on Catalina + Big Sur...
 
 **April 27, 2020 Corona Days**
 
