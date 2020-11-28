@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [[ ${BASH_VERSINFO[0]} -gt 3 ]]; then
     shopt -s extglob
     shopt -s globstar
@@ -6,11 +8,17 @@ fi
 
 DOTFILES_PATH="${HOME}/Dotfiles"
 PRIVATEFILES_PATH="${DOTFILES_PATH}/private"
+# shellcheck disable=SC2034
 PS1_PROMPTS_PATH="${DOTFILES_PATH}/ps1"
 STARTUP_SEQUENCE="${DOTFILES_PATH}/startup-sequence"
 
+# shellcheck source=./startup-sequence/env
 source "${STARTUP_SEQUENCE}/env"
+
+# shellcheck source=./startup-sequence/alias
 source "${STARTUP_SEQUENCE}/alias"
+
+# shellcheck source=./startup-sequence/colors
 source "${STARTUP_SEQUENCE}/colors"
 
 export DFL_LS_COLOR=1
@@ -18,22 +26,25 @@ export DFL_LESS_COLOR=1
 export DFL_PS1_COLORS=1
 
 # custom options for un-setting colors ----------------------------------------
-if [[ -e ${DOTFILES_PATH}/options ]]; then
-    source ${DOTFILES_PATH}/options
+if [[ -e "${DOTFILES_PATH}/options" ]]; then
+    # shellcheck source=/dev/null
+    source "${DOTFILES_PATH}/options"
 fi
 
-if [[ ! -z ${DFL_PS1_COLORS+x} ]]; then
+if [[ -n "${DFL_PS1_COLORS+x}" ]]; then
+    # shellcheck source=/dev/null
     source "${STARTUP_SEQUENCE}/sample-ps1-colors"
 fi
 # -----------------------------------------------------------------------------
 
-
+# shellcheck source=./startup-sequence/ps1-setup
 source "${STARTUP_SEQUENCE}/ps1-setup"
 
 
 # osx only
 # -----------------------------------------------------------------------------
 if [[ $(uname) == "Darwin" ]]; then
+    # shellcheck source=/dev/null
     source "${STARTUP_SEQUENCE}/osx"
     export DFL_OS="OSX"
 fi
@@ -43,8 +54,10 @@ fi
 # ubuntu only
 # -----------------------------------------------------------------------------
 if [[ $(command -v lsb_release) ]]; then
+    # shellcheck disable=SC2143
     if [[ $(lsb_release -i | grep -i 'ubuntu') ]]; then
         export DFL_OS="UBUNTU"
+        # shellcheck source=/dev/null
         source "${STARTUP_SEQUENCE}/ubuntu"
     fi
 fi
@@ -54,6 +67,7 @@ fi
 # -----------------------------------------------------------------------------
 if [[ $(uname -r | awk -F - '{print $2}') == "gentoo" ]]; then
     export DFL_OS="GENTOO"
+    # shellcheck source=/dev/null
     source "${STARTUP_SEQUENCE}/gentoo"
 fi
 # -----------------------------------------------------------------------------
@@ -66,7 +80,7 @@ export PS1="${PS1_BASIC}"
 
 # rbenv
 # -----------------------------------------------------------------------------
-if [ $(command -v rbenv) ] || [ -d "${HOME}/.rbenv/bin" ]; then
+if [ "$(command -v rbenv)" ] || [ -d "${HOME}/.rbenv/bin" ]; then
     if [[ -d "${HOME}/.rbenv/bin" ]]; then
         export PATH="${HOME}/.rbenv/bin:${PATH}"
     fi
@@ -76,20 +90,21 @@ fi
 
 # pyenv
 # -----------------------------------------------------------------------------
-if [ $(command -v pyenv) ] || [ -d "${HOME}/.pyenv/bin" ]; then
+if [ "$(command -v pyenv)" ] || [ -d "${HOME}/.pyenv/bin" ]; then
     if [[ -d "${HOME}/.pyenv/bin" ]]; then
         export PATH="${HOME}/.pyenv/bin:${PATH}"
     fi
     eval "$(pyenv init -)"
-    if [ $(command -v pyenv-virtualenv) ] || [ -d "${HOME}/.pyenv/plugins/pyenv-virtualenv" ]; then
+    if [ "$(command -v pyenv-virtualenv)" ] || [ -d "${HOME}/.pyenv/plugins/pyenv-virtualenv" ]; then
         eval "$(pyenv virtualenv-init -)"
     fi
-    if [ $(command -v pyenv-virtualenvwrapper) ] || [ -d "${HOME}/.pyenv/plugins/pyenv-virtualenvwrapper" ]; then
+    if [ "$(command -v pyenv-virtualenvwrapper)" ] || [ -d "${HOME}/.pyenv/plugins/pyenv-virtualenvwrapper" ]; then
         export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
         pyenv virtualenvwrapper
     fi
 elif [[ $(command -v virtualenvwrapper.sh) ]]; then
-    source $(command -v virtualenvwrapper.sh)
+    # shellcheck source=/dev/null
+    source "$(command -v virtualenvwrapper.sh)"
 fi
 if [[ $(command -v pip) ]]; then
     eval "$(pip --disable-pip-version-check completion --bash)"
@@ -99,26 +114,29 @@ fi
 
 # load functions
 # -----------------------------------------------------------------------------
-for file in ${STARTUP_SEQUENCE}/functions/*; do
-    source $file
+for file in "${STARTUP_SEQUENCE}"/functions/*; do
+    # shellcheck source=/dev/null
+    source "${file}"
 done
 # -----------------------------------------------------------------------------
 
 
 # bash-completions
 # -----------------------------------------------------------------------------
-for file in ${STARTUP_SEQUENCE}/completions/*; do
-    source $file
+for file in "${STARTUP_SEQUENCE}"/completions/*; do
+    # shellcheck source=/dev/null
+    source "${file}"
 done
 # -----------------------------------------------------------------------------
 
 
 # load private files ----------------------------------------------------------
-if [[ -n "$(\ls -A ${PRIVATEFILES_PATH} 2>/dev/null)" ]]; then
-    for file in ${PRIVATEFILES_PATH}/*; do
-        file_base_name=$(basename $file)
-        if [[ ${file_base_name:0:1} != "." ]]; then
-            source ${file}
+if [[ -n "$(\ls -A "${PRIVATEFILES_PATH}" 2>/dev/null)" ]]; then
+    for file in "${PRIVATEFILES_PATH}"/*; do
+        file_base_name=$(basename "${file}")
+        if [[ "${file_base_name:0:1}" != "." ]]; then
+            # shellcheck source=/dev/null
+            source "${file}"
         fi
     done
 fi
@@ -126,13 +144,15 @@ fi
 
 
 # check colors if enabled -----------------------------------------------------
-if [[ ! -z ${DFL_LS_COLOR+x} ]]; then
-    if [[ ! -z ${DFL_LS_COLORABLE+x} ]]; then
+if [[ -n ${DFL_LS_COLOR+x} ]]; then
+    if [[ -n ${DFL_LS_COLORABLE+x} ]]; then
+        # shellcheck source=./startup-sequence/ls-colors
         source "${STARTUP_SEQUENCE}/ls-colors"
     fi
 fi
 
-if [[ ! -z ${DFL_LESS_COLOR+x} ]]; then
+if [[ -n ${DFL_LESS_COLOR+x} ]]; then
+    # shellcheck source=./startup-sequence/less-colors
     source "${STARTUP_SEQUENCE}/less-colors"
 fi
 # -----------------------------------------------------------------------------

@@ -1,3 +1,4 @@
+# shellcheck disable=SC2148
 # -----------------------------------------------------------------------------
 print_horizontal_line(){
     cols=${COLUMNS:-$(tty -s && tput cols)}
@@ -5,30 +6,53 @@ print_horizontal_line(){
     if [[ $DFL_HORIZONTAL_LINE_PROMPT_COLOR ]]; then
         hline="${DFL_HORIZONTAL_LINE_PROMPT_COLOR}${hline}${COLOR_OFF}"
     fi
-    echo -e $hline
+    echo -e "${hline}"
 }
 # -----------------------------------------------------------------------------
 
 
 # -----------------------------------------------------------------------------
+# shellcheck disable=SC2034
 PROMPT_HORIZONTAL_LINE="\$(print_horizontal_line)"
+
+# shellcheck disable=SC2034
 PROMPT_BASH_VERSION_INFO="\$(${PS1_PROMPTS_PATH}/bash-version-info)"
+
+# shellcheck disable=SC2034
 PROMPT_USER_AND_HOSTNAME="${DFL_USER_HOSTNAME_USER_PROMPT_COLOR}\u${COLOR_OFF} at ${DFL_USER_HOSTNAME_HOSTNAME_PROMPT_COLOR}\H${COLOR_OFF} in ${DFL_USER_HOSTNAME_CWD_PROMPT_COLOR}\w${COLOR_OFF}"
 
+# shellcheck disable=SC2034
 PROMPT_GIT="\$(${PS1_PROMPTS_PATH}/git)"
+
+# shellcheck disable=SC2034
 PROMPT_HG="\$(${PS1_PROMPTS_PATH}/hg)"
+
+# shellcheck disable=SC2034
 PROMPT_MEMORY="\$(${PS1_PROMPTS_PATH}/memory)"
+
+# shellcheck disable=SC2034
 PROMPT_BATTERY="\$(${PS1_PROMPTS_PATH}/battery)"
+
+# shellcheck disable=SC2034
 PROMPT_IPS_LIST="\$(${PS1_PROMPTS_PATH}/ip-list)"
+
+# shellcheck disable=SC2034
 PROMPT_DATABASE_STATUS="\$(${PS1_PROMPTS_PATH}/database-status)"
+
+# shellcheck disable=SC2034
 PROMPT_VIRTUALENV="\$(${PS1_PROMPTS_PATH}/virtualenv)"
+
+# shellcheck disable=SC2034
 PROMPT_RUBY_RBENV="\$(${PS1_PROMPTS_PATH}/ruby-rbenv)"
+
+# shellcheck disable=SC2034
 PROMPT_PYTHON_PYENV="\$(${PS1_PROMPTS_PATH}/python-pyenv)"
 # -----------------------------------------------------------------------------
 
 
 # default PS1
 # -----------------------------------------------------------------------------
+# shellcheck disable=SC2034
 PS1_BASIC="${PROMPT_USER_AND_HOSTNAME}
 $ "
 # -----------------------------------------------------------------------------

@@ -58,9 +58,10 @@ Try these commands:
 
 ## What’s New ?
 
-**November 26, 2020 Corona Days**
+**November 28, 2020 Corona Days**
 
 - `DFL_BATTERY_SHOW_PERCENT_REMAINING` show remaning battery percent
+- `shellcheck -x path/to/file` validated through shellcheck, improved bash scripts
 
 **April 27, 2020 Corona Days**
 

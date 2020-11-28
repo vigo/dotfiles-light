@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-if [[ $VIRTUAL_ENV ]]; then
-    virtual_env_name=$(basename ${VIRTUAL_ENV})
+if [[ "${VIRTUAL_ENV}" ]]; then
+    virtual_env_name=$(basename "${VIRTUAL_ENV}")
     virtual_env_info="⚑ ${virtual_env_name}"
     if [[ $DFL_VIRTUALENV_PROMPT_COLOR ]]; then
         virtual_env_info="${DFL_VIRTUALENV_PROMPT_COLOR}${virtual_env_info}${COLOR_OFF}"
     fi
-    printf "[${virtual_env_info}]"
+    printf "[%b]" "${virtual_env_info}"
 fi

@@ -13,5 +13,5 @@ if [[ $(command -v ruby) ]]; then
         ruby_version="${DFL_RBENV_PROMPT_COLOR}${ruby_version}${COLOR_OFF}"
     fi
 
-    printf "[${ruby_version}]"
+    printf "[%b]" "${ruby_version}"
 fi
