@@ -56,6 +56,16 @@ Try these commands:
 
 ## What’s New ?
 
+**April 10, 2021 Corona Days**
+
+I was watching one of the old peepcode screencasts. **Play by play** with Gary
+Bernhardt. He was using `zsh` and his git-prompt was displaying relative
+date diff between the last commit and now. It was `prompt_wunjo_setup` file
+but I couldn’t find it. Well, here it is!
+
+- Add `DFL_SHOW_DIFF_SINCE_LAST_COMMIT` variable check to display relative date diff between now and last commit for git prompt.
+- Add `DFL_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR` for color setup variable for display relative date diff between now and last commit feature.
+
 **November 28, 2020 Corona Days**
 
 - `DFL_BATTERY_SHOW_PERCENT_REMAINING` show remaning battery percent
@@ -284,6 +294,11 @@ export DFL_REVCONTROL_OVERALL_COLOR="${white}"                         #
 export DFL_REVCONTROL_VERTICAL_PIPE_COLOR="${gray}"                    # |
 export DFL_REVCONTROL_GIT_BRANCH_AHEAD_COLOR="${reverse}${white}"      # →
 export DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR="${reverse}${white}"     # ←
+
+# git
+export DFL_SHOW_DIFF_SINCE_LAST_COMMIT=1                               # enable feature
+                                                                       # [development @ 52d0f236c27a ◆:1 | 1] (4 months ago)
+export DFL_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR="${yellow}"               # -----------------------------------------^^^
 
 # battery
 # export DFL_BATTERY_ICON="\xE2\x8C\xA7" # for custom icon :)          # [⌧ 7:48]
