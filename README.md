@@ -271,9 +271,9 @@ cp ${HOME}/Dotfiles/startup-sequence/sample-ps1-colors ${HOME}/Dotfiles/private/
 Example color and variable names:
 
 ```bash
-export DFL_HORIZONTAL_LINE_PROMPT_COLOR="${gray}"                      # [------]
-export DFL_BASH_VERSION_INFO_PROMPT_COLOR="${gray}"                    # [4.4.5(1)-release]
-export DFL_MEMORY_PROMPT_COLOR="${green}${bold}"                       # [2.43G]
+export DFL_HORIZONTAL_LINE_PROMPT_COLOR="${gray}"   # [------]
+export DFL_BASH_VERSION_INFO_PROMPT_COLOR="${gray}" # [4.4.5(1)-release]
+export DFL_MEMORY_PROMPT_COLOR="${green}${bold}"    # [2.43G]
 
 # vigo at noto.local in ~
 export DFL_USER_HOSTNAME_USER_PROMPT_COLOR="${blue}"
@@ -281,24 +281,24 @@ export DFL_USER_HOSTNAME_HOSTNAME_PROMPT_COLOR="${red}"
 export DFL_USER_HOSTNAME_CWD_PROMPT_COLOR="${white}"
 
 # git/hg
-export DFL_REVCONTROL_BRANCH_COLOR="${green}"                          # master
-export DFL_REVCONTROL_AT_SIGN_COLOR="${white}"                         # @
-export DFL_REVCONTROL_COMMIT_ID_COLOR="${underline}"                   # 4a449eb1d5e5
-export DFL_REVCONTROL_UNTRACKED_COLOR="${red}"                         # □
-export DFL_REVCONTROL_ADDED_COLOR="${yellow}${bold}"                   # ■
-export DFL_REVCONTROL_MODIFIED_COLOR="${green}"                        # ◆
-export DFL_REVCONTROL_RENAMED_COLOR="${yellow}"                        # ◇
-export DFL_REVCONTROL_DELETED_COLOR="${blink}${magenta}"               # ◌
-export DFL_REVCONTROL_TYPECHANGED_COLOR="${cyan}"                      # ❖
-export DFL_REVCONTROL_OVERALL_COLOR="${white}"                         #
-export DFL_REVCONTROL_VERTICAL_PIPE_COLOR="${gray}"                    # |
-export DFL_REVCONTROL_GIT_BRANCH_AHEAD_COLOR="${reverse}${white}"      # →
-export DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR="${reverse}${white}"     # ←
+export DFL_REVCONTROL_BRANCH_COLOR="${green}"                       # master
+export DFL_REVCONTROL_AT_SIGN_COLOR="${white}"                      # @
+export DFL_REVCONTROL_COMMIT_ID_COLOR="${underline}"                # 4a449eb1d5e5
+export DFL_REVCONTROL_UNTRACKED_COLOR="${red}"                      # □
+export DFL_REVCONTROL_ADDED_COLOR="${yellow}${bold}"                # ■
+export DFL_REVCONTROL_MODIFIED_COLOR="${green}"                     # ◆
+export DFL_REVCONTROL_RENAMED_COLOR="${yellow}"                     # ◇
+export DFL_REVCONTROL_DELETED_COLOR="${blink}${magenta}"            # ◌
+export DFL_REVCONTROL_TYPECHANGED_COLOR="${cyan}"                   # ❖
+export DFL_REVCONTROL_OVERALL_COLOR="${white}"                      #
+export DFL_REVCONTROL_VERTICAL_PIPE_COLOR="${gray}"                 # |
+export DFL_REVCONTROL_GIT_BRANCH_AHEAD_COLOR="${reverse}${white}"   # →
+export DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR="${reverse}${white}"  # ←
 
 # git
-export DFL_SHOW_DIFF_SINCE_LAST_COMMIT=1                               # enable feature
-                                                                       # [development @ 52d0f236c27a ◆:1 | 1] (4 months ago)
-export DFL_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR="${yellow}"               # -----------------------------------------^^^
+export DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT=1                  # enables this feature
+                                                                         # [development @ 52d0f236c27a ◆:1 | 1] (4 months ago)
+export DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR="${yellow}"  # -----------------------------------------^^^
 
 # battery
 # export DFL_BATTERY_ICON="\xE2\x8C\xA7" # for custom icon :)          # [⌧ 7:48]
@@ -360,7 +360,9 @@ PROMPT_USER_AND_HOSTNAME="${DFL_USER_HOSTNAME_USER_PROMPT_COLOR}\u${COLOR_OFF} a
 This works if you are under a **git repository**. Shows current status such
 as; added, modified, deleted, renamed, type changed files amount. Example:
 
-    [master @ 297c543ceac8 □:1 ◆:1 ◌:1 | 3]
+    [master @ 297c543ceac8 □:1 ◆:1 ◌:1 | 3] (7 minutes ago)
+       |      |            |   |   |     |        |
+       |      |            |   |   |     |        +---> enabled via DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT
        |      |            |   |   |     |
        |      |            |   |   |     +-> 3 files will be affected   
        |      |            |   |   +-------> 1 file is deleted
@@ -369,7 +371,7 @@ as; added, modified, deleted, renamed, type changed files amount. Example:
        |      +----------------------------> commit id
        +-----------------------------------> current branch
     
-    [development @ b09ab92a87d5 □:1 | 1 →1]
+    [development @ b09ab92a87d5 □:1 | 1 →1] (7 minutes ago)
                                         |
                                         +--> this branch is ahead of 'origin/development'
                                              by 1 commit. you need to push it now! :)
@@ -388,7 +390,7 @@ shows it to you :)
 
 Mercurial version of `${PROMPT_GIT}`. Example:
 
-    [default @ b63bcee9d5ee+:1+ □:1 ■:2 ◌:2]
+    [default @ b63bcee9d5ee+:1+ □:1 ■:2 ◌:2] (7 minutes ago)
         |      |             |  |   |   |
         |      |             |  |   |   +--> 1 file is removed/deleted
         |      |             |  |   +------> 1 file is added
@@ -417,6 +419,11 @@ Color variables for `${PROMPT_GIT}` and `${PROMPT_HG}` are same:
 * `DFL_REVCONTROL_VERTICAL_PIPE_COLOR`
 * `DFL_REVCONTROL_GIT_BRANCH_AHEAD_COLOR`
 * `DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR`
+
+`git` only variables:
+
+* `DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT` enables feature.
+* `DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR`
 
 #### `${PROMPT_RBENV}`
 

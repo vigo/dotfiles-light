@@ -193,10 +193,10 @@ if [[ $(command -v git) ]]; then
         ahead_behind=$(commit_position)
         
         since_last_commit=""
-        if [[ $DFL_SHOW_DIFF_SINCE_LAST_COMMIT ]]; then
+        if [[ $DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT ]]; then
             since_last_commit=$(git log -1 --date=relative --format=%cd)
-            if [[ $DFL_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR ]]; then
-                since_last_commit="${DFL_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR}${since_last_commit}${COLOR_OFF}"
+            if [[ $DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR ]]; then
+                since_last_commit="${DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR}${since_last_commit}${COLOR_OFF}"
             fi
             since_last_commit=" (${since_last_commit})"
         fi
