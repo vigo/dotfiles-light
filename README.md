@@ -48,6 +48,8 @@ Try these commands:
 * `dataurl`: Data url for image file: `dataurl my_picture.jpg`
 * `gz_analyse`: Analyses gzipped/non-gzipped versions of a file: `gz_analyse my_file.txt`
 * `mkdir_cd`: Create folder and cd in to it: `mkdir_cd foo`
+* `mkdir_now`: Create folder via time stamp: `2021-04-12-135850` (YEAR-MM-DD-HHMMSS)
+* `mkdir_now_cd`: Create folder via `mkdir_now` and `cd` to folder: `mkdir 2021-04-12-135850 && cd 2021-04-12-135850`
 * `webserver`: That folder becomes a website! (*via python*): `cd /folder/;webserver`
 * `webserver_rb`: That folder becomes a website! (*via ruby*): `cd /folder/;webserver_rb`
 * `mmv`, `mcp`: Magic Move/Copy aka `mmv` or `mcp`. Edit your file target name on-the-fly!
@@ -55,6 +57,11 @@ Try these commands:
 ---
 
 ## What’s New ?
+
+**April 12, 2021, Corona Days**
+
+- Add `mkdir_now`
+- Add `mkdir_now_cd`
 
 **April 10, 2021 Corona Days**
 
