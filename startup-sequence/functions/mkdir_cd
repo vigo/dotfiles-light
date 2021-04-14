@@ -1,7 +1,7 @@
 mkdir_cd(){
     if [[ $1 ]]; then
         filename="${1}"
-        if [[ $DFF_OS == 'OSX' ]]; then
+        if [[ $DFL_OS == 'OSX' ]]; then
             filename=${1//:/-}
         fi
         mkdir -p "${filename}" && cd "${filename}"
