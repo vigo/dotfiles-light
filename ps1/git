@@ -212,6 +212,17 @@ if [[ $(command -v git) ]]; then
         fi
         at_sign=" ${at_sign} "
         
-        printf "[%b%b%b%b%b%b]%b" "${branch}" "${at_sign}" "${commit_id}" "${rebasing}" "${anything_changed}" "${ahead_behind}" "${since_last_commit}"
+        latest_tag=""
+        if [[ $DFL_REVCONTROL_GIT_SHOW_LATEST_TAG ]]; then
+            latest_tag=$(git describe --abbrev=0 2>/dev/null)
+            if [[ "${latest_tag}" ]]; then
+                if [[ $DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR ]]; then
+                    latest_tag="${DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR}${latest_tag}${COLOR_OFF}"
+                fi
+                latest_tag=" [${latest_tag}]"
+            fi
+        fi
+        
+        printf "[%b%b%b%b%b%b]%b%b" "${branch}" "${at_sign}" "${commit_id}" "${rebasing}" "${anything_changed}" "${ahead_behind}" "${since_last_commit}" "${latest_tag}"
     fi
 fi

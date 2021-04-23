@@ -26,6 +26,10 @@ export DFL_REVCONTROL_VERTICAL_PIPE_COLOR="${gray}"                    # |
 export DFL_REVCONTROL_GIT_BRANCH_AHEAD_COLOR="${reverse}${white}"      # →
 export DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR="${reverse}${white}"     # ←
 
+# git
+export DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR="${yellow}" # (69 minutes ago)
+export DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR="${green}"              # [v1.3.0]
+
 # battery
 # export DFL_BATTERY_ICON="\xE2\x8C\xA7" # for custom icon :)          # [⌧ 7:48]
 export DFL_BATTERY_PROMPT_COLOR="${yellow}"                            # [3:47]

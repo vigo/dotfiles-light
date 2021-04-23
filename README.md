@@ -1,4 +1,4 @@
-![Version](https://img.shields.io/badge/version-1.4.0-orange.svg)
+![Version](https://img.shields.io/badge/version-1.3.0-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
 
 # Dotfiles LIGHT
@@ -62,6 +62,7 @@ Try these commands:
 
 - Add `node` version indicator
 - Add `go` version indicator
+- Add `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG` and `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR`
 - Update missing information (README)
 - Add custom icon indicators for PS1 elements!
 
@@ -233,7 +234,8 @@ touch ps1
 CUSTOM_PS1="${PROMPT_HORIZONTAL_LINE}
 ${PROMPT_MEMORY}${PROMPT_BATTERY}
 ${PROMPT_USER_AND_HOSTNAME}
-${PROMPT_DATABASE_STATUS}${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_GIT}${PROMPT_HG}
+${PROMPT_DATABASE_STATUS}${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}
+${PROMPT_GIT}${PROMPT_HG}
 $ "
 
 export PS1="${CUSTOM_PS1}"
@@ -266,9 +268,20 @@ Styles are:
 
 Predefined formats are:
 
-    ${white_on_blue}
-    ${white_on_red}
     ${white_on_black}
+    ${white_on_red}
+    ${white_on_green}
+    ${white_on_yellow}
+    ${white_on_blue}
+    ${white_on_magenta}
+    ${white_on_cyan}
+    ${black_on_white}
+    ${red_on_white}
+    ${green_on_white}
+    ${yellow_on_white}
+    ${blue_on_white}
+    ${magenta_on_white}
+    ${cyan_on_white}
 
 You can even combine them:
 
@@ -281,6 +294,9 @@ You can create a copy of sample colors for customization:
 ```bash
 cp ${HOME}/Dotfiles/startup-sequence/sample-ps1-colors ${HOME}/Dotfiles/private/my-colors
 ```
+
+Color variables are stored under `startup-sequence/colors`. You can implement
+your own color combinations. Bash color information can be found [here](https://tldp.org/HOWTO/Bash-Prompt-HOWTO/x329.html)
 
 Example color/icon and variable names:
 
@@ -313,6 +329,10 @@ export DFL_REVCONTROL_GIT_BRANCH_BEHIND_COLOR="${reverse}${white}"  # ←
 export DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT=1                  # enables this feature
                                                                          # [development @ 52d0f236c27a ◆:1 | 1] (4 months ago)
 export DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR="${yellow}"  # -----------------------------------------^^^
+
+export DFL_REVCONTROL_GIT_SHOW_LATEST_TAG=1                              # enables this feature
+                                                                         # [development @ d463874f9ea5 ◆:4 | 4] (79 minutes ago) [v1.3.0]
+export DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR="${green}"               # --------------------------------------------------------^^^
 
 # battery
 export DFL_BATTERY_ICON="\xE2\x8C\xA7"                                 # [⌧ 7:48] for custom icon
@@ -395,7 +415,9 @@ PROMPT_USER_AND_HOSTNAME="${DFL_USER_HOSTNAME_USER_PROMPT_COLOR}\u${COLOR_OFF} a
 This works if you are under a **git repository**. Shows current status such
 as; added, modified, deleted, renamed, type changed files amount. Example:
 
-    [master @ 297c543ceac8 □:1 ◆:1 ◌:1 | 3] (7 minutes ago)
+    [master @ 297c543ceac8 □:1 ◆:1 ◌:1 | 3] (7 minutes ago) [v1.3.0]
+       |      |            |   |   |     |        |            |
+       |      |            |   |   |     |        |            +---> enabled via DFL_REVCONTROL_GIT_SHOW_LATEST_TAG
        |      |            |   |   |     |        |
        |      |            |   |   |     |        +---> enabled via DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT
        |      |            |   |   |     |
@@ -459,6 +481,8 @@ Color variables for `${PROMPT_GIT}` and `${PROMPT_HG}` are same:
 
 * `DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT` enables feature.
 * `DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR`
+* `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG` enables feature.
+* `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR`
 
 #### `${PROMPT_RBENV}`
 
@@ -672,4 +696,3 @@ All PR’s are welcome!
 This project is licensed under MIT
 
 ---
-
