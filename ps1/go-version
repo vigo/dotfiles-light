@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [[ $(command -v go) ]]; then
+    go_version=$(go version)
+    go_version_regex="([0-9]+.[0-9]+.[0-9]+)"
+    
+    if [[ "${go_version}" =~ ${go_version_regex} ]]; then
+        DFL_GO_PROMPT_ICON="${DFL_GO_PROMPT_ICON:-⍟}"
+        go_version_info="${DFL_GO_PROMPT_ICON} ${BASH_REMATCH[1]}"
+
+        if [[ ${DFL_GO_PROMPT_COLOR} ]]; then
+            go_version_info="${DFL_GO_PROMPT_COLOR}${go_version_info}${COLOR_OFF}"
+        fi
+
+        printf "[%b]" "${go_version_info}"
+    fi
+fi

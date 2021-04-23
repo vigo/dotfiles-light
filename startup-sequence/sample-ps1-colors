@@ -1,3 +1,7 @@
+# shellcheck disable=SC2154,SC2148
+
+# this file is sourced by bashrc
+
 export DFL_HORIZONTAL_LINE_PROMPT_COLOR="${gray}"                      # [------]
 export DFL_BASH_VERSION_INFO_PROMPT_COLOR="${gray}"                    # [4.4.5(1)-release]
 export DFL_MEMORY_PROMPT_COLOR="${green}${bold}"                       # [2.43G]
@@ -42,3 +46,5 @@ export DFL_VIRTUALENV_PROMPT_COLOR="${red}${bold}"                     # [⚑ re
 export DFL_RBENV_PROMPT_COLOR="${yellow}"                              # [◆ 2.3.3]
 export DFL_PYTHON_PROMPT_COLOR="${blue}"                               # [¶ 2.7.12]
 export DFL_DJANGO_PROMPT_COLOR="${cyan}${underline}"                   # [❡ 1.10.1]
+export DFL_NODE_PROMPT_COLOR="${yellow}"                               # [⎆ v16.0.0]
+export DFL_GO_PROMPT_COLOR="${white}"                                  # [⍟ 1.16.3]

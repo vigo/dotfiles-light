@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+if [[ $(command -v node) ]]; then
+    node_version=$(node --version)
+    DFL_NODE_PROMPT_ICON="${DFL_NODE_PROMPT_ICON:-⎆}"
+    node_version_info="${DFL_NODE_PROMPT_ICON} ${node_version}"
+
+    if [[ ${DFL_NODE_PROMPT_COLOR} ]]; then
+        node_version_info="${DFL_NODE_PROMPT_COLOR}${node_version_info}${COLOR_OFF}"
+    fi
+
+    printf "[%b]" "${node_version_info}"
+fi
+
+

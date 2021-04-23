@@ -7,8 +7,9 @@ get_mysql_status() {
         mysql_status=$(mysql.server status)
         regex="running \(([0-9]+)\)"
         if [[ "${mysql_status}" =~ $regex ]]; then
+            DFL_DB_MYSQL_PROMPT_ICON="${DFL_DB_MYSQL_PROMPT_ICON:-MySQL}"
             # mysql_pid=${BASH_REMATCH[1]}
-            out="MySQL"
+            out="${DFL_DB_MYSQL_PROMPT_ICON}"
             if [[ "${DFL_DB_MYSQL_PROMPT_COLOR}" ]]; then
                 out="${DFL_DB_MYSQL_PROMPT_COLOR}${out}${COLOR_OFF}"
             fi
@@ -20,12 +21,13 @@ get_mysql_status() {
 
 get_postgresql_status() {
     postgresql_status=""
+    DFL_DB_POSTGRESQL_PROMPT_ICON="${DFL_DB_POSTGRESQL_PROMPT_ICON:-PG}"
 
     if [[ $(command -v pg_ctl) ]] && [[ -n "${PGDATA}" ]]; then
         postgresql_local_status=$(pg_ctl status -D "${PGDATA}")
         if [[ -n "${postgresql_local_status}" ]]; then
             postgresql_status="${postgresql_local_status}"
-            out="PG"
+            out="${DFL_DB_POSTGRESQL_PROMPT_ICON}"
         fi
     fi
     
@@ -33,10 +35,8 @@ get_postgresql_status() {
         postgresql_docker_status=$(docker exec -it --user postgres "${DFL_DOCKER_PG_CONTAINER_NAME}" pg_ctl status 2> /dev/null)
         if [[ -n "${postgresql_docker_status}" ]]; then
             postgresql_status="${postgresql_docker_status}"
-            out="PG"
-            if [[ "${DFL_DB_POSTGRESQL_DOCKER_ICON}" ]]; then
-                out="${out} ${DFL_DB_POSTGRESQL_DOCKER_ICON}"
-            fi
+            DFL_DB_POSTGRESQL_DOCKER_ICON="${DFL_DB_POSTGRESQL_DOCKER_ICON:-🚢}"
+            out="${out} ${DFL_DB_POSTGRESQL_DOCKER_ICON}"
         fi
     fi
     
@@ -61,7 +61,9 @@ get_postgresql_status() {
 get_redis_status() {
     if [[ $(command -v redis-cli) ]]; then
         if [[ $(redis-cli ping 2>/dev/null) == "PONG" ]]; then
-            out="REDIS"
+            DFL_DB_REDIS_PROMPT_ICON="${DFL_DB_REDIS_PROMPT_ICON:-REDIS}"
+            
+            out="${DFL_DB_REDIS_PROMPT_ICON}"
             if [[ "${DFL_DB_REDIS_PROMPT_COLOR}" ]]; then
                 out="${DFL_DB_REDIS_PROMPT_COLOR}${out}${COLOR_OFF}"
             fi
@@ -73,7 +75,9 @@ get_redis_status() {
 get_mongodb_status() {
     if [[ $(command -v mongod) ]]; then
         if [[ -n "$(pgrep mongod)" ]]; then
-            out="MONGODB"
+            DFL_DB_MONGODB_PROMPT_ICON="${DFL_DB_MONGODB_PROMPT_ICON:-MONGODB}"
+
+            out="${DFL_DB_MONGODB_PROMPT_ICON}"
             if [[ "${DFL_DB_MONGODB_PROMPT_COLOR}" ]]; then
                 out="${DFL_DB_MONGODB_PROMPT_COLOR}${out}${COLOR_OFF}"
             fi

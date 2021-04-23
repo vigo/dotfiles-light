@@ -58,6 +58,13 @@ Try these commands:
 
 ## What’s New ?
 
+**April 23, 2021, Corona Days**
+
+- Add `node` version indicator
+- Add `go` version indicator
+- Update missing information (README)
+- Add custom icon indicators for PS1 elements!
+
 **April 12, 2021, Corona Days**
 
 - Add `mkdir_now`
@@ -275,7 +282,7 @@ You can create a copy of sample colors for customization:
 cp ${HOME}/Dotfiles/startup-sequence/sample-ps1-colors ${HOME}/Dotfiles/private/my-colors
 ```
 
-Example color and variable names:
+Example color/icon and variable names:
 
 ```bash
 export DFL_HORIZONTAL_LINE_PROMPT_COLOR="${gray}"   # [------]
@@ -308,7 +315,7 @@ export DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT=1                  # enabl
 export DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR="${yellow}"  # -----------------------------------------^^^
 
 # battery
-# export DFL_BATTERY_ICON="\xE2\x8C\xA7" # for custom icon :)          # [⌧ 7:48]
+export DFL_BATTERY_ICON="\xE2\x8C\xA7"                                 # [⌧ 7:48] for custom icon
 export DFL_BATTERY_PROMPT_COLOR="${yellow}"                            # [3:47]
 export DFL_BATTERY_SHOW_PERCENT_REMAINING=1                            # [⌧ 7:48 100%]
 
@@ -317,16 +324,37 @@ export DFL_IPLIST_PROMPT_IFACE_COLOR="${gray}${bold}"                  # [en0:19
 export DFL_IPLIST_PROMPT_IPADDR_COLOR="${gray}"
 
 # database status
+export DFL_DB_MYSQL_PROMPT_ICON="ANY TEXT"                             # Default: MySQL
 export DFL_DB_MYSQL_PROMPT_COLOR="${red}${blink}"                      # [MySQL]
+
+export DFL_DB_POSTGRESQL_DOCKER_ICON="ANY TEXT"                        # default: 🚢
+export DFL_DB_POSTGRESQL_PROMPT_ICON="ANY TEXT"                        # default: PG
 export DFL_DB_POSTGRESQL_PROMPT_COLOR="${red}${blink}"                 # [PG]
+
+export DFL_DB_REDIS_PROMPT_ICON="ANY TEXT"                             # default: REDIS
 export DFL_DB_REDIS_PROMPT_COLOR="${red}${blink}"                      # [REDIS]
+
+export DFL_DB_MONGODB_PROMPT_ICON="ANY TEXT"                           # default: MONGODB
 export DFL_DB_MONGODB_PROMPT_COLOR="${red}${blink}"                    # [MONGODB]
 
 # libs
+export DFL_VIRTUALENV_PROMPT_ICON="ANY TEXT"                           # default: ⚑
 export DFL_VIRTUALENV_PROMPT_COLOR="${red}${bold}"                     # [⚑ resume.bilgi.edu.tr]
+
+export DFL_RBENV_PROMPT_ICON="ANY TEXT"                                # default: ◆
 export DFL_RBENV_PROMPT_COLOR="${yellow}"                              # [◆ 2.3.3]
+
+export DFL_PYTHON_PROMPT_ICON="ANY TEXT"                               # default: ¶
 export DFL_PYTHON_PROMPT_COLOR="${blue}"                               # [¶ 2.7.12]
+
+export DFL_PYTHON_DJANGO_PROMPT_ICON="ANY TEXT"                        # default: ❡
 export DFL_DJANGO_PROMPT_COLOR="${cyan}${underline}"                   # [❡ 1.10.1]
+
+export DFL_NODE_PROMPT_ICON="ANY TEXT"                                 # default: ⎆
+export DFL_NODE_PROMPT_COLOR="${yellow}"                               # [⎆ v16.0.0]
+
+export DFL_GO_PROMPT_ICON="ANY TEXT"                                   # default: ⍟
+export DFL_GO_PROMPT_COLOR="${white}"                                  # [⍟ 1.16.3]
 ```
 
 #### `${PROMPT_MEMORY}`
@@ -462,6 +490,18 @@ Shows current bash version. Color variable is `DFL_BASH_INFO_PROMPT_COLOR`.
 
     [4.4.5(1)-release] # I need to see this sometimes!
 
+#### `${PROMPT_NODE_VERSION}`
+
+Shows current node version. Color variable is `DFL_NODE_PROMPT_COLOR`.
+
+    [⎆ v16.0.0]    
+
+#### `${PROMPT_GO_VERSION}`
+
+Shows current go version. Color variable is `DFL_GO_PROMPT_COLOR`.
+
+    [⍟ 1.16.3]
+
 #### `${PROMPT_IPS_LIST}`
 
 Shows current available local ip list. Color variables are `DFL_IPLIST_PROMPT_IFACE_COLOR`
@@ -511,7 +551,7 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
     PS1_OSX_ADVANCED="${PROMPT_HORIZONTAL_LINE}
     ${PROMPT_MEMORY}${PROMPT_BATTERY}
     ${PROMPT_USER_AND_HOSTNAME}
-    ${PROMPT_DATABASE_STATUS}${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_GIT}${PROMPT_HG}
+    ${PROMPT_DATABASE_STATUS}${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_GIT}${PROMPT_HG}
     $ "
 
 ### `PS1_UBUNTU_BASIC` and `PS1_UBUNTU_ADVANCED`
@@ -522,7 +562,7 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
     
     PS1_UBUNTU_ADVANCED="${PROMPT_HORIZONTAL_LINE}
     ${PROMPT_USER_AND_HOSTNAME}
-    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_GIT}${PROMPT_HG}
+    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_GIT}${PROMPT_HG}
     > "
 
 ### `PS1_GENTOO_BASIC` and `PS1_GENTOO_ADVANCED`
@@ -533,7 +573,7 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
     
     PS1_GENTOO_ADVANCED="${PROMPT_HORIZONTAL_LINE}
     ${PROMPT_USER_AND_HOSTNAME}
-    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_GIT}${PROMPT_HG}
+    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_GIT}${PROMPT_HG}
     -> "
 
 ## Build your own!
@@ -548,6 +588,8 @@ Just drop a file under `~/Dotfiles/private/my-ps1` thats it! Your options:
     ${PROMPT_VIRTUALENV}
     ${PROMPT_RUBY_RBENV}
     ${PROMPT_PYTHON_PYENV}
+    ${PROMPT_NODE_VERSION}
+    ${PROMPT_GO_VERSION}
     ${PROMPT_GIT}
     ${PROMPT_HG}
     ${PROMPT_IPS_LIST}
