@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
 if [[ $(command -v ruby) ]]; then
-    DFL_RBENV_PROMPT_ICON="${DFL_RBENV_PROMPT_ICON:-◆}"
+    DFL_RBENV_PROMPT_ICON="${DFL_RBENV_PROMPT_ICON:-◆ }"
     ruby_version=$(ruby -e 'puts RUBY_VERSION' 2>&1)
     if [[ $(command -v rbenv) ]]; then
         rbenv_version=$(rbenv version-name)
         if [[ ${rbenv_version} != "system" ]]; then
-            ruby_version="${DFL_RBENV_PROMPT_ICON} ${rbenv_version}"
+            ruby_version="${DFL_RBENV_PROMPT_ICON}${rbenv_version}"
         fi
     fi
 

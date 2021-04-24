@@ -17,12 +17,9 @@ if [[ $(uname) == "Darwin" ]]; then
         else
             result=$(pmset -g batt | grep -E "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';' | cut -f2 -d' ')
         fi
-        
-        out="${result}"
+        DFL_BATTERY_PROMPT_ICON="${DFL_BATTERY_PROMPT_ICON:-\xE2\x8C\xA7 }"
 
-        if [[ "${DFL_BATTERY_ICON}" ]]; then
-            out="${DFL_BATTERY_ICON} ${out}"
-        fi
+        out="${DFL_BATTERY_PROMPT_ICON}${result}"
 
         if [[ "${DFL_BATTERY_SHOW_PERCENT_REMAINING}" ]]; then
             battery_percent=$(pmset -g batt | grep -E "([0-9]+\%).*" -o --colour=auto | cut -f1 -d';')

@@ -53,6 +53,9 @@ PROMPT_NODE_VERSION="\$(${PS1_PROMPTS_PATH}/node-version)"
 
 # shellcheck disable=SC2034
 PROMPT_GO_VERSION="\$(${PS1_PROMPTS_PATH}/go-version)"
+
+# shellcheck disable=SC2034
+PROMPT_BASH_INFO="\$(${PS1_PROMPTS_PATH}/bash-version-info)"
 # -----------------------------------------------------------------------------
 
 

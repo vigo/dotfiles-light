@@ -6,6 +6,7 @@
 
 
 if [[ $(uname) == "Darwin" ]]; then
+    DFL_MEMORY_PROMPT_ICON="${DFL_MEMORY_PROMPT_ICON:-◎ }"
     installed_memory=$(sysctl -n hw.memsize)
     installed_memory_in_gb=$(bc <<< "scale=2; $installed_memory/1024/1024/1000")
     page_types=("wired down" "active" "inactive")
@@ -17,6 +18,8 @@ if [[ $(uname) == "Darwin" ]]; then
     done
     what_is_remaining=$(bc <<< "scale=2; $installed_memory_in_gb-$all_consumed")
     result=$(printf "%.2fG" "${what_is_remaining}")
+    result="${DFL_MEMORY_PROMPT_ICON}${result}"
+
     if [[ $DFL_MEMORY_PROMPT_COLOR ]]; then
         result="${DFL_MEMORY_PROMPT_COLOR}${result}${COLOR_OFF}"
     fi

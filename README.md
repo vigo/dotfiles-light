@@ -58,6 +58,16 @@ Try these commands:
 
 ## What’s New ?
 
+**April 24, 2021, Corona Days**
+
+- Add `DFL_BASH_VERSION_INFO_PROMPT_COLOR`
+- Add `DFL_MEMORY_PROMPT_ICON`
+- Fix `PROMPT_BASH_INFO`
+- Rename `DFL_BATTERY_ICON` to `DFL_BATTERY_PROMPT_ICON`
+- Remove space char from the right side of the icon (*requested by*
+  [Tarık](https://github.com/tarikkavaz)). Now you can manage spacing by your
+  selves :)
+
 **April 23, 2021, Corona Days**
 
 - Add `node` version indicator
@@ -302,6 +312,7 @@ Example color/icon and variable names:
 
 ```bash
 export DFL_HORIZONTAL_LINE_PROMPT_COLOR="${gray}"   # [------]
+export DFL_BASH_VERSION_INFO_PROMPT_ICON="ANY TEXT" # default: ⏍
 export DFL_BASH_VERSION_INFO_PROMPT_COLOR="${gray}" # [4.4.5(1)-release]
 export DFL_MEMORY_PROMPT_COLOR="${green}${bold}"    # [2.43G]
 
@@ -335,8 +346,8 @@ export DFL_REVCONTROL_GIT_SHOW_LATEST_TAG=1                              # enabl
 export DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR="${green}"               # --------------------------------------------------------^^^
 
 # battery
-export DFL_BATTERY_ICON="\xE2\x8C\xA7"                                 # [⌧ 7:48] for custom icon
-export DFL_BATTERY_PROMPT_COLOR="${yellow}"                            # [3:47]
+export DFL_BATTERY_PROMPT_ICON="ANY TEXT"                              # default: ⌧
+export DFL_BATTERY_PROMPT_COLOR="${yellow}"                            # [⌧ 3:47]
 export DFL_BATTERY_SHOW_PERCENT_REMAINING=1                            # [⌧ 7:48 100%]
 
 # ip list
@@ -375,6 +386,9 @@ export DFL_NODE_PROMPT_COLOR="${yellow}"                               # [⎆ v1
 
 export DFL_GO_PROMPT_ICON="ANY TEXT"                                   # default: ⍟
 export DFL_GO_PROMPT_COLOR="${white}"                                  # [⍟ 1.16.3]
+
+export DFL_MEMORY_PROMPT_ICON="ANY TEXT"                               # default: ◎
+export DFL_MEMORY_PROMPT_COLOR="${gray}"                               # [◎ 4.38G]
 ```
 
 #### `${PROMPT_MEMORY}`
@@ -384,11 +398,11 @@ OSX only. Displays remaining free memory: `[2.90G]`. Color variable is
 
 #### `${PROMPT_BATTERY}`
 
-OSX only. Displays remaining hour(s) on battery mode: `[2:05]`. Color variable
+OSX only. Displays remaining hour(s) on battery mode: `[⌧ 2:05]`. Color variable
 is `DFL_BATTERY_PROMPT_COLOR`. You can set a custom icon via setting
-`DFL_BATTERY_ICON` variable. Example:
+`DFL_BATTERY_PROMPT_ICON` variable. Example:
 
-    export DFL_BATTERY_ICON="\xE2\x8C\xA7" # ⌧
+    export DFL_BATTERY_PROMPT_ICON="🔋 " # emoji!
 
 #### `${PROMPT_USER_AND_HOSTNAME}`
 
@@ -480,9 +494,9 @@ Color variables for `${PROMPT_GIT}` and `${PROMPT_HG}` are same:
 `git` only variables:
 
 * `DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT` enables feature.
-* `DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR`
+* `DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR` sets color.
 * `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG` enables feature.
-* `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR`
+* `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR` sets color.
 
 #### `${PROMPT_RBENV}`
 
