@@ -2,7 +2,7 @@
 
 if [[ $(command -v pgvm) ]]; then
     pgvm_version=$(pgvm current)
-    DFL_PGVM_PROMPT_ICON="${DFL_PGVM_PROMPT_ICON:-▥}"
+    DFL_PGVM_PROMPT_ICON="${DFL_PGVM_PROMPT_ICON:-▥ }"
     pgvm_version="${DFL_PGVM_PROMPT_ICON}${pgvm_version}"
 
     if [[ ${DFL_PGVM_PROMPT_COLOR} ]]; then

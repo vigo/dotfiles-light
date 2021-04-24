@@ -62,103 +62,13 @@ Try these commands:
 
 - Add `DFL_BASH_VERSION_INFO_PROMPT_COLOR`
 - Add `DFL_MEMORY_PROMPT_ICON`
-- Fix `PROMPT_BASH_INFO`
 - Rename `DFL_BATTERY_ICON` to `DFL_BATTERY_PROMPT_ICON`
 - Remove space char from the right side of the icon (*requested by*
   [Tarık](https://github.com/tarikkavaz)). Now you can manage spacing by your
   selves :)
+- Add `PROMPT_PGVM_VERSION`, `DFL_PGVM_PROMPT_COLOR`, `DFL_PGVM_PROMPT_ICON` via [PR#8](https://github.com/vigo/dotfiles-light/pull/8)
 
-**April 23, 2021, Corona Days**
-
-- Add `node` version indicator
-- Add `go` version indicator
-- Add `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG` and `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR`
-- Update missing information (README)
-- Add custom icon indicators for PS1 elements!
-
-**April 12, 2021, Corona Days**
-
-- Add `mkdir_now`
-- Add `mkdir_now_cd`
-
-**April 10, 2021 Corona Days**
-
-I was watching one of the old peepcode screencasts. **Play by play** with Gary
-Bernhardt. He was using `zsh` and his git-prompt was displaying relative
-date diff between the last commit and now. It was `prompt_wunjo_setup` file
-but I couldn’t find it. Well, here it is!
-
-- Add `DFL_SHOW_DIFF_SINCE_LAST_COMMIT` variable check to display relative date diff between now and last commit for git prompt.
-- Add `DFL_SHOW_DIFF_SINCE_LAST_COMMIT_COLOR` for color setup variable for display relative date diff between now and last commit feature.
-
-**November 28, 2020 Corona Days**
-
-- `DFL_BATTERY_SHOW_PERCENT_REMAINING` show remaning battery percent
-- `shellcheck -x path/to/file` validated through shellcheck, improved bash scripts
-- DROP **app_lightmode**... Doesn’t work on Catalina + Big Sur...
-
-**April 27, 2020 Corona Days**
-
-Try `cp` files with `mcp`
-
-```bash
-$ mcp /path/to/file # hit enter end give a new name!
-```
-
-
-**April 22, 2020 Corona Days**
-
-Just grabbed and fixed the little function from;
-
-- https://gist.github.com/premek/6e70446cfc913d3c929d7cdbfe896fef
-- [@premek](https://github.com/premek)
-
-Try to `mv` files with `mmv`:
-
-```bash
-$ mmv /source/file # hit enter end give a new name!
-```
-
-Also, `app_lightmode` doesn’t work as expected on freshly installed macOS
-Catalina. Some applications are compatible but some are not...
-
----
-
-**January 9, 2020**
-
-`git` prompt now checks number of changed files. If the number of files are
-more than **100**, nothing will be calculated. You can change this value
-via setting `DFL_MAX_FILECHANGES` environment variable.
-
-**December 1, 2019**
-
-PostgreSQL database indicator now shows current database name if
-`$DATABASE_URL` is set!
-
-**October 16, 2019**
-
-PostgreSQL database indicator now supports Docker based PostgreSQL usage. Name
-of the container is stored under `DFL_DOCKER_PG_CONTAINER_NAME` environment
-variable. Default container name is set to: `docker-pg`
-(`startup-sequence/env`) Example docker setup:
-
-```bash
-$ docker pull postgres:latest
-$ docker run --rm --name $DFL_DOCKER_PG_CONTAINER_NAME -e POSTGRES_PASSWORD=docker -d -p 5432:5432 -v /path/to/volumes/postgres:/var/lib/postgresql/data postgres
-$ PGPASSWORD=docker psql -h localhost -U postgres -d postgres # connect
-$ docker stop ${DFL_DOCKER_PG_CONTAINER_NAME} # stop
-```
-
-**November 13, 2018**
-
-`HISTFILESIZE` and `HISTSIZE` are unset for unlimited history storage. You can
-override this via your `private/env` and re-assign desired values. Defaults
-were:
-
-```bash
-export HISTFILESIZE=1000000
-export HISTSIZE=1000000
-```
+Change log is available [here](CHANGELOG.md)
 
 ---
 
@@ -252,6 +162,24 @@ export PS1="${CUSTOM_PS1}"
 ````
 
 ### `PS1` ELEMENTS
+
+Available elements are;
+
+    ${PROMPT_HORIZONTAL_LINE}
+    ${PROMPT_BASH_VERSION_INFO}
+    ${PROMPT_USER_AND_HOSTNAME}
+    ${PROMPT_GIT}
+    ${PROMPT_HG}
+    ${PROMPT_MEMORY}
+    ${PROMPT_BATTERY}
+    ${PROMPT_IPS_LIST}
+    ${PROMPT_DATABASE_STATUS}
+    ${PROMPT_VIRTUALENV}
+    ${PROMPT_RUBY_RBENV}
+    ${PROMPT_PYTHON_PYENV}
+    ${PROMPT_NODE_VERSION}
+    ${PROMPT_GO_VERSION}
+    ${PROMPT_PGVM_VERSION}
 
 ### Color Configuration
 
@@ -389,6 +317,9 @@ export DFL_GO_PROMPT_COLOR="${white}"                                  # [⍟ 1.
 
 export DFL_MEMORY_PROMPT_ICON="ANY TEXT"                               # default: ◎
 export DFL_MEMORY_PROMPT_COLOR="${gray}"                               # [◎ 4.38G]
+
+export DFL_PGVM_PROMPT_ICON="ANY TEXT"                                 # default: ▥
+export DFL_PGVM_PROMPT_COLOR="${magenta}"                              # [▥ 3.9.4]
 ```
 
 #### `${PROMPT_MEMORY}`
@@ -522,9 +453,9 @@ kool if you set this: `export VIRTUAL_ENV_DISABLE_PROMPT=1` somewhere in your
 
     [⚑ my_awesome_env] # :)
 
-#### `${PROMPT_BASH_INFO}`
+#### `${PROMPT_BASH_VERSION_INFO}`
 
-Shows current bash version. Color variable is `DFL_BASH_INFO_PROMPT_COLOR`.
+Shows current bash version. Color variable is `DFL_BASH_VERSION_INFO_PROMPT_COLOR`.
 
     [4.4.5(1)-release] # I need to see this sometimes!
 
@@ -539,6 +470,10 @@ Shows current node version. Color variable is `DFL_NODE_PROMPT_COLOR`.
 Shows current go version. Color variable is `DFL_GO_PROMPT_COLOR`.
 
     [⍟ 1.16.3]
+
+#### `${PROMPT_PGVM_VERSION}`
+
+Shows current pgvm active version. Color variable is `DFL_PGVM_PROMPT_COLOR`.
 
 #### `${PROMPT_IPS_LIST}`
 
@@ -589,7 +524,7 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
     PS1_OSX_ADVANCED="${PROMPT_HORIZONTAL_LINE}
     ${PROMPT_MEMORY}${PROMPT_BATTERY}
     ${PROMPT_USER_AND_HOSTNAME}
-    ${PROMPT_DATABASE_STATUS}${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_GIT}${PROMPT_HG}
+    ${PROMPT_DATABASE_STATUS}${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_PGVM_VERSION}${PROMPT_GIT}${PROMPT_HG}
     $ "
 
 ### `PS1_UBUNTU_BASIC` and `PS1_UBUNTU_ADVANCED`
@@ -600,7 +535,7 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
     
     PS1_UBUNTU_ADVANCED="${PROMPT_HORIZONTAL_LINE}
     ${PROMPT_USER_AND_HOSTNAME}
-    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_GIT}${PROMPT_HG}
+    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_PGVM_VERSION}${PROMPT_GIT}${PROMPT_HG}
     > "
 
 ### `PS1_GENTOO_BASIC` and `PS1_GENTOO_ADVANCED`
@@ -611,7 +546,7 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
     
     PS1_GENTOO_ADVANCED="${PROMPT_HORIZONTAL_LINE}
     ${PROMPT_USER_AND_HOSTNAME}
-    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_GIT}${PROMPT_HG}
+    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_PGVM_VERSION}${PROMPT_GIT}${PROMPT_HG}
     -> "
 
 ## Build your own!
@@ -619,19 +554,20 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
 Just drop a file under `~/Dotfiles/private/my-ps1` thats it! Your options:
 
     ${PROMPT_HORIZONTAL_LINE}
+    ${PROMPT_BASH_VERSION_INFO}
+    ${PROMPT_USER_AND_HOSTNAME}
+    ${PROMPT_GIT}
+    ${PROMPT_HG}
     ${PROMPT_MEMORY}
     ${PROMPT_BATTERY}
-    ${PROMPT_USER_AND_HOSTNAME}
+    ${PROMPT_IPS_LIST}
     ${PROMPT_DATABASE_STATUS}
     ${PROMPT_VIRTUALENV}
     ${PROMPT_RUBY_RBENV}
     ${PROMPT_PYTHON_PYENV}
     ${PROMPT_NODE_VERSION}
     ${PROMPT_GO_VERSION}
-    ${PROMPT_GIT}
-    ${PROMPT_HG}
-    ${PROMPT_IPS_LIST}
-    ${PROMPT_BASH_INFO}
+    ${PROMPT_PGVM_VERSION}
 
 Make yours:
 

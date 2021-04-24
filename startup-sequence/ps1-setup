@@ -46,9 +46,6 @@ PROMPT_VIRTUALENV="\$(${PS1_PROMPTS_PATH}/virtualenv)"
 PROMPT_RUBY_RBENV="\$(${PS1_PROMPTS_PATH}/ruby-rbenv)"
 
 # shellcheck disable=SC2034
-PROMPT_PGVM_VERSION="\$(${PS1_PROMPTS_PATH}/pgvm-version)"
-
-# shellcheck disable=SC2034
 PROMPT_PYTHON_PYENV="\$(${PS1_PROMPTS_PATH}/python-pyenv)"
 
 # shellcheck disable=SC2034
@@ -58,7 +55,7 @@ PROMPT_NODE_VERSION="\$(${PS1_PROMPTS_PATH}/node-version)"
 PROMPT_GO_VERSION="\$(${PS1_PROMPTS_PATH}/go-version)"
 
 # shellcheck disable=SC2034
-PROMPT_BASH_INFO="\$(${PS1_PROMPTS_PATH}/bash-version-info)"
+PROMPT_PGVM_VERSION="\$(${PS1_PROMPTS_PATH}/pgvm-version)"
 # -----------------------------------------------------------------------------
 
 
