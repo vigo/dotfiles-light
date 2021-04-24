@@ -46,6 +46,9 @@ PROMPT_VIRTUALENV="\$(${PS1_PROMPTS_PATH}/virtualenv)"
 PROMPT_RUBY_RBENV="\$(${PS1_PROMPTS_PATH}/ruby-rbenv)"
 
 # shellcheck disable=SC2034
+PROMPT_POSGRESQL_PGVM="\$(${PS1_PROMPTS_PATH}/posgresql-pgvm)"
+
+# shellcheck disable=SC2034
 PROMPT_PYTHON_PYENV="\$(${PS1_PROMPTS_PATH}/python-pyenv)"
 
 # shellcheck disable=SC2034

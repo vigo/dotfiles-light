@@ -51,4 +51,5 @@ export DFL_RBENV_PROMPT_COLOR="${yellow}"                              # [◆ 2.
 export DFL_PYTHON_PROMPT_COLOR="${blue}"                               # [¶ 2.7.12]
 export DFL_DJANGO_PROMPT_COLOR="${cyan}${underline}"                   # [❡ 1.10.1]
 export DFL_NODE_PROMPT_COLOR="${yellow}"                               # [⎆ v16.0.0]
+export DFL_PGVM_PROMPT_COLOR="${magenta}"                              # [▥ 9.3.4]
 export DFL_GO_PROMPT_COLOR="${white}"                                  # [⍟ 1.16.3]
