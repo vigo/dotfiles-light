@@ -11,6 +11,7 @@
   [Tarık](https://github.com/tarikkavaz)). Now you can manage spacing by your
   selves :)
 - Add `PROMPT_PGVM_VERSION`, `DFL_PGVM_PROMPT_COLOR`, `DFL_PGVM_PROMPT_ICON` via [PR#8](https://github.com/vigo/dotfiles-light/pull/8)
+- Add `PROMPT_DOCKER_STATUS`, `DFL_DOCKER_PROMPT_ICON`, `DFL_DOCKER_PROMPT_COLOR`
 
 **April 23, 2021, Corona Days**
 

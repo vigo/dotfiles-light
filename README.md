@@ -14,14 +14,24 @@ super-light edition.
 * Enhanced `history`, formatted output, continuous history across terminal tabs.
 * Auto included `PATH` information. `~/bin`, `/usr/local/sbin` and more.
 * Auto load for `rbenv`, `pyenv`, `pip`
-* Special prompts: **git**, **hg**, **ip_list**, **ruby/rbenv**, **python/pyenv**, **django**, **virtualenv**
 * Bash completions: `bundler`, `django-admin`, `manage.py`, `gem`, `hg`, `rake`, `printev`, `pip`
 * `~/.inputrc`
 * Colorful file lists!
 * Colorful `man` and `less` output!
 * Enable of disable color feature!
 
-### OSX Only Features
+#### Special Prompts
+
+- `bash version`, `ip list`
+- `git`, `hg`
+- `python`, `pyenv`, `django`, `virtualenv`
+- `ruby`, `rbenv`
+- `node`
+- `golang`
+- `redis`, `mysql`, `postgresql`, `mongodb`, `pgvm`
+- `docker`
+
+### macOS Only Features
 
 * Autoload for `brew`: bash-completion
 * Linux style file listing if `coreutils` installed from `brew` (*folders on top!*)
@@ -36,7 +46,7 @@ Try these commands:
 * `l`, `ll`, `la`: Nice Linux-ish (*well 100% same!*) lists.
 * `what_is_my_ip_opendns`, `what_is_my_ip`: Using `dig` or `curl` can tell your real IP address!
 
-### OSX aliases
+### macOS aliases
 
 * `desktop_hide`, `desktop_show`: You can show/hide all icons on your desktop via single command!
 * `shadow_screenshot_disable`, `shadow_screenshot_enable`: Enable/disable shadows while taking screenshots!
@@ -67,6 +77,7 @@ Try these commands:
   [Tarık](https://github.com/tarikkavaz)). Now you can manage spacing by your
   selves :)
 - Add `PROMPT_PGVM_VERSION`, `DFL_PGVM_PROMPT_COLOR`, `DFL_PGVM_PROMPT_ICON` via [PR#8](https://github.com/vigo/dotfiles-light/pull/8)
+- Add `PROMPT_DOCKER_STATUS`, `DFL_DOCKER_PROMPT_ICON`, `DFL_DOCKER_PROMPT_COLOR`
 
 Change log is available [here](CHANGELOG.md)
 
@@ -74,7 +85,7 @@ Change log is available [here](CHANGELOG.md)
 
 ## Install & Uninstall
 
-### Requirements for OSX
+### Requirements for macOS
 
 All you need is `git`. If you have [Homebrew](https://brew.sh) installed, you can
 add these packages (*they are not required*):
@@ -170,16 +181,17 @@ Available elements are;
     ${PROMPT_USER_AND_HOSTNAME}
     ${PROMPT_GIT}
     ${PROMPT_HG}
-    ${PROMPT_MEMORY}
-    ${PROMPT_BATTERY}
+    ${PROMPT_MEMORY}                # macOS Only
+    ${PROMPT_BATTERY}               # macOS Only
     ${PROMPT_IPS_LIST}
-    ${PROMPT_DATABASE_STATUS}
+    ${PROMPT_DATABASE_STATUS}       # macOS Only
     ${PROMPT_VIRTUALENV}
     ${PROMPT_RUBY_RBENV}
     ${PROMPT_PYTHON_PYENV}
     ${PROMPT_NODE_VERSION}
     ${PROMPT_GO_VERSION}
-    ${PROMPT_PGVM_VERSION}
+    ${PROMPT_PGVM_VERSION}          # macOS Only
+    ${PROMPT_DOCKER_STATUS}         # macOS Only
 
 ### Color Configuration
 
@@ -320,16 +332,19 @@ export DFL_MEMORY_PROMPT_COLOR="${gray}"                               # [◎ 4.
 
 export DFL_PGVM_PROMPT_ICON="ANY TEXT"                                 # default: ▥
 export DFL_PGVM_PROMPT_COLOR="${magenta}"                              # [▥ 3.9.4]
+
+export DFL_DOCKER_PROMPT_ICON="ANY TEXT"                               # default: Docker
+export DFL_DOCKER_PROMPT_COLOR="${red}${blink}"                        # [Docker]
 ```
 
 #### `${PROMPT_MEMORY}`
 
-OSX only. Displays remaining free memory: `[2.90G]`. Color variable is
+macOS only. Displays remaining free memory: `[2.90G]`. Color variable is
 `DFL_MEMORY_PROMPT_COLOR`
 
 #### `${PROMPT_BATTERY}`
 
-OSX only. Displays remaining hour(s) on battery mode: `[⌧ 2:05]`. Color variable
+macOS only. Displays remaining hour(s) on battery mode: `[⌧ 2:05]`. Color variable
 is `DFL_BATTERY_PROMPT_COLOR`. You can set a custom icon via setting
 `DFL_BATTERY_PROMPT_ICON` variable. Example:
 
@@ -344,7 +359,7 @@ are:
 * `DFL_USER_HOSTNAME_HOSTNAME_PROMPT_COLOR`
 * `DFL_USER_HOSTNAME_CWD_PROMPT_COLOR`
 
-You can change the variables. See details (**osx/bsd**) via 
+You can change the variables. See details (**macOS/bsd**) via 
 `man -P 'less -p ^PROMPTING' bash`
 
 ```bash
@@ -473,7 +488,7 @@ Shows current go version. Color variable is `DFL_GO_PROMPT_COLOR`.
 
 #### `${PROMPT_PGVM_VERSION}`
 
-Shows current pgvm active version. Color variable is `DFL_PGVM_PROMPT_COLOR`.
+macOS only, shows current `pgvm` active version. Color variable is `DFL_PGVM_PROMPT_COLOR`.
 
 #### `${PROMPT_IPS_LIST}`
 
@@ -491,7 +506,7 @@ bash ~/Dotfiles/ps1/ip-list && echo
 
 #### `${PROMPT_DATABASE_STATUS}`
 
-OSX only, supported databases are:
+macOS only, supported databases are:
 
 - MySQL
 - PostgreSQL
@@ -512,6 +527,11 @@ shows an indicator if any of them is/are running. Color variables are:
 Draws dashed line along the terminal width. This separates commands. Color
 variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
 
+#### `${PROMPT_DOCKER_STATUS}`
+
+macOS only, shows an indicator if docker is running. Color variable is
+`DFL_DOCKER_PROMPT_COLOR`.
+
 ## Pre Defined PS1 Examples
 
 ### `PS1_OSX_BASIC` and `PS1_OSX_ADVANCED`
@@ -524,7 +544,7 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
     PS1_OSX_ADVANCED="${PROMPT_HORIZONTAL_LINE}
     ${PROMPT_MEMORY}${PROMPT_BATTERY}
     ${PROMPT_USER_AND_HOSTNAME}
-    ${PROMPT_DATABASE_STATUS}${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_PGVM_VERSION}${PROMPT_GIT}${PROMPT_HG}
+    ${PROMPT_DATABASE_STATUS}${PROMPT_DOCKER_STATUS}${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_PGVM_VERSION}${PROMPT_GIT}${PROMPT_HG}
     $ "
 
 ### `PS1_UBUNTU_BASIC` and `PS1_UBUNTU_ADVANCED`
@@ -535,7 +555,7 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
     
     PS1_UBUNTU_ADVANCED="${PROMPT_HORIZONTAL_LINE}
     ${PROMPT_USER_AND_HOSTNAME}
-    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_PGVM_VERSION}${PROMPT_GIT}${PROMPT_HG}
+    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_GIT}${PROMPT_HG}
     > "
 
 ### `PS1_GENTOO_BASIC` and `PS1_GENTOO_ADVANCED`
@@ -546,7 +566,7 @@ variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
     
     PS1_GENTOO_ADVANCED="${PROMPT_HORIZONTAL_LINE}
     ${PROMPT_USER_AND_HOSTNAME}
-    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_PGVM_VERSION}${PROMPT_GIT}${PROMPT_HG}
+    ${PROMPT_VIRTUALENV}${PROMPT_RUBY_RBENV}${PROMPT_PYTHON_PYENV}${PROMPT_NODE_VERSION}${PROMPT_GO_VERSION}${PROMPT_GIT}${PROMPT_HG}
     -> "
 
 ## Build your own!
@@ -558,16 +578,17 @@ Just drop a file under `~/Dotfiles/private/my-ps1` thats it! Your options:
     ${PROMPT_USER_AND_HOSTNAME}
     ${PROMPT_GIT}
     ${PROMPT_HG}
-    ${PROMPT_MEMORY}
-    ${PROMPT_BATTERY}
+    ${PROMPT_MEMORY}                # macOS Only
+    ${PROMPT_BATTERY}               # macOS Only
     ${PROMPT_IPS_LIST}
-    ${PROMPT_DATABASE_STATUS}
+    ${PROMPT_DATABASE_STATUS}       # macOS Only
     ${PROMPT_VIRTUALENV}
     ${PROMPT_RUBY_RBENV}
     ${PROMPT_PYTHON_PYENV}
     ${PROMPT_NODE_VERSION}
     ${PROMPT_GO_VERSION}
-    ${PROMPT_PGVM_VERSION}
+    ${PROMPT_PGVM_VERSION}          # macOS Only
+    ${PROMPT_DOCKER_STATUS}         # macOS Only
 
 Make yours:
 

@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+if [[ $(uname) == "Darwin" ]]; then
+    if [[ $(command -v docker) ]]; then
+        docker_status=$(pgrep -l docker | grep '[0-9] docker' 2> /dev/null)
+        DFL_DOCKER_PROMPT_ICON="${DFL_DOCKER_PROMPT_ICON:-Docker}"
+
+        if [[ -n "${docker_status}" ]]; then
+            out="${DFL_DOCKER_PROMPT_ICON}"
+
+            if [[ "${DFL_DOCKER_PROMPT_COLOR}" ]]; then
+                out="${DFL_DOCKER_PROMPT_COLOR}${out}${COLOR_OFF}"
+            fi
+            printf "[%b]" "${out}"
+        fi
+    fi
+fi

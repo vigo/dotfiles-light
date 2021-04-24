@@ -56,6 +56,9 @@ PROMPT_GO_VERSION="\$(${PS1_PROMPTS_PATH}/go-version)"
 
 # shellcheck disable=SC2034
 PROMPT_PGVM_VERSION="\$(${PS1_PROMPTS_PATH}/pgvm-version)"
+
+# shellcheck disable=SC2034
+PROMPT_DOCKER_STATUS="\$(${PS1_PROMPTS_PATH}/docker-status)"
 # -----------------------------------------------------------------------------
 
 
