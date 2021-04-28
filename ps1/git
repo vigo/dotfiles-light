@@ -214,7 +214,7 @@ if [[ $(command -v git) ]]; then
         
         latest_tag=""
         if [[ $DFL_REVCONTROL_GIT_SHOW_LATEST_TAG ]]; then
-            latest_tag=$(git describe --abbrev=0 2>/dev/null)
+            latest_tag=$(git describe --tags --abbrev=0 2>/dev/null)
             if [[ "${latest_tag}" ]]; then
                 if [[ $DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR ]]; then
                     latest_tag="${DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR}${latest_tag}${COLOR_OFF}"
