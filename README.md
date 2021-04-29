@@ -68,6 +68,11 @@ Try these commands:
 
 ## What’s New ?
 
+**April 29, 2021, Corona Days**
+
+- Add `DFL_PROMPT_BRACKET_OPEN` , `DFL_PROMPT_BRACKET_CLOSE` via [PR#10](https://github.com/vigo/dotfiles-light/pull/10) 
+
+
 **April 24, 2021, Corona Days**
 
 - Add `DFL_BASH_VERSION_INFO_PROMPT_COLOR`
