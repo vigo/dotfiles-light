@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ $(command -v npm) ]]; then
+    npm_version=$(npm --version)
+    DFL_NPM_PROMPT_ICON="${DFL_NPM_PROMPT_ICON:-▢ }"
+    npm_version_info="${DFL_NPM_PROMPT_ICON}${npm_version}"
+
+    if [[ ${DFL_NPM_PROMPT_COLOR} ]]; then
+        npm_version_info="${DFL_NPM_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${npm_version_info}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
+    fi
+
+    printf "%b" "${npm_version_info}"
+fi
