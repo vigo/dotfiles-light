@@ -5,7 +5,7 @@ if [[ "${VIRTUAL_ENV}" ]]; then
     DFL_VIRTUALENV_PROMPT_ICON="${DFL_VIRTUALENV_PROMPT_ICON:-⚑ }"
     virtual_env_info="${DFL_VIRTUALENV_PROMPT_ICON}${virtual_env_name}"
     if [[ $DFL_VIRTUALENV_PROMPT_COLOR ]]; then
-        virtual_env_info="${DFL_VIRTUALENV_PROMPT_COLOR}${virtual_env_info}${COLOR_OFF}"
+        virtual_env_info="${DFL_VIRTUALENV_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${virtual_env_info}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
     fi
-    printf "[%b]" "${virtual_env_info}"
+    printf "%b" "${virtual_env_info}"
 fi

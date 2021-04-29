@@ -6,10 +6,8 @@ if [[ $(command -v node) ]]; then
     node_version_info="${DFL_NODE_PROMPT_ICON}${node_version}"
 
     if [[ ${DFL_NODE_PROMPT_COLOR} ]]; then
-        node_version_info="${DFL_NODE_PROMPT_COLOR}${node_version_info}${COLOR_OFF}"
+        node_version_info="${DFL_NODE_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${node_version_info}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
     fi
 
-    printf "[%b]" "${node_version_info}"
+    printf "%b" "${node_version_info}"
 fi
-
-

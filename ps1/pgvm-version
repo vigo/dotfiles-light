@@ -4,12 +4,13 @@ if [[ $(uname) == "Darwin" ]]; then
     if [[ $(command -v pgvm) ]]; then
         pgvm_version=$(pgvm current)
         DFL_PGVM_PROMPT_ICON="${DFL_PGVM_PROMPT_ICON:-▥ }"
+
         pgvm_version="${DFL_PGVM_PROMPT_ICON}${pgvm_version}"
 
         if [[ ${DFL_PGVM_PROMPT_COLOR} ]]; then
-            pgvm_version="${DFL_PGVM_PROMPT_COLOR}${pgvm_version}${COLOR_OFF}"
+            pgvm_version="${DFL_PGVM_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${pgvm_version}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
         fi
 
-        printf "[%b]" "${pgvm_version}"
+        printf "%b" "${pgvm_version}"
     fi
 fi
