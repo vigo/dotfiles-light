@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ $(command -v yarn) ]]; then
+    yarn_version=$(yarn --version)
+    DFL_YARN_PROMPT_ICON="${DFL_YARN_PROMPT_ICON:-▣ }"
+    yarn_version_info="${DFL_YARN_PROMPT_ICON}${yarn_version}"
+
+    if [[ ${DFL_YARN_PROMPT_COLOR} ]]; then
+        yarn_version_info="${DFL_YARN_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${yarn_version_info}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
+    fi
+
+    printf "%b" "${yarn_version_info}"
+fi

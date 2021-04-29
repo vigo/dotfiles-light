@@ -28,7 +28,7 @@
 - `git`, `hg`
 - `python`, `pyenv`, `django`, `virtualenv`
 - `ruby`, `rbenv`
-- `node`
+- `node`, `npm`, `yarn`
 - `golang`
 - `redis`, `mysql`, `postgresql`, `mongodb`, `pgvm`
 - `docker`
@@ -73,7 +73,8 @@ Try these commands:
 **April 29, 2021, Corona Days**
 
 - Add `DFL_PROMPT_BRACKET_OPEN` , `DFL_PROMPT_BRACKET_CLOSE` via [PR#10](https://github.com/vigo/dotfiles-light/pull/10) 
-
+- Add `PROMPT_NPM_VERSION`, `DFL_NPM_PROMPT_COLOR`, `DFL_NPM_PROMPT_ICON` via [PR#11](https://github.com/vigo/dotfiles-light/pull/11)
+- Add `PROMPT_YARN_VERSION`, `DFL_YARN_PROMPT_COLOR`, `DFL_YARN_PROMPT_ICON` via [PR#11](https://github.com/vigo/dotfiles-light/pull/11)
 
 **April 24, 2021, Corona Days**
 

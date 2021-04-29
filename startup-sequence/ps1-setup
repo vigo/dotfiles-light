@@ -59,6 +59,12 @@ PROMPT_PYTHON_PYENV="\$(${PS1_PROMPTS_PATH}/python-pyenv)"
 PROMPT_NODE_VERSION="\$(${PS1_PROMPTS_PATH}/node-version)"
 
 # shellcheck disable=SC2034
+PROMPT_NPM_VERSION="\$(${PS1_PROMPTS_PATH}/npm-version)"
+
+# shellcheck disable=SC2034
+PROMPT_YARN_VERSION="\$(${PS1_PROMPTS_PATH}/yarn-version)"
+
+# shellcheck disable=SC2034
 PROMPT_GO_VERSION="\$(${PS1_PROMPTS_PATH}/go-version)"
 
 # shellcheck disable=SC2034
