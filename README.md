@@ -3,8 +3,10 @@
 
 # Dotfiles LIGHT
 
-Hello and welcome to my latest Dotfiles for BASH environment. This is the
-super-light edition.
+![Example Terminal](https://github.com/vigo/dotfiles-light/raw/screens/vigo-terminal.png)
+
+![Example Terminal](https://github.com/vigo/dotfiles-light/raw/screens/tarik-kavaz-terminal.png)
+
 
 ## Features
 
