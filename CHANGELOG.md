@@ -2,6 +2,10 @@
 
 ## 2021
 
+**April 29, 2021, Corona Days**
+
+- Add `DFL_PROMPT_BRACKET_OPEN` , `DFL_PROMPT_BRACKET_CLOSE` via [PR#10](https://github.com/vigo/dotfiles-light/pull/10) 
+
 **April 24, 2021, Corona Days**
 
 - Add `DFL_BASH_VERSION_INFO_PROMPT_COLOR`
@@ -15,7 +19,7 @@
 
 **April 23, 2021, Corona Days**
 
-- Add `node` version indicator
+- Add `node` version indicator]
 - Add `go` version indicator
 - Add `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG` and `DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR`
 - Update missing information (README)

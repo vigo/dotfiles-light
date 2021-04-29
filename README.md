@@ -68,6 +68,11 @@ Try these commands:
 
 ## What’s New ?
 
+**April 29, 2021, Corona Days**
+
+- Add `DFL_PROMPT_BRACKET_OPEN` , `DFL_PROMPT_BRACKET_CLOSE` via [PR#10](https://github.com/vigo/dotfiles-light/pull/10) 
+
+
 **April 24, 2021, Corona Days**
 
 - Add `DFL_BASH_VERSION_INFO_PROMPT_COLOR`
@@ -192,6 +197,13 @@ Available elements are;
     ${PROMPT_GO_VERSION}
     ${PROMPT_PGVM_VERSION}          # macOS Only
     ${PROMPT_DOCKER_STATUS}         # macOS Only
+
+Most of the command responses are placed in brackets. Such as;
+
+    [◎ 6.81G]      # macOS available memory prompt
+
+You can remove or change brackets via `DFL_PROMPT_BRACKET_OPEN` and
+`DFL_PROMPT_BRACKET_CLOSE` environment variables. Defaults are `[` and `]`.
 
 ### Color Configuration
 

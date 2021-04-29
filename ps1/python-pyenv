@@ -13,9 +13,9 @@ if [[ $(command -v python) ]]; then
         fi
     fi
     if [[ ${DFL_PYTHON_PROMPT_COLOR} ]]; then
-        python_version="${DFL_PYTHON_PROMPT_COLOR}${python_version}${COLOR_OFF}"
+        python_version="${DFL_PYTHON_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${python_version}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
     fi
-    printf "[%b]" "${python_version}"
+    printf "%b" "${python_version}"
 
 
     django_version=""
@@ -30,8 +30,8 @@ if [[ $(command -v python) ]]; then
     if [[ -n "${django_version}" ]]; then
         django_version="${DFL_PYTHON_DJANGO_PROMPT_ICON}${django_version}"
         if [[ ${DFL_DJANGO_PROMPT_COLOR} ]]; then
-            django_version="${DFL_DJANGO_PROMPT_COLOR}${django_version}${COLOR_OFF}"
+            django_version="${DFL_DJANGO_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${django_version}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
         fi
-        printf "[%b]" "${django_version}"
+        printf "%b" "${django_version}"
     fi
 fi

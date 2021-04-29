@@ -11,9 +11,9 @@ get_mysql_status() {
             # mysql_pid=${BASH_REMATCH[1]}
             out="${DFL_DB_MYSQL_PROMPT_ICON}"
             if [[ "${DFL_DB_MYSQL_PROMPT_COLOR}" ]]; then
-                out="${DFL_DB_MYSQL_PROMPT_COLOR}${out}${COLOR_OFF}"
+                out="${DFL_DB_MYSQL_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${out}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
             fi
-            printf "[%b]" "${out}"
+            printf "%b" "${out}"
         fi
     fi
     
@@ -46,14 +46,14 @@ get_postgresql_status() {
             # postgresql_pid=${BASH_REMATCH[1]}
             
             if [[ "${DFL_DB_POSTGRESQL_PROMPT_COLOR}" ]]; then
-                out="${DFL_DB_POSTGRESQL_PROMPT_COLOR}${out}${COLOR_OFF}"
+                out="${DFL_DB_POSTGRESQL_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${out}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
             fi
             
             if [[ -n "${DATABASE_URL}" ]]; then
                 out="${out} $(basename "${DATABASE_URL}")"
             fi
             
-            printf "[%b]" "${out}"
+            printf "%b" "${out}"
         fi
     fi
 }
@@ -65,9 +65,9 @@ get_redis_status() {
             
             out="${DFL_DB_REDIS_PROMPT_ICON}"
             if [[ "${DFL_DB_REDIS_PROMPT_COLOR}" ]]; then
-                out="${DFL_DB_REDIS_PROMPT_COLOR}${out}${COLOR_OFF}"
+                out="${DFL_DB_REDIS_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${out}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
             fi
-            echo "[${out}]"
+            echo "${out}"
         fi
     fi
 }
@@ -79,9 +79,9 @@ get_mongodb_status() {
 
             out="${DFL_DB_MONGODB_PROMPT_ICON}"
             if [[ "${DFL_DB_MONGODB_PROMPT_COLOR}" ]]; then
-                out="${DFL_DB_MONGODB_PROMPT_COLOR}${out}${COLOR_OFF}"
+                out="${DFL_DB_MONGODB_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${out}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
             fi
-            echo "[${out}]"
+            echo "${out}"
         fi
     fi
 }

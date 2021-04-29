@@ -9,9 +9,9 @@ if [[ $(uname) == "Darwin" ]]; then
             out="${DFL_DOCKER_PROMPT_ICON}"
 
             if [[ "${DFL_DOCKER_PROMPT_COLOR}" ]]; then
-                out="${DFL_DOCKER_PROMPT_COLOR}${out}${COLOR_OFF}"
+                out="${DFL_DOCKER_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${out}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
             fi
-            printf "[%b]" "${out}"
+            printf "%b" "${out}"
         fi
     fi
 fi

@@ -5,7 +5,7 @@ if [[ $(basename "${SHELL}") == 'bash' ]]; then
     bash_version_info="${DFL_BASH_VERSION_INFO_PROMPT_ICON}${BASH_VERSION}"
 
     if [[ $DFL_BASH_VERSION_INFO_PROMPT_COLOR ]]; then
-        bash_version_info="${DFL_BASH_VERSION_INFO_PROMPT_COLOR}${bash_version_info}${COLOR_OFF}"
+        bash_version_info="${DFL_BASH_VERSION_INFO_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${bash_version_info}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
     fi
-    printf "[%b]" "${bash_version_info}"
+    printf "%b" "${bash_version_info}"
 fi

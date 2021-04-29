@@ -27,9 +27,9 @@ if [[ $(uname) == "Darwin" ]]; then
         fi
 
         if [[ "${DFL_BATTERY_PROMPT_COLOR}" ]]; then
-            out="${DFL_BATTERY_PROMPT_COLOR}${out}${COLOR_OFF}"
+            out="${DFL_BATTERY_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${out}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
         fi
 
-        printf "[%b]" "${out}"
+        printf "%b" "${out}"
     fi
 fi

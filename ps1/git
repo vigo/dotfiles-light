@@ -219,10 +219,10 @@ if [[ $(command -v git) ]]; then
                 if [[ $DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR ]]; then
                     latest_tag="${DFL_REVCONTROL_GIT_SHOW_LATEST_TAG_COLOR}${latest_tag}${COLOR_OFF}"
                 fi
-                latest_tag=" [${latest_tag}]"
+                latest_tag=" ${DFL_PROMPT_BRACKET_OPEN}${latest_tag}${DFL_PROMPT_BRACKET_CLOSE}"
             fi
         fi
         
-        printf "[%b%b%b%b%b%b]%b%b" "${branch}" "${at_sign}" "${commit_id}" "${rebasing}" "${anything_changed}" "${ahead_behind}" "${since_last_commit}" "${latest_tag}"
+        printf "%b%b%b%b%b%b%b%b%b%b" "${DFL_PROMPT_BRACKET_OPEN}" "${branch}" "${at_sign}" "${commit_id}" "${rebasing}" "${anything_changed}" "${ahead_behind}" "${DFL_PROMPT_BRACKET_CLOSE}" "${since_last_commit}" "${latest_tag}"
     fi
 fi
