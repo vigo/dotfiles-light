@@ -34,7 +34,8 @@ if [[ $(command -v ifconfig) ]]; then
             if [[ $DFL_IPLIST_PROMPT_IPADDR_COLOR ]]; then
                 ip_address="${DFL_IPLIST_PROMPT_IPADDR_COLOR}${DFL_PROMPT_BRACKET_OPEN}${ip_address}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
             fi
-            iface_and_ip=$(printf ",%s: %s" "${iface}" "${ip_address}")
+            # iface_and_ip=$(printf "${DFL_PROMPT_IPS_LIST_COMMA}%s${DFL_PROMPT_IPS_LIST_COLON} %s" "${iface}" "${ip_address}")
+            iface_and_ip=$(printf "${DFL_PROMPT_IPS_LIST_COMMA}%s${DFL_PROMPT_IPS_LIST_COLON}%s" "${iface}" "${ip_address}")
             output+=("${iface_and_ip}")
         fi
     done

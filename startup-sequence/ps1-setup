@@ -1,19 +1,25 @@
 # shellcheck disable=SC2034
 export DFL_PROMPT_BRACKET_OPEN="${DFL_PROMPT_BRACKET_OPEN:-[}"
 export DFL_PROMPT_BRACKET_CLOSE="${DFL_PROMPT_BRACKET_CLOSE:-]}"
+export DFL_PROMPT_IPS_LIST_COMMA="${DFL_PROMPT_IPS_LIST_COMMA:-,}"
+export DFL_PROMPT_IPS_LIST_COLON="${DFL_PROMPT_IPS_LIST_COLON:-:}"
+export DFL_PROMPT_GIT_AT_SIGN="${DFL_PROMPT_IPS_LIST_SPACE:- @ }"
+export DFL_PROMPT_HORIZONTAL_LINE="${DFL_PROMPT_HORIZONTAL_LINE:-}"
+export DFL_PROMPT_TOP_LINE_FIRST_CHAR="${DFL_PROMPT_TOP_LINE_FIRST_CHAR: }"
+export DFL_PROMPT_MID_LINE_FIRST_CHAR="${DFL_PROMPT_MID_LINE_FIRST_CHAR: }"
+export DFL_PROMPT_GIT_LINE_FIRST_CHAR="${DFL_PROMPT_GIT_LINE_FIRST_CHAR: }"
+export DFL_PROMPT_END_LINE_FIRST_CHAR="${DFL_PROMPT_END_LINE_FIRST_CHAR: }"
 
 # shellcheck disable=SC2148
 # -----------------------------------------------------------------------------
 print_horizontal_line(){
     cols=${COLUMNS:-$(tty -s && tput cols)}
-    hline=$(printf "%*s\n" "${cols}" "" | tr " " -)
+    hline=$(printf "%*s\n" "${cols}" "" | tr " " ${DFL_PROMPT_HORIZONTAL_LINE})
     if [[ $DFL_HORIZONTAL_LINE_PROMPT_COLOR ]]; then
         hline="${DFL_HORIZONTAL_LINE_PROMPT_COLOR}${hline}${COLOR_OFF}"
     fi
     echo -e "${hline}"
 }
-# -----------------------------------------------------------------------------
-
 
 # -----------------------------------------------------------------------------
 # shellcheck disable=SC2034
