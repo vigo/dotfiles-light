@@ -186,7 +186,7 @@ cwd_anything_changed() {
 if [[ $(command -v git) ]]; then
     if in_git_repo; then
         branch=$(git_parse_branch)
-        at_sign="@"
+        at_sign="${DFL_PROMPT_GIT_AT_SIGN}"
         commit_id=$(git rev-parse --short HEAD 2>/dev/null || echo 'no-commit-id')
         rebasing=$(any_rebasing)
         anything_changed=$(cwd_anything_changed)
@@ -210,7 +210,7 @@ if [[ $(command -v git) ]]; then
         if [[ $DFL_REVCONTROL_COMMIT_ID_COLOR ]]; then
             commit_id="${DFL_REVCONTROL_COMMIT_ID_COLOR}${commit_id}${COLOR_OFF}"
         fi
-        at_sign=" ${at_sign} "
+        at_sign="${at_sign}"
         
         latest_tag=""
         if [[ $DFL_REVCONTROL_GIT_SHOW_LATEST_TAG ]]; then
