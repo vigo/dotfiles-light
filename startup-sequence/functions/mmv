@@ -17,7 +17,7 @@ function mmv() {
     elif [[ "${#}" -gt 1 ]]; then
         command mv "${@}"
     else
-        read -ei "${1}" file_newname
+        read -rei "${1}" file_newname
         command mv -v -- "${1}" "${file_newname}"
     fi
 }

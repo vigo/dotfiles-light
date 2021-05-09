@@ -12,18 +12,16 @@ function webserver_rb(){
     fi
     local port="${1:-5000}"
     echo "Listening 127.0.0.1:${port}"
-    ruby -run -e httpd . -p $port
+    ruby -run -e httpd . -p "${port}"
 }
 _server_rb()
 {
-    local cur prev opts
+    local cur opts
     COMPREPLY=()
     cur="${COMP_WORDS[COMP_CWORD]}"
-    prev="${COMP_WORDS[COMP_CWORD-1]}"
     opts="5000 -h --help"
-
     if [[ ${cur} == * ]] ; then
-        COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+        while IFS='' read -r line; do COMPREPLY+=("$line"); done < <(compgen -W "${opts}" -- "${cur}")
         return 0
     fi
 }

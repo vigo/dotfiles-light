@@ -14,7 +14,7 @@ function mcp() {
     elif [[ "${#}" -gt 1 ]]; then
         command cp "${@}"
     else
-        read -ei "${1}" target_filename
+        read -rei "${1}" target_filename
         command cp -aiv -- "${1}" "${target_filename}"
     fi
 }
