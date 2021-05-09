@@ -2,6 +2,11 @@
 
 ## 2021
 
+**May 9, 2021, Corona Days**
+
+- Upgrade bash-completion scripts from https://github.com/mernen/completion-ruby
+- Add github action, shellcheck
+
 **April 29, 2021, Corona Days**
 
 - Add `DFL_PROMPT_BRACKET_OPEN` , `DFL_PROMPT_BRACKET_CLOSE` via [PR#10](https://github.com/vigo/dotfiles-light/pull/10) 

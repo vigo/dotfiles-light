@@ -1,5 +1,6 @@
 ![Version](https://img.shields.io/badge/version-1.5.3-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
+![Shellcheck](https://github.com/vigo/dotfiles-light/actions/workflows/shellcheck.yml/badge.svg)
 
 # Dotfiles LIGHT
 
@@ -16,8 +17,11 @@
 * Enhanced `history`, formatted output, continuous history across terminal tabs.
 * Auto included `PATH` information. `~/bin`, `/usr/local/sbin` and more.
 * Auto load for `rbenv`, `pyenv`, `pip`
-* Bash completions: `bundler`, `django-admin`, `manage.py`, `gem`, `hg`, `rake`, `printev`, `pip`
-* `~/.inputrc`
+* Bash completions
+   - `bundler`, `gem`, `rake`
+   - `django-admin`, `manage.py`,
+   - `hg`, `printenv`, `pip`
+* Better `~/.inputrc`
 * Colorful file lists!
 * Colorful `man` and `less` output!
 * Enable of disable color feature!
@@ -70,22 +74,16 @@ Try these commands:
 
 ## What’s New ?
 
+**May 9, 2021, Corona Days**
+
+- Upgrade bash-completion scripts from https://github.com/mernen/completion-ruby
+- Add github action, shellcheck
+
 **April 29, 2021, Corona Days**
 
 - Add `DFL_PROMPT_BRACKET_OPEN` , `DFL_PROMPT_BRACKET_CLOSE` via [PR#10](https://github.com/vigo/dotfiles-light/pull/10) 
 - Add `PROMPT_NPM_VERSION`, `DFL_NPM_PROMPT_COLOR`, `DFL_NPM_PROMPT_ICON` via [PR#11](https://github.com/vigo/dotfiles-light/pull/11)
 - Add `PROMPT_YARN_VERSION`, `DFL_YARN_PROMPT_COLOR`, `DFL_YARN_PROMPT_ICON` via [PR#11](https://github.com/vigo/dotfiles-light/pull/11)
-
-**April 24, 2021, Corona Days**
-
-- Add `DFL_BASH_VERSION_INFO_PROMPT_COLOR`
-- Add `DFL_MEMORY_PROMPT_ICON`
-- Rename `DFL_BATTERY_ICON` to `DFL_BATTERY_PROMPT_ICON`
-- Remove space char from the right side of the icon (*requested by*
-  [Tarık](https://github.com/tarikkavaz)). Now you can manage spacing by your
-  selves :)
-- Add `PROMPT_PGVM_VERSION`, `DFL_PGVM_PROMPT_COLOR`, `DFL_PGVM_PROMPT_ICON` via [PR#8](https://github.com/vigo/dotfiles-light/pull/8)
-- Add `PROMPT_DOCKER_STATUS`, `DFL_DOCKER_PROMPT_ICON`, `DFL_DOCKER_PROMPT_COLOR`
 
 Change log is available [here](CHANGELOG.md)
 
