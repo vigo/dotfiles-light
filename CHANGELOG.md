@@ -6,6 +6,9 @@
 
 - Upgrade bash-completion scripts from https://github.com/mernen/completion-ruby
 - Add github action, shellcheck
+- Add `DFL_PROMPT_IPS_LIST_SEPERATOR` and `DFL_PROMPT_IPS_LIST_COLON` for `PROMPT_IPS_LIST`
+- Add `DFL_PROMPT_HORIZONTAL_LINE` for custom char option for `PROMPT_HORIZONTAL_LINE`
+- Add `DFL_PROMPT_GIT_AT_SIGN` for custom look and feel
 
 **April 29, 2021, Corona Days**
 

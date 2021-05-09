@@ -78,6 +78,9 @@ Try these commands:
 
 - Upgrade bash-completion scripts from https://github.com/mernen/completion-ruby
 - Add github action, shellcheck
+- Add `DFL_PROMPT_IPS_LIST_SEPERATOR` and `DFL_PROMPT_IPS_LIST_COLON` for `PROMPT_IPS_LIST`
+- Add `DFL_PROMPT_HORIZONTAL_LINE` for custom char option for `PROMPT_HORIZONTAL_LINE`
+- Add `DFL_PROMPT_GIT_AT_SIGN` for custom look and feel
 
 **April 29, 2021, Corona Days**
 
@@ -389,17 +392,19 @@ This works if you are under a **git repository**. Shows current status such
 as; added, modified, deleted, renamed, type changed files amount. Example:
 
     [master @ 297c543ceac8 □:1 ◆:1 ◌:1 | 3] (7 minutes ago) [v1.3.0]
-       |      |            |   |   |     |        |            |
-       |      |            |   |   |     |        |            +---> enabled via DFL_REVCONTROL_GIT_SHOW_LATEST_TAG
-       |      |            |   |   |     |        |
-       |      |            |   |   |     |        +---> enabled via DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT
-       |      |            |   |   |     |
-       |      |            |   |   |     +-> 3 files will be affected   
-       |      |            |   |   +-------> 1 file is deleted
-       |      |            |   +-----------> 1 file is modified
-       |      |            +---------------> 1 file is untracked
-       |      +----------------------------> commit id
-       +-----------------------------------> current branch
+       |    | |            |   |   |     |        |            |
+       |    | |            |   |   |     |        |            +---> enabled via DFL_REVCONTROL_GIT_SHOW_LATEST_TAG
+       |    | |            |   |   |     |        |
+       |    | |            |   |   |     |        +---> enabled via DFL_REVCONTROL_GIT_SHOW_DIFF_SINCE_LAST_COMMIT
+       |    | |            |   |   |     |
+       |    | |            |   |   |     +-> 3 files will be affected   
+       |    | |            |   |   +-------> 1 file is deleted
+       |    | |            |   +-----------> 1 file is modified
+       |    | |            +---------------> 1 file is untracked
+       |    | +----------------------------> commit id
+       +----+------------------------------> current branch
+            |
+      DFL_PROMPT_GIT_AT_SIGN is set to " @ "
     
     [development @ b09ab92a87d5 □:1 | 1 →1] (7 minutes ago)
                                         |
@@ -506,7 +511,8 @@ macOS only, shows current `pgvm` active version. Color variable is `DFL_PGVM_PRO
 #### `${PROMPT_IPS_LIST}`
 
 Shows current available local ip list. Color variables are `DFL_IPLIST_PROMPT_IFACE_COLOR`
-and `DFL_IPLIST_PROMPT_IPADDR_COLOR`.
+and `DFL_IPLIST_PROMPT_IPADDR_COLOR`. You can customize `:` and `,` via 
+`DFL_PROMPT_IPS_LIST_SEPERATOR` and `DFL_PROMPT_IPS_LIST_COLON` variables
 
     [en0:192.168.2.205,vboxnet0:192.168.33.1]
     # name of interface: IP
@@ -538,7 +544,8 @@ shows an indicator if any of them is/are running. Color variables are:
 #### `${PROMPT_HORIZONTAL_LINE}`
 
 Draws dashed line along the terminal width. This separates commands. Color
-variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`.
+variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`. You can configure line char
+via `DFL_PROMPT_HORIZONTAL_LINE` variable. Default is set to `-`
 
 #### `${PROMPT_DOCKER_STATUS}`
 
