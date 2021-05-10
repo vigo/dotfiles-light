@@ -2,6 +2,10 @@
 
 ## 2021
 
+**May 10 2021, Corona Days**
+
+- Remove `pyenv`, `rbenv`, `pip` autoloader
+
 **May 9, 2021, Corona Days**
 
 - Upgrade bash-completion scripts from https://github.com/mernen/completion-ruby

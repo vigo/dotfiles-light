@@ -76,42 +76,6 @@ fi
 export PS1="${PS1_BASIC}"
 
 
-# fix $PATH for libraries/3rd party tools
-
-# rbenv
-# -----------------------------------------------------------------------------
-if [ "$(command -v rbenv)" ] || [ -d "${HOME}/.rbenv/bin" ]; then
-    if [[ -d "${HOME}/.rbenv/bin" ]]; then
-        export PATH="${HOME}/.rbenv/bin:${PATH}"
-    fi
-    eval "$(rbenv init -)"
-fi
-# -----------------------------------------------------------------------------
-
-# pyenv
-# -----------------------------------------------------------------------------
-if [ "$(command -v pyenv)" ] || [ -d "${HOME}/.pyenv/bin" ]; then
-    if [[ -d "${HOME}/.pyenv/bin" ]]; then
-        export PATH="${HOME}/.pyenv/bin:${PATH}"
-    fi
-    eval "$(pyenv init -)"
-    if [ "$(command -v pyenv-virtualenv)" ] || [ -d "${HOME}/.pyenv/plugins/pyenv-virtualenv" ]; then
-        eval "$(pyenv virtualenv-init -)"
-    fi
-    if [ "$(command -v pyenv-virtualenvwrapper)" ] || [ -d "${HOME}/.pyenv/plugins/pyenv-virtualenvwrapper" ]; then
-        export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-        pyenv virtualenvwrapper
-    fi
-elif [[ $(command -v virtualenvwrapper.sh) ]]; then
-    # shellcheck source=/dev/null
-    source "$(command -v virtualenvwrapper.sh)"
-fi
-if [[ $(command -v pip) ]]; then
-    eval "$(pip --disable-pip-version-check completion --bash)"
-fi
-# -----------------------------------------------------------------------------
-
-
 # load functions
 # -----------------------------------------------------------------------------
 for file in "${STARTUP_SEQUENCE}"/functions/*; do
@@ -127,19 +91,6 @@ for file in "${STARTUP_SEQUENCE}"/completions/*; do
     # shellcheck source=/dev/null
     source "${file}"
 done
-# -----------------------------------------------------------------------------
-
-
-# load private files ----------------------------------------------------------
-if [[ -n "$(\ls -A "${PRIVATEFILES_PATH}" 2>/dev/null)" ]]; then
-    for file in "${PRIVATEFILES_PATH}"/*; do
-        file_base_name=$(basename "${file}")
-        if [[ "${file_base_name:0:1}" != "." ]]; then
-            # shellcheck source=/dev/null
-            source "${file}"
-        fi
-    done
-fi
 # -----------------------------------------------------------------------------
 
 
@@ -161,5 +112,19 @@ fi
 # -----------------------------------------------------------------------------
 if [[ $(command -v pipx) ]]; then
     eval "$(register-python-argcomplete pipx)"
+fi
+# -----------------------------------------------------------------------------
+
+
+# always last!
+# load private files ----------------------------------------------------------
+if [[ -n "$(\ls -A "${PRIVATEFILES_PATH}" 2>/dev/null)" ]]; then
+    for file in "${PRIVATEFILES_PATH}"/*; do
+        file_base_name=$(basename "${file}")
+        if [[ "${file_base_name:0:1}" != "." ]]; then
+            # shellcheck source=/dev/null
+            source "${file}"
+        fi
+    done
 fi
 # -----------------------------------------------------------------------------

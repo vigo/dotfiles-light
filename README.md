@@ -16,7 +16,6 @@
 * Highly configurable **prompt shell** features
 * Enhanced `history`, formatted output, continuous history across terminal tabs.
 * Auto included `PATH` information. `~/bin`, `/usr/local/sbin` and more.
-* Auto load for `rbenv`, `pyenv`, `pip`
 * Bash completions
    - `bundler`, `gem`, `rake`
    - `django-admin`, `manage.py`,
@@ -74,6 +73,12 @@ Try these commands:
 
 ## What’s New ?
 
+**May 10 2021, Corona Days**
+
+- Remove `pyenv`, `rbenv`, `pip` autoloader
+
+You can add required config under `private/` folder for pyenv, rbenv etc.
+
 **May 9, 2021, Corona Days**
 
 - Upgrade bash-completion scripts from https://github.com/mernen/completion-ruby
@@ -81,12 +86,6 @@ Try these commands:
 - Add `DFL_PROMPT_IPS_LIST_SEPERATOR` and `DFL_PROMPT_IPS_LIST_COLON` for `PROMPT_IPS_LIST`
 - Add `DFL_PROMPT_HORIZONTAL_LINE` for custom char option for `PROMPT_HORIZONTAL_LINE`
 - Add `DFL_PROMPT_GIT_AT_SIGN` for custom look and feel
-
-**April 29, 2021, Corona Days**
-
-- Add `DFL_PROMPT_BRACKET_OPEN` , `DFL_PROMPT_BRACKET_CLOSE` via [PR#10](https://github.com/vigo/dotfiles-light/pull/10) 
-- Add `PROMPT_NPM_VERSION`, `DFL_NPM_PROMPT_COLOR`, `DFL_NPM_PROMPT_ICON` via [PR#11](https://github.com/vigo/dotfiles-light/pull/11)
-- Add `PROMPT_YARN_VERSION`, `DFL_YARN_PROMPT_COLOR`, `DFL_YARN_PROMPT_ICON` via [PR#11](https://github.com/vigo/dotfiles-light/pull/11)
 
 Change log is available [here](CHANGELOG.md)
 
