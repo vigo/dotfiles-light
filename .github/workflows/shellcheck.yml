@@ -15,5 +15,5 @@ jobs:
 
       - name: Run shellchecker
         run: |
-          shellcheck ps1/*
+          shellcheck --shell=bash ps1/*
           shellcheck --shell=bash startup-sequence/functions/*

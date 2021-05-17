@@ -4,15 +4,14 @@
 # feel free to add/change or implement more kool features
 # @vigobronx
 
-sign_right_arrow="\xE2\x86\x92"    # →
-sign_left_arrow="\xE2\x86\x90"     # ←
-symbol_unctracked="\xE2\x96\xA1"   # □ WHITE SQUARE
-symbol_added="\xE2\x96\xA0"        # ■ BLACK SQUARE
-symbol_modified="\xE2\x97\x86"     # ◆ BLACK DIAMOND
-symbol_renamed="\xE2\x97\x87"      # ◇ WHITE DIAMOND
-symbol_deleted="\xE2\x97\x8C"      # ◌ DOTTED CIRCLE
-symbol_typechanged="\xE2\x9A\x91"  # ❖ BLACK DIAMOND MINUS WHITE X
-# symbol_overall="\xE2\x9D\x96"      # ◔ CIRCLE WITH UPPER RIGHT QUADRANT BLACK
+sign_right_arrow="${DFL_GIT_SIGN_RIGHT_ARROW:-\xE2\x86\x92}"      # →
+sign_left_arrow="${DFL_GIT_SIGN_LEFT_ARROW:-\xE2\x86\x90}"        # ←
+symbol_unctracked="${DFL_GIT_SYMBOL_UNCTRACKED:-\xE2\x96\xA1}"    # □ WHITE SQUARE
+symbol_added="${DFL_GIT_SYMBOL_ADDED:-\xE2\x96\xA0}"              # ■ BLACK SQUARE
+symbol_modified="${DFL_GIT_SYMBOL_MODIFIED:-\xE2\x97\x86}"        # ◆ BLACK DIAMOND
+symbol_renamed="${DFL_GIT_SYMBOL_RENAMED:-\xE2\x97\x87}"          # ◇ WHITE DIAMOND
+symbol_deleted="${DFL_GIT_SYMBOL_DELETED:-\xE2\x97\x8C}"          # ◌ DOTTED CIRCLE
+symbol_typechanged="${DFL_GIT_SYMBOL_TYPECHANGED:-\xE2\x9A\x91}"  # ❖ BLACK DIAMOND MINUS WHITE X
 
 git_repo_path=$(git rev-parse --git-dir 2>/dev/null)
 

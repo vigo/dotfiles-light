@@ -2,6 +2,19 @@
 
 ## 2021
 
+**May 17, 2021, Corona Days**
+
+Add customization for git PS1 variables;
+
+- `DFL_GIT_SIGN_RIGHT_ARROW`, default: `→`
+- `DFL_GIT_SIGN_LEFT_ARROW`, default: `←`
+- `DFL_GIT_SYMBOL_UNCTRACKED`, default: `□`
+- `DFL_GIT_SYMBOL_ADDED`, default: `■`
+- `DFL_GIT_SYMBOL_MODIFIED`: default: `◆`
+- `DFL_GIT_SYMBOL_RENAMED`: default: `◇`
+- `DFL_GIT_SYMBOL_DELETED`: default: `◌`
+- `DFL_GIT_SYMBOL_TYPECHANGED`: default: `❖`
+
 **May 10 2021, Corona Days**
 
 - Remove `pyenv`, `rbenv`, `pip` autoloader

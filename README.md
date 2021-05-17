@@ -73,19 +73,24 @@ Try these commands:
 
 ## What’s New ?
 
+**May 17, 2021, Corona Days**
+
+Add customization for git PS1 variables;
+
+- `DFL_GIT_SIGN_RIGHT_ARROW`, default: `→`
+- `DFL_GIT_SIGN_LEFT_ARROW`, default: `←`
+- `DFL_GIT_SYMBOL_UNCTRACKED`, default: `□`
+- `DFL_GIT_SYMBOL_ADDED`, default: `■`
+- `DFL_GIT_SYMBOL_MODIFIED`: default: `◆`
+- `DFL_GIT_SYMBOL_RENAMED`: default: `◇`
+- `DFL_GIT_SYMBOL_DELETED`: default: `◌`
+- `DFL_GIT_SYMBOL_TYPECHANGED`: default: `❖`
+
 **May 10 2021, Corona Days**
 
 - Remove `pyenv`, `rbenv`, `pip` autoloader
 
 You can add required config under `private/` folder for pyenv, rbenv etc.
-
-**May 9, 2021, Corona Days**
-
-- Upgrade bash-completion scripts from https://github.com/mernen/completion-ruby
-- Add github action, shellcheck
-- Add `DFL_PROMPT_IPS_LIST_SEPERATOR` and `DFL_PROMPT_IPS_LIST_COLON` for `PROMPT_IPS_LIST`
-- Add `DFL_PROMPT_HORIZONTAL_LINE` for custom char option for `PROMPT_HORIZONTAL_LINE`
-- Add `DFL_PROMPT_GIT_AT_SIGN` for custom look and feel
 
 Change log is available [here](CHANGELOG.md)
 
