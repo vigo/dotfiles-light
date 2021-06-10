@@ -73,6 +73,10 @@ Try these commands:
 
 ## What’s New ?
 
+**June 10, 2021, Corona Days**
+
+- Fix exit bug, functions now return 1
+
 **May 17, 2021, Corona Days**
 
 Add customization for git PS1 variables;

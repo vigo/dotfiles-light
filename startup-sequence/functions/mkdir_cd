@@ -4,7 +4,7 @@ mkdir_cd(){
         if [[ $DFL_OS == 'OSX' ]]; then
             filename=${1//:/-}
         fi
-        mkdir -p "${filename}" && cd "${filename}" || exit
+        mkdir -p "${filename}" && cd "${filename}" || return 1
     else
         echo 'usage: mkdir_cd path/to/directory'
         echo '       mkdir_cd "you folder name"'

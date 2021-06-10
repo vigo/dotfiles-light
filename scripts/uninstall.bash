@@ -9,7 +9,7 @@ read -r CHOISE
 
 if [[ ${CHOISE} =~ ^[nN]$ ]]; then
     echo "Canceled.."
-    exit 1
+    return 1
 fi
 
 unlink "${HOME}/.profile" && echo "unlinked ${HOME}/.profile"

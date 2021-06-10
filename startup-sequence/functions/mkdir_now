@@ -1,10 +1,10 @@
 mkdir_now(){
     now=$(date +"%Y-%m-%d-%H%M%S")
-    mkdir "${now}" || exit 
+    mkdir "${now}" || return 1 
 }
 
 mkdir_now_cd(){
     now=$(date +"%Y-%m-%d-%H%M%S")
     mkdir "${now}"
-    cd "${now}" || exit
+    cd "${now}" || return 1 
 }
