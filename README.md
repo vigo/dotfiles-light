@@ -672,7 +672,7 @@ This also applies **PS1 Coloring** too...
 
 ---
 
-## Contributer(s)
+## Contributor(s)
 
 * [Uğur "vigo" Özyılmazel](https://github.com/vigo) - Creator, maintainer
 * [M. Fatih "mfk" Kılıç](https://github.com/mfk-smart) - Contributor
