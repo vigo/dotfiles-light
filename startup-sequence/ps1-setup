@@ -6,7 +6,26 @@ export DFL_PROMPT_BRACKET_CLOSE="${DFL_PROMPT_BRACKET_CLOSE:-]}"
 # -----------------------------------------------------------------------------
 print_horizontal_line(){
     cols=${COLUMNS:-$(tty -s && tput cols)}
+    if [[ $DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT ]]; then
+        date_val_left=$(date "${DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT}")
+        date_len=$(( ${#date_val_left} + 1 ))
+        cols=$(( $cols - $date_len ))
+    fi
+    if [[ $DFL_HORIZONTAL_LINE_WIDGET_DATE_RIGHT ]]; then
+        date_val_right=$(date "${DFL_HORIZONTAL_LINE_WIDGET_DATE_RIGHT}")
+        date_len=$(( ${#date_val_right} + 1 ))
+        cols=$(( $cols - $date_len ))
+    fi
+
     hline=$(printf "%*s\n" "${cols}" "" | tr " " ${DFL_PROMPT_HORIZONTAL_LINE:--})
+
+    if [[ $DFL_HORIZONTAL_LINE_WIDGET_DATE_RIGHT ]]; then
+        hline="${hline} ${date_val_right}"
+    fi
+    if [[ $DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT ]]; then
+        hline="${date_val_left} ${hline}"
+    fi
+    
     if [[ $DFL_HORIZONTAL_LINE_PROMPT_COLOR ]]; then
         hline="${DFL_HORIZONTAL_LINE_PROMPT_COLOR}${hline}${COLOR_OFF}"
     fi

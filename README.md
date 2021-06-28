@@ -73,6 +73,11 @@ Try these commands:
 
 ## What’s New ?
 
+**June 28, 2021, Corona Days**
+
+- Add `DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT` and
+  `DFL_HORIZONTAL_LINE_WIDGET_DATE_RIGHT` for `print_horizontal_line` function.
+
 **June 10, 2021, Corona Days**
 
 - Fix exit bug, functions now return 1
@@ -554,6 +559,22 @@ shows an indicator if any of them is/are running. Color variables are:
 Draws dashed line along the terminal width. This separates commands. Color
 variable is `DFL_HORIZONTAL_LINE_PROMPT_COLOR`. You can configure line char
 via `DFL_PROMPT_HORIZONTAL_LINE` variable. Default is set to `-`
+
+You can add date widgets to the left and the right of the line via
+`DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT` and `DFL_HORIZONTAL_LINE_WIDGET_DATE_RIGHT`
+environment variables:
+
+```bash
+# example
+export DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT="+%A, %B %d"
+export DFL_HORIZONTAL_LINE_WIDGET_DATE_RIGHT="+%H:%M:%S"
+```
+
+output will look like this:
+
+    Monday, June 28 --------------------------------------------------------------- 08:15:27
+
+for more date format params, check `man strftime`.
 
 #### `${PROMPT_DOCKER_STATUS}`
 

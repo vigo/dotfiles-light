@@ -2,6 +2,15 @@
 
 ## 2021
 
+**June 28, 2021, Corona Days**
+
+- Add `DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT` and
+  `DFL_HORIZONTAL_LINE_WIDGET_DATE_RIGHT` for `print_horizontal_line` function.
+
+**June 10, 2021, Corona Days**
+
+- Fix exit bug, functions now return 1
+
 **May 17, 2021, Corona Days**
 
 Add customization for git PS1 variables;
