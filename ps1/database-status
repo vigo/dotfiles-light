@@ -45,12 +45,12 @@ get_postgresql_status() {
         if [[ ${postgresql_status} =~ $regex ]]; then
             # postgresql_pid=${BASH_REMATCH[1]}
             
-            if [[ "${DFL_DB_POSTGRESQL_PROMPT_COLOR}" ]]; then
-                out="${DFL_DB_POSTGRESQL_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${out}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
-            fi
-            
             if [[ -n "${DATABASE_URL}" ]]; then
                 out="${out} $(basename "${DATABASE_URL}")"
+            fi
+
+            if [[ "${DFL_DB_POSTGRESQL_PROMPT_COLOR}" ]]; then
+                out="${DFL_DB_POSTGRESQL_PROMPT_COLOR}${DFL_PROMPT_BRACKET_OPEN}${out}${DFL_PROMPT_BRACKET_CLOSE}${COLOR_OFF}"
             fi
             
             printf "%b" "${out}"
