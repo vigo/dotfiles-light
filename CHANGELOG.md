@@ -2,6 +2,10 @@
 
 ## 2021
 
+**October 4, 2021, Corona Days**
+
+- Removed `pipx` bash-completion handler. Please use `brew install pipx`
+
 **June 28, 2021, Corona Days**
 
 - Add `DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT` and
