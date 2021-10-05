@@ -47,25 +47,16 @@ if [[ $(uname) == "Darwin" ]]; then
     # shellcheck source=/dev/null
     source "${STARTUP_SEQUENCE}/osx"
     export DFL_OS="OSX"
-fi
-# -----------------------------------------------------------------------------
-
-
-# ubuntu only
-# -----------------------------------------------------------------------------
-if [[ $(command -v lsb_release) ]]; then
+elif [[ $(command -v lsb_release) ]]; then
+    # ubuntu only
     # shellcheck disable=SC2143
     if [[ $(lsb_release -i | grep -i 'ubuntu') ]]; then
         export DFL_OS="UBUNTU"
         # shellcheck source=/dev/null
         source "${STARTUP_SEQUENCE}/ubuntu"
     fi
-fi
-
-
-# gentoo only
-# -----------------------------------------------------------------------------
-if [[ $(uname -r | awk -F - '{print $2}') == "gentoo" ]]; then
+elif [[ $(uname -r | awk -F - '{print $2}') == "gentoo" ]]; then
+    # gentoo only
     export DFL_OS="GENTOO"
     # shellcheck source=/dev/null
     source "${STARTUP_SEQUENCE}/gentoo"

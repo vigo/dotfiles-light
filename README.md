@@ -71,6 +71,19 @@ Try these commands:
 
 ---
 
+### Apple M1 Silicon
+
+For [Homebrew](https://brew.sh) integration:
+
+```bash
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /path/to/Dotfiles/private/homebrew-arm64
+```
+
+This will inject homebrew related environment variables and updates `PATH`
+variable...
+
+---
+
 ## What’s New ?
 
 **October 4, 2021, Corona Days**
