@@ -76,11 +76,15 @@ Try these commands:
 For [Homebrew](https://brew.sh) integration:
 
 ```bash
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /path/to/Dotfiles/private/homebrew-arm64
+# /opt/homebrew/bin/brew shellenv > /path/to/Dotfiles/options 
+
+# example:
+/opt/homebrew/bin/brew shellenv > ~/Dotfiles/options 
 ```
 
-This will inject homebrew related environment variables and updates `PATH`
-variable...
+`options` is loaded first while initialization process and already added to
+`.gitignore` file. This will inject homebrew related environment variables and
+updates `PATH` variable and other required brew environment variables.
 
 ---
 
@@ -164,14 +168,14 @@ Put all your custom/private stuff under `private/` folder. (*Root of the
 repo*)
 
     .
-    ├── private/               ---> your private stuff folder!
+    ├── private/               ---> your private stuff folder! will load last!
     ├── ps1/
     ├── rc/
     ├── scripts/
     ├── startup-sequence/
     ├── LICENSE.txt
     ├── README.md
-    ├── options                ---> your private flags set/unset variables or functions
+    ├── options                ---> your private flags set/unset variables or functions will load first!
     └── profile
 
 When you clone the repo, you won’t see `options` file and `private/` folder.

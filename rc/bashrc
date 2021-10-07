@@ -25,7 +25,7 @@ export DFL_LS_COLOR=1
 export DFL_LESS_COLOR=1
 export DFL_PS1_COLORS=1
 
-# custom options for un-setting colors ----------------------------------------
+# custom options for setting/overriding ---------------------------------------
 if [[ -e "${DOTFILES_PATH}/options" ]]; then
     # shellcheck source=/dev/null
     source "${DOTFILES_PATH}/options"
