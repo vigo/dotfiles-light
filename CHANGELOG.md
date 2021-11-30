@@ -2,6 +2,10 @@
 
 ## 2021
 
+**November 30, 2021, Corona Days**
+
+- Add `mkdir_now_short` and `mkdir_now_cd_short` :)
+
 **October 4, 2021, Corona Days**
 
 - Removed `pipx` bash-completion handler. Please use `brew install pipx`

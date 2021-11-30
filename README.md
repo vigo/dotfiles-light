@@ -64,7 +64,9 @@ Try these commands:
 * `gz_analyse`: Analyses gzipped/non-gzipped versions of a file: `gz_analyse my_file.txt`
 * `mkdir_cd`: Create folder and cd in to it: `mkdir_cd foo`
 * `mkdir_now`: Create folder via time stamp: `2021-04-12-135850` (YEAR-MM-DD-HHMMSS)
+* `mkdir_now_short`: Create folder via time stamp: `2021-04-12` (YEAR-MM-DD)
 * `mkdir_now_cd`: Create folder via `mkdir_now` and `cd` to folder: `mkdir 2021-04-12-135850 && cd 2021-04-12-135850`
+* `mkdir_now_cd_short`: Create folder via `mkdir_now_short` and `cd` to folder: `mkdir 2021-04-12 && cd 2021-04-12`
 * `webserver`: That folder becomes a website! (*via python*): `cd /folder/;webserver`
 * `webserver_rb`: That folder becomes a website! (*via ruby*): `cd /folder/;webserver_rb`
 * `mmv`, `mcp`: Magic Move/Copy aka `mmv` or `mcp`. Edit your file target name on-the-fly!
@@ -89,6 +91,10 @@ updates `PATH` variable and other required brew environment variables.
 ---
 
 ## What’s New ?
+
+**November 30, 2021, Corona Days**
+
+- Add `mkdir_now_short` and `mkdir_now_cd_short` :)
 
 **October 4, 2021, Corona Days**
 
