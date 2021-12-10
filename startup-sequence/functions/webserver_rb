@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 # ruby webserver
 function webserver_rb(){
     if [[ $1 == "-h" || $1 == "--help" ]]; then

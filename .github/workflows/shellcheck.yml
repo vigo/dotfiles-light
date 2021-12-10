@@ -17,3 +17,6 @@ jobs:
         run: |
           shellcheck --shell=bash ps1/*
           shellcheck --shell=bash startup-sequence/functions/*
+          shellcheck --shell=bash startup-sequence/osx
+          shellcheck --shell=bash startup-sequence/ps1-setup
+          shellcheck --shell=bash startup-sequence/sample-ps1-colors

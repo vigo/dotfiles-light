@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function mcp() {
     if [[ "${#}" -eq 0 || "${1}" == "-h" || "${1}" == "--help" ]]; then
         echo

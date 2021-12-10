@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function gz_analyse() {
     if [[ $1 ]]; then
         echo "orig size (bytes): "

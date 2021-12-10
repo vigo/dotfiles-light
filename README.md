@@ -41,6 +41,20 @@
 * Autoload for `brew`: bash-completion
 * Linux style file listing if `coreutils` installed from `brew` (*folders on top!*)
 * Bunch of useful `alias` examples.
+* `whoseport` command, thanks to [Francesc Campoy](https://github.com/campoy)
+
+#### `whoseport`
+
+Sometimes you need to stop a process which has already captured you port:
+
+```bash
+$ whoseport 8000
+python3.9 70077 vigo    4u  IPv6 0x1fe3a0ca93fc0c17      0t0  TCP *:irdmi (LISTEN)
+
+$ kill 70077
+```
+
+---
 
 ### Common aliases
 
@@ -91,6 +105,10 @@ updates `PATH` variable and other required brew environment variables.
 ---
 
 ## What’s New ?
+
+**December, 10, 2021, Corona Days, Positive**
+
+- Add `whoseport` for OSX
 
 **November 30, 2021, Corona Days**
 

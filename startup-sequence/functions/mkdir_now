@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 mkdir_now(){
     now=$(date +"%Y-%m-%d-%H%M%S")
     mkdir "${now}" || return 1 

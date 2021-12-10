@@ -1,7 +1,8 @@
-# shellcheck disable=SC2154,SC2148
+#!/usr/bin/env bash
 
 # this file is sourced by bashrc
 
+# shellcheck disable=SC2154
 export DFL_HORIZONTAL_LINE_PROMPT_COLOR="${gray}"                      # [------]
 export DFL_BASH_VERSION_INFO_PROMPT_COLOR="${gray}"                    # [4.4.5(1)-release]
 export DFL_MEMORY_PROMPT_COLOR="${green}${bold}"                       # [2.43G]

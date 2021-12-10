@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function mmv() {
     # originally:
     # https://gist.github.com/premek/6e70446cfc913d3c929d7cdbfe896fef

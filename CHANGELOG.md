@@ -2,6 +2,13 @@
 
 ## 2021
 
+**December, 10, 2021, Corona Days, Positive**
+
+- Add `whoseport` for OSX. 
+
+Today, I lost my sense of smell and taste. Fighting with high fever. Hope to
+beat as soon as I can! Today is the 3rd day of being caught in covid...
+
 **November 30, 2021, Corona Days**
 
 - Add `mkdir_now_short` and `mkdir_now_cd_short` :)

@@ -1,4 +1,5 @@
-# shellcheck disable=SC2148
+#!/usr/bin/env bash
+
 if [[ "$(command -v brew)" ]]; then
     brew_prefix="$(brew --prefix)"
 
@@ -75,4 +76,25 @@ alias lock_screen="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/
 #         echo "default is: on"
 #     fi
 # }
+# -----------------------------------------------------------------------------
+
+
+# -----------------------------------------------------------------------------
+function whoseport(){
+    if [[ ${1} ]]; then
+        lsof -i ":${1}"  | grep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn} LISTEN
+    else
+        echo 'usage: whoseport PORT_NUMBER'
+        echo 
+        echo '    Thanks to Francesc Campoy for this lovely hack.'
+        echo '    Seen at ->'
+        echo '               justforfunc #37: sync.Pool from the pool'
+        echo '               https://youtu.be/rfXSrgIGrKo?t=160'
+        echo '    Find process information of given (address already in use) PORT_NUMBER'
+        echo
+        echo '       whoseport 8000'
+        echo '       whoseport 8080'
+        echo
+    fi
+}
 # -----------------------------------------------------------------------------

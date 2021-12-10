@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function webserver() {
     if [[ $1 == "-h" || $1 == "--help" ]]; then
         echo "Simple, http static html server via Python."
