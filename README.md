@@ -45,7 +45,7 @@
 
 #### `whoseport`
 
-Sometimes you need to stop a process which has already captured you port:
+Sometimes you may need to find the process for the port in use (*already*):
 
 ```bash
 $ whoseport 8000
