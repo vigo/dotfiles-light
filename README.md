@@ -81,6 +81,7 @@ Try these commands:
 * `mkdir_now_short`: Create folder via time stamp: `2021-04-12` (YEAR-MM-DD)
 * `mkdir_now_cd`: Create folder via `mkdir_now` and `cd` to folder: `mkdir 2021-04-12-135850 && cd 2021-04-12-135850`
 * `mkdir_now_cd_short`: Create folder via `mkdir_now_short` and `cd` to folder: `mkdir 2021-04-12 && cd 2021-04-12`
+* `makedir`: Helper for built-in `makedir` to fix `:` char issues.
 * `webserver`: That folder becomes a website! (*via python*): `cd /folder/;webserver`
 * `webserver_rb`: That folder becomes a website! (*via ruby*): `cd /folder/;webserver_rb`
 * `mmv`, `mcp`: Magic Move/Copy aka `mmv` or `mcp`. Edit your file target name on-the-fly!
@@ -106,6 +107,21 @@ updates `PATH` variable and other required brew environment variables.
 
 ## What’s New ?
 
+**March, 29, 2022, Corona Days**
+
+- Add `makedir` function
+- Improve `mkdir_cd` function
+
+Both functions use `DFL_MKDIRCD_REPLACEWITH` environment variable to fix
+macOS related `:` char removal. By default, `DFL_MKDIRCD_REPLACEWITH` value
+is set to: `-` which means, if you;
+
+- `mkdir_cd "hello: world"`
+- `makedir "hello: world"`
+
+Your folder name will be: `hello- world`. I set `DFL_MKDIRCD_REPLACEWITH=" -"`
+as default, `"hello: world"` becomes -> `"hello - world"`
+
 **December, 10, 2021, Corona Days, Positive**
 
 - Add `whoseport` for OSX
@@ -123,30 +139,7 @@ updates `PATH` variable and other required brew environment variables.
 - Add `DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT` and
   `DFL_HORIZONTAL_LINE_WIDGET_DATE_RIGHT` for `print_horizontal_line` function.
 
-**June 10, 2021, Corona Days**
-
-- Fix exit bug, functions now return 1
-
-**May 17, 2021, Corona Days**
-
-Add customization for git PS1 variables;
-
-- `DFL_GIT_SIGN_RIGHT_ARROW`, default: `→`
-- `DFL_GIT_SIGN_LEFT_ARROW`, default: `←`
-- `DFL_GIT_SYMBOL_UNCTRACKED`, default: `□`
-- `DFL_GIT_SYMBOL_ADDED`, default: `■`
-- `DFL_GIT_SYMBOL_MODIFIED`: default: `◆`
-- `DFL_GIT_SYMBOL_RENAMED`: default: `◇`
-- `DFL_GIT_SYMBOL_DELETED`: default: `◌`
-- `DFL_GIT_SYMBOL_TYPECHANGED`: default: `❖`
-
-**May 10 2021, Corona Days**
-
-- Remove `pyenv`, `rbenv`, `pip` autoloader
-
-You can add required config under `private/` folder for pyenv, rbenv etc.
-
-Change log is available [here](CHANGELOG.md)
+Detailed change log is available [here](CHANGELOG.md)
 
 ---
 

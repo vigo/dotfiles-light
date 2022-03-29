@@ -4,7 +4,9 @@ mkdir_cd(){
     if [[ $1 ]]; then
         filename="${1}"
         if [[ $DFL_OS == 'OSX' ]]; then
-            filename=${1//:/-}
+            DFL_MKDIRCD_REPLACEWITH="${DFL_MKDIRCD_REPLACEWITH:--}"
+            filename=${1//:/$DFL_MKDIRCD_REPLACEWITH}
+            filename=$(echo "${filename}" | tr -s ' ')
         fi
         mkdir -p "${filename}" && cd "${filename}" || return 1
     else

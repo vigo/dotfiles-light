@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+makedir(){
+    h_flag=""
+    p_flag=""
+    m_flag=""
+
+    OPTIND=1
+    while getopts "hpm:" flag; do
+        case "${flag}" in
+            h) h_flag="-h";;
+            p) p_flag="-p";;
+            m) m_flag="-m ${OPTARG}" ;;
+            *) echo "Unexpected option ${flag}" ;;
+        esac
+    done
+    shift $((OPTIND - 1))
+    
+    if [[ -n "${h_flag}" ]]; then
+        echo "usage: makedir [-hpv] [-m mode] directory_name ..."
+        echo
+        echo "this command uses built-in \`mkdir\` command and adds small"
+        echo "helper on top of it for macOS users."
+        echo
+        if [[ $DFL_OS == 'OSX' ]]; then
+            echo "by default, makedir replaces ':' char with '-'."
+            echo -e "you can customize the replace-with value from\n"
+            echo -e "\t\`DFL_MKDIRCD_REPLACEWITH\`\n"
+            echo "environment variable. default is set to: '-'"
+            echo
+        fi
+        echo "       makedir -h                        # help"
+        echo "       makedir -p folder1/folder2        # recursive"
+        echo "       makedir -m 700 -p folder1/folder2 # recursive with permissions"
+        echo
+        return
+    fi
+    
+    cmd_flags=""
+    [[ -n "${p_flag}" ]] && cmd_flags="${cmd_flags} ${p_flag}"
+    [[ -n "${m_flag}" ]] && cmd_flags="${cmd_flags} ${m_flag}"
+    [[ -n "${cmd_flags}" ]] && cmd_flags="${cmd_flags:1}"
+    
+    DFL_MKDIRCD_REPLACEWITH="${DFL_MKDIRCD_REPLACEWITH:--}"
+    for arg in "${@}"; do
+        foldername="${arg}"
+        if [[ $DFL_OS == 'OSX' ]]; then
+            foldername=${foldername//:/$DFL_MKDIRCD_REPLACEWITH}
+            foldername=$(echo "${foldername}" | tr -s ' ')
+        fi
+
+        # shellcheck disable=SC2086
+        command mkdir -v ${cmd_flags} "${foldername}"
+    done
+}

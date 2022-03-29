@@ -1,5 +1,22 @@
 # Change Log
 
+## 2022
+
+**March, 29, 2022, Corona Days**
+
+- Add `makedir` function
+- Improve `mkdir_cd` function
+
+Both functions use `DFL_MKDIRCD_REPLACEWITH` environment variable to fix
+macOS related `:` char removal. By default, `DFL_MKDIRCD_REPLACEWITH` value
+is set to: `-` which means, if you;
+
+- `mkdir_cd "hello: world"`
+- `makedir "hello: world"`
+
+Your folder name will be: `hello- world`. I set `DFL_MKDIRCD_REPLACEWITH=" -"`
+as default, `"hello: world"` becomes -> `"hello - world"`
+
 ## 2021
 
 **December, 10, 2021, Corona Days, Positive**
