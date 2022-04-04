@@ -1,6 +1,6 @@
 export PATH="${HOME}/bin:/usr/local/sbin:${PATH}"
 export LANG="en_US.UTF-8"
-export LESS="-irW --tabs=4 --prompt=?f%f %lb %L - %db/%D [%bb / %B bytes]"
+export LESS="-iRWXF --tabs=4 --prompt=?f%f %lb %L - %db/%D [%bb / %B bytes]"
 export MANPAGER="less -X"
 
 # History settings
