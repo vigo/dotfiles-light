@@ -107,6 +107,10 @@ updates `PATH` variable and other required brew environment variables.
 
 ## What’s New ?
 
+**May 9, 2022, still Corona Days!**
+
+- Add Ubuntu - Homebrew support
+
 **March, 29, 2022, Corona Days**
 
 - Add `makedir` function
@@ -133,13 +137,6 @@ as default, `"hello: world"` becomes -> `"hello - world"`
 **October 4, 2021, Corona Days**
 
 - Removed `pipx` bash-completion handler. Please use `brew install pipx`
-
-**June 28, 2021, Corona Days**
-
-- Add `DFL_HORIZONTAL_LINE_WIDGET_DATE_LEFT` and
-  `DFL_HORIZONTAL_LINE_WIDGET_DATE_RIGHT` for `print_horizontal_line` function.
-
-Detailed change log is available [here](CHANGELOG.md)
 
 ---
 

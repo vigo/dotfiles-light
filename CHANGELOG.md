@@ -2,7 +2,11 @@
 
 ## 2022
 
-**March, 29, 2022, Corona Days**
+**May 9, 2022, still Corona Days!**
+
+- Add Ubuntu - Homebrew support
+
+**March 29, 2022, Corona Days**
 
 - Add `makedir` function
 - Improve `mkdir_cd` function
@@ -19,7 +23,7 @@ as default, `"hello: world"` becomes -> `"hello - world"`
 
 ## 2021
 
-**December, 10, 2021, Corona Days, Positive**
+**December 10, 2021, Corona Days, Positive**
 
 - Add `whoseport` for OSX. 
 
