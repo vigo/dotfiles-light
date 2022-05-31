@@ -47,6 +47,10 @@ get_postgresql_status() {
             
             if [[ -n "${DATABASE_URL}" ]]; then
                 out="${out} $(basename "${DATABASE_URL}")"
+                if [[ $out == *"?"* ]]; then
+                    IFS='?' read -r -a array <<< "${out}"
+                    out="${array[0]}"
+                fi
             fi
 
             if [[ "${DFL_DB_POSTGRESQL_PROMPT_COLOR}" ]]; then
