@@ -1,6 +1,7 @@
 ![Version](https://img.shields.io/badge/version-2.2.0-orange.svg)
 ![Platform](https://img.shields.io/badge/platform-macOS%20%7C%20ubuntu%20%7C%20gentoo-yellow.svg)
 ![Shellcheck](https://github.com/vigo/dotfiles-light/actions/workflows/shellcheck.yml/badge.svg)
+![Powered by Rake](https://img.shields.io/badge/powered_by-rake-blue?logo=ruby)
 
 # Dotfiles LIGHT
 
